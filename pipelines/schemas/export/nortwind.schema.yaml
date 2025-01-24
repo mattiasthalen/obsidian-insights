@@ -1,0 +1,557 @@
+version: 4
+version_hash: SLzQLYBVROw0/PzC7aoeoJg/eSWhgyDIL7DGUQqlGCU=
+engine_version: 11
+name: nortwind
+tables:
+  _dlt_version:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      inserted_at:
+        data_type: timestamp
+        nullable: false
+      schema_name:
+        data_type: text
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: false
+      schema:
+        data_type: text
+        nullable: false
+    write_disposition: skip
+    resource: _dlt_version
+    description: Created by DLT. Tracks schema updates
+  _dlt_loads:
+    columns:
+      load_id:
+        data_type: text
+        nullable: false
+      schema_name:
+        data_type: text
+        nullable: true
+      status:
+        data_type: bigint
+        nullable: false
+      inserted_at:
+        data_type: timestamp
+        nullable: false
+      schema_version_hash:
+        data_type: text
+        nullable: true
+    write_disposition: skip
+    resource: _dlt_loads
+    description: Created by DLT. Tracks completed loads
+  category_dto:
+    columns:
+      category_id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      category_name:
+        data_type: text
+        nullable: true
+      description:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_categories
+  _dlt_pipeline_state:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      pipeline_name:
+        data_type: text
+        nullable: false
+      state:
+        data_type: text
+        nullable: false
+      created_at:
+        data_type: timestamp
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    write_disposition: append
+    file_format: preferred
+    resource: _dlt_pipeline_state
+    x-normalizer:
+      seen-data: true
+  product_dto:
+    columns:
+      product_id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      product_name:
+        data_type: text
+        nullable: true
+      supplier_id:
+        data_type: bigint
+        nullable: true
+      category_id:
+        data_type: bigint
+        nullable: true
+      quantity_per_unit:
+        data_type: text
+        nullable: true
+      unit_price:
+        data_type: double
+        nullable: true
+      units_in_stock:
+        data_type: bigint
+        nullable: true
+      units_on_order:
+        data_type: bigint
+        nullable: true
+      reorder_level:
+        data_type: bigint
+        nullable: true
+      discontinued:
+        data_type: bool
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_categoriesid_products
+  supplier_dto:
+    columns:
+      supplier_id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      company_name:
+        data_type: text
+        nullable: true
+      contact_name:
+        data_type: text
+        nullable: true
+      contact_title:
+        data_type: text
+        nullable: true
+      address:
+        data_type: text
+        nullable: true
+      city:
+        data_type: text
+        nullable: true
+      postal_code:
+        data_type: text
+        nullable: true
+      country:
+        data_type: text
+        nullable: true
+      phone:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+      region:
+        data_type: text
+        nullable: true
+      home_page:
+        data_type: text
+        nullable: true
+      fax:
+        data_type: text
+        nullable: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_productsid_supplier
+  order_dto:
+    columns:
+      order_id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      customer_id:
+        data_type: text
+        nullable: true
+      employee_id:
+        data_type: bigint
+        nullable: true
+      order_date:
+        data_type: timestamp
+        nullable: true
+      required_date:
+        data_type: timestamp
+        nullable: true
+      shipped_date:
+        data_type: timestamp
+        nullable: true
+      ship_via:
+        data_type: bigint
+        nullable: true
+      freight:
+        data_type: double
+        nullable: true
+      ship_name:
+        data_type: text
+        nullable: true
+      ship_address:
+        data_type: text
+        nullable: true
+      ship_city:
+        data_type: text
+        nullable: true
+      ship_postal_code:
+        data_type: text
+        nullable: true
+      ship_country:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+      ship_region:
+        data_type: text
+        nullable: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_customersid_orders
+  shipper_dto:
+    columns:
+      shipper_id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      company_name:
+        data_type: text
+        nullable: true
+      phone:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_ordersid_shipper
+  territory_dto:
+    columns:
+      territory_id:
+        nullable: false
+        primary_key: true
+        data_type: text
+      territory_description:
+        data_type: text
+        nullable: true
+      region_id:
+        data_type: bigint
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_employeesid_territories
+  region_dto:
+    columns:
+      region_id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      region_description:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_regions
+  employee_dto:
+    columns:
+      employee_id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      last_name:
+        data_type: text
+        nullable: true
+      first_name:
+        data_type: text
+        nullable: true
+      title:
+        data_type: text
+        nullable: true
+      title_of_courtesy:
+        data_type: text
+        nullable: true
+      birth_date:
+        data_type: timestamp
+        nullable: true
+      hire_date:
+        data_type: timestamp
+        nullable: true
+      address:
+        data_type: text
+        nullable: true
+      city:
+        data_type: text
+        nullable: true
+      region:
+        data_type: text
+        nullable: true
+      postal_code:
+        data_type: text
+        nullable: true
+      country:
+        data_type: text
+        nullable: true
+      home_phone:
+        data_type: text
+        nullable: true
+      extension:
+        data_type: text
+        nullable: true
+      photo:
+        data_type: text
+        nullable: true
+      notes:
+        data_type: text
+        nullable: true
+      reports_to:
+        data_type: bigint
+        nullable: true
+      photo_path:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_employees
+  customer_dto:
+    columns:
+      customer_id:
+        nullable: false
+        primary_key: true
+        data_type: text
+      company_name:
+        data_type: text
+        nullable: true
+      contact_name:
+        data_type: text
+        nullable: true
+      contact_title:
+        data_type: text
+        nullable: true
+      address:
+        data_type: text
+        nullable: true
+      city:
+        data_type: text
+        nullable: true
+      postal_code:
+        data_type: text
+        nullable: true
+      country:
+        data_type: text
+        nullable: true
+      phone:
+        data_type: text
+        nullable: true
+      fax:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+      region:
+        data_type: text
+        nullable: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_customers
+  detail:
+    columns:
+      value:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_categoriesid_details
+  order_detail_dto:
+    columns:
+      order_id:
+        data_type: bigint
+        nullable: true
+      product_id:
+        data_type: bigint
+        nullable: true
+      unit_price:
+        data_type: double
+        nullable: true
+      quantity:
+        data_type: bigint
+        nullable: true
+      discount:
+        data_type: bigint
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+      discount__v_double:
+        data_type: double
+        nullable: true
+        variant: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_ordersid_order_details
+settings:
+  detections:
+  - iso_timestamp
+  default_hints:
+    not_null:
+    - _dlt_id
+    - _dlt_root_id
+    - _dlt_parent_id
+    - _dlt_list_idx
+    - _dlt_load_id
+    parent_key:
+    - _dlt_parent_id
+    root_key:
+    - _dlt_root_id
+    unique:
+    - _dlt_id
+    row_key:
+    - _dlt_id
+normalizers:
+  names: snake_case
+  json:
+    module: dlt.common.normalizers.json.relational
+    config:
+      propagation:
+        tables:
+          category_dto:
+            _dlt_id: _dlt_root_id
+          product_dto:
+            _dlt_id: _dlt_root_id
+          supplier_dto:
+            _dlt_id: _dlt_root_id
+          order_dto:
+            _dlt_id: _dlt_root_id
+          shipper_dto:
+            _dlt_id: _dlt_root_id
+          territory_dto:
+            _dlt_id: _dlt_root_id
+          region_dto:
+            _dlt_id: _dlt_root_id
+          employee_dto:
+            _dlt_id: _dlt_root_id
+          customer_dto:
+            _dlt_id: _dlt_root_id
+          detail:
+            _dlt_id: _dlt_root_id
+          order_detail_dto:
+            _dlt_id: _dlt_root_id
+previous_hashes:
+- tHkEF23sc4yrjuQ8rIa4A7mpWfvCH2NLOH4jN5vyTkA=
+- hiKFUvSOLMRxUrAq1Ma4VJerLuRkrj9XOSRiAgOG4Hw=
+- GxCg8qaP47WXAz2DWS/IHRdgqGNlCuZSN207bwBHPhw=
+- Kie2q1Z5bJfefL+S29/UGBlsqTFcI8Gf33cja/p5LWw=
