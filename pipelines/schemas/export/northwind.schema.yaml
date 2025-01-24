@@ -1,5 +1,5 @@
-version: 2
-version_hash: tD4v8J04bK+A5tdLkZMHAXHHTpSo5DdZ4Fc3+POKt5Y=
+version: 4
+version_hash: oef2eA/8USkxECIKt6sSekuBo2KTRxyR/wxBmOUaFZk=
 engine_version: 11
 name: northwind
 tables:
@@ -90,7 +90,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_categoriesid_products
   raw__northwind__supplier_dto:
     columns:
@@ -142,7 +142,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_productsid_supplier
   raw__northwind__order_dto:
     columns:
@@ -200,7 +200,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_customersid_orders
   raw__northwind__shipper_dto:
     columns:
@@ -225,7 +225,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_ordersid_shipper
   raw__northwind__territory_dto:
     columns:
@@ -250,7 +250,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_employeesid_territories
   raw__northwind__region_dto:
     columns:
@@ -272,7 +272,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_regions
   raw__northwind__employee_dto:
     columns:
@@ -342,7 +342,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_employees
   raw__northwind__customer_dto:
     columns:
@@ -391,7 +391,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_customers
   raw__northwind__category_dto:
     columns:
@@ -416,7 +416,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_categories
   raw__northwind__detail:
     columns:
@@ -434,7 +434,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_categoriesid_details
   raw__northwind__order_detail_dto:
     columns:
@@ -468,7 +468,7 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    write_disposition: merge
+    write_disposition: replace
     resource: get_northwindapiv_1_ordersid_order_details
   _dlt_pipeline_state:
     columns:
@@ -551,5 +551,7 @@ normalizers:
           raw__northwind__order_detail_dto:
             _dlt_id: _dlt_root_id
 previous_hashes:
+- SmJfn3yDAC5mf0qRKILvzrY5sqDXfSmexMbdig8NE3I=
+- tD4v8J04bK+A5tdLkZMHAXHHTpSo5DdZ4Fc3+POKt5Y=
 - tI2r3iavYTT4tAMXBjZT+tBuXjh7o8ltu73S86QPcMc=
 - ZGDKBKBO1TfdmjkcmsIEBIMBi7kuz9LSTrOk56BlAbg=
