@@ -11,13 +11,13 @@ def northwind_source() -> t.Any:
             "base_url": "https://demodata.grapecity.com/",
         },
         "resource_defaults": {
-            "write_disposition": "merge",
+            "write_disposition": "replace",
             "max_table_nesting": 0
         },
         "resources": [
             {
                 "name": "get_northwindapiv_1_categories",
-                "table_name": "category_dto",
+                "table_name": "raw__northwind__category_dto",
                 "primary_key": "categoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -27,7 +27,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_categoriesid",
-                "table_name": "category_dto",
+                "table_name": "raw__northwind__category_dto",
                 "primary_key": "categoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -44,7 +44,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_productsid_category",
-                "table_name": "category_dto",
+                "table_name": "raw__northwind__category_dto",
                 "primary_key": "categoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -61,7 +61,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_customers",
-                "table_name": "customer_dto",
+                "table_name": "raw__northwind__customer_dto",
                 "primary_key": "customerId",
                 "endpoint": {
                     "data_selector": "$",
@@ -71,7 +71,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_customersid",
-                "table_name": "customer_dto",
+                "table_name": "raw__northwind__customer_dto",
                 "primary_key": "customerId",
                 "endpoint": {
                     "data_selector": "$",
@@ -88,7 +88,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_ordersid_customer",
-                "table_name": "customer_dto",
+                "table_name": "raw__northwind__customer_dto",
                 "primary_key": "customerId",
                 "endpoint": {
                     "data_selector": "$",
@@ -105,7 +105,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_categoriesid_details",
-                "table_name": "detail",
+                "table_name": "raw__northwind__detail",
                 "endpoint": {
                     "data_selector": "productNames",
                     "path": "/northwind/api/v1/Categories/{id}/Details",
@@ -121,7 +121,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_employees",
-                "table_name": "employee_dto",
+                "table_name": "raw__northwind__employee_dto",
                 "primary_key": "employeeId",
                 "endpoint": {
                     "data_selector": "$",
@@ -131,7 +131,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_employeesid",
-                "table_name": "employee_dto",
+                "table_name": "raw__northwind__employee_dto",
                 "primary_key": "employeeId",
                 "endpoint": {
                     "data_selector": "$",
@@ -148,7 +148,7 @@ def northwind_source() -> t.Any:
             },
             # {
             #     "name": "get_northwindapiv_1_employeesid_superior",
-            #     "table_name": "employee_dto",
+            #     "table_name": "raw__northwind__employee_dto",
             #     "endpoint": {
             #         "data_selector": "$",
             #         "path": "/northwind/api/v1/Employees/{id}/Superior",
@@ -164,7 +164,7 @@ def northwind_source() -> t.Any:
             # },
             {
                 "name": "get_northwindapiv_1_employeesid_subordinates",
-                "table_name": "employee_dto",
+                "table_name": "raw__northwind__employee_dto",
                 "endpoint": {
                     "data_selector": "$",
                     "path": "/northwind/api/v1/Employees/{id}/Subordinates",
@@ -180,7 +180,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_ordersid_employee",
-                "table_name": "employee_dto",
+                "table_name": "raw__northwind__employee_dto",
                 "primary_key": "employeeId",
                 "endpoint": {
                     "data_selector": "$",
@@ -197,7 +197,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_territoriesid_employees",
-                "table_name": "employee_dto",
+                "table_name": "raw__northwind__employee_dto",
                 "primary_key": "employeeId",
                 "endpoint": {
                     "data_selector": "$",
@@ -214,7 +214,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_ordersid_order_details",
-                "table_name": "order_detail_dto",
+                "table_name": "raw__northwind__order_detail_dto",
                 "endpoint": {
                     "data_selector": "$",
                     "path": "/northwind/api/v1/Orders/{id}/OrderDetails",
@@ -230,7 +230,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_productsid_order_details",
-                "table_name": "order_detail_dto",
+                "table_name": "raw__northwind__order_detail_dto",
                 "endpoint": {
                     "data_selector": "$",
                     "path": "/northwind/api/v1/Products/{id}/OrderDetails",
@@ -246,7 +246,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_customersid_orders",
-                "table_name": "order_dto",
+                "table_name": "raw__northwind__order_dto",
                 "primary_key": "orderId",
                 "endpoint": {
                     "data_selector": "$",
@@ -263,7 +263,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_employeesid_orders",
-                "table_name": "order_dto",
+                "table_name": "raw__northwind__order_dto",
                 "primary_key": "orderId",
                 "endpoint": {
                     "data_selector": "$",
@@ -280,7 +280,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_orders",
-                "table_name": "order_dto",
+                "table_name": "raw__northwind__order_dto",
                 "primary_key": "orderId",
                 "endpoint": {
                     "data_selector": "$",
@@ -290,7 +290,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_ordersid",
-                "table_name": "order_dto",
+                "table_name": "raw__northwind__order_dto",
                 "primary_key": "orderId",
                 "endpoint": {
                     "data_selector": "$",
@@ -307,7 +307,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_shippersid_orders",
-                "table_name": "order_dto",
+                "table_name": "raw__northwind__order_dto",
                 "primary_key": "orderId",
                 "endpoint": {
                     "data_selector": "$",
@@ -324,7 +324,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_categoriesid_products",
-                "table_name": "product_dto",
+                "table_name": "raw__northwind__product_dto",
                 "primary_key": "productId",
                 "endpoint": {
                     "data_selector": "$",
@@ -341,7 +341,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_ordersid_products",
-                "table_name": "product_dto",
+                "table_name": "raw__northwind__product_dto",
                 "primary_key": "productId",
                 "endpoint": {
                     "data_selector": "$",
@@ -358,7 +358,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_products",
-                "table_name": "product_dto",
+                "table_name": "raw__northwind__product_dto",
                 "primary_key": "productId",
                 "endpoint": {
                     "data_selector": "$",
@@ -368,7 +368,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_productsid",
-                "table_name": "product_dto",
+                "table_name": "raw__northwind__product_dto",
                 "primary_key": "productId",
                 "endpoint": {
                     "data_selector": "$",
@@ -385,7 +385,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_suppliersid_products",
-                "table_name": "product_dto",
+                "table_name": "raw__northwind__product_dto",
                 "primary_key": "productId",
                 "endpoint": {
                     "data_selector": "$",
@@ -402,7 +402,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_regions",
-                "table_name": "region_dto",
+                "table_name": "raw__northwind__region_dto",
                 "primary_key": "regionId",
                 "endpoint": {
                     "data_selector": "$",
@@ -412,7 +412,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_regionsid",
-                "table_name": "region_dto",
+                "table_name": "raw__northwind__region_dto",
                 "primary_key": "regionId",
                 "endpoint": {
                     "data_selector": "$",
@@ -429,7 +429,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_territoriesid_region",
-                "table_name": "region_dto",
+                "table_name": "raw__northwind__region_dto",
                 "primary_key": "regionId",
                 "endpoint": {
                     "data_selector": "$",
@@ -446,7 +446,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_ordersid_shipper",
-                "table_name": "shipper_dto",
+                "table_name": "raw__northwind__shipper_dto",
                 "primary_key": "shipperId",
                 "endpoint": {
                     "data_selector": "$",
@@ -463,7 +463,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_shippers",
-                "table_name": "shipper_dto",
+                "table_name": "raw__northwind__shipper_dto",
                 "primary_key": "shipperId",
                 "endpoint": {
                     "data_selector": "$",
@@ -473,7 +473,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_shippersid",
-                "table_name": "shipper_dto",
+                "table_name": "raw__northwind__shipper_dto",
                 "primary_key": "shipperId",
                 "endpoint": {
                     "data_selector": "$",
@@ -490,7 +490,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_productsid_supplier",
-                "table_name": "supplier_dto",
+                "table_name": "raw__northwind__supplier_dto",
                 "primary_key": "supplierId",
                 "endpoint": {
                     "data_selector": "$",
@@ -507,7 +507,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_suppliers",
-                "table_name": "supplier_dto",
+                "table_name": "raw__northwind__supplier_dto",
                 "primary_key": "supplierId",
                 "endpoint": {
                     "data_selector": "$",
@@ -517,7 +517,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_suppliersid",
-                "table_name": "supplier_dto",
+                "table_name": "raw__northwind__supplier_dto",
                 "primary_key": "supplierId",
                 "endpoint": {
                     "data_selector": "$",
@@ -534,7 +534,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_employeesid_territories",
-                "table_name": "territory_dto",
+                "table_name": "raw__northwind__territory_dto",
                 "primary_key": "territoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -551,7 +551,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_regionsid_territories",
-                "table_name": "territory_dto",
+                "table_name": "raw__northwind__territory_dto",
                 "primary_key": "territoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -568,7 +568,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_territories",
-                "table_name": "territory_dto",
+                "table_name": "raw__northwind__territory_dto",
                 "primary_key": "territoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -578,7 +578,7 @@ def northwind_source() -> t.Any:
             },
             {
                 "name": "get_northwindapiv_1_territoriesid",
-                "table_name": "territory_dto",
+                "table_name": "raw__northwind__territory_dto",
                 "primary_key": "territoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -601,9 +601,8 @@ def northwind_source() -> t.Any:
 def load_northwind() -> None:
     pipeline = dlt.pipeline(
         pipeline_name="northwind",
-        #destination=dlt.destinations.duckdb("./data/obsidian_insights.duckdb"),
         destination=dlt.destinations.motherduck(),
-        dataset_name="northwind",
+        dataset_name="bronze",
         progress="enlighten",
         export_schema_path="./pipelines/schemas/export"
     )

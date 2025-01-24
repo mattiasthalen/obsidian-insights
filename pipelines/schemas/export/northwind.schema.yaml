@@ -1,5 +1,5 @@
 version: 2
-version_hash: xFfqkKEXFbkIs+asile92Rgek43ad5nefB8fCFvzvZo=
+version_hash: tD4v8J04bK+A5tdLkZMHAXHHTpSo5DdZ4Fc3+POKt5Y=
 engine_version: 11
 name: northwind
 tables:
@@ -46,7 +46,7 @@ tables:
     write_disposition: skip
     resource: _dlt_loads
     description: Created by DLT. Tracks completed loads
-  product_dto:
+  raw__northwind__product_dto:
     columns:
       product_id:
         nullable: false
@@ -92,7 +92,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_categoriesid_products
-  supplier_dto:
+  raw__northwind__supplier_dto:
     columns:
       supplier_id:
         nullable: false
@@ -144,7 +144,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_productsid_supplier
-  order_dto:
+  raw__northwind__order_dto:
     columns:
       order_id:
         nullable: false
@@ -202,7 +202,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_customersid_orders
-  shipper_dto:
+  raw__northwind__shipper_dto:
     columns:
       shipper_id:
         nullable: false
@@ -227,7 +227,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_ordersid_shipper
-  territory_dto:
+  raw__northwind__territory_dto:
     columns:
       territory_id:
         nullable: false
@@ -252,7 +252,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_employeesid_territories
-  region_dto:
+  raw__northwind__region_dto:
     columns:
       region_id:
         nullable: false
@@ -274,7 +274,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_regions
-  employee_dto:
+  raw__northwind__employee_dto:
     columns:
       employee_id:
         nullable: false
@@ -344,7 +344,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_employees
-  customer_dto:
+  raw__northwind__customer_dto:
     columns:
       customer_id:
         nullable: false
@@ -393,7 +393,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_customers
-  category_dto:
+  raw__northwind__category_dto:
     columns:
       category_id:
         nullable: false
@@ -418,7 +418,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_categories
-  detail:
+  raw__northwind__detail:
     columns:
       value:
         data_type: text
@@ -436,7 +436,7 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_categoriesid_details
-  order_detail_dto:
+  raw__northwind__order_detail_dto:
     columns:
       order_id:
         data_type: bigint
@@ -528,28 +528,28 @@ normalizers:
     config:
       propagation:
         tables:
-          product_dto:
+          raw__northwind__product_dto:
             _dlt_id: _dlt_root_id
-          supplier_dto:
+          raw__northwind__supplier_dto:
             _dlt_id: _dlt_root_id
-          order_dto:
+          raw__northwind__order_dto:
             _dlt_id: _dlt_root_id
-          shipper_dto:
+          raw__northwind__shipper_dto:
             _dlt_id: _dlt_root_id
-          territory_dto:
+          raw__northwind__territory_dto:
             _dlt_id: _dlt_root_id
-          region_dto:
+          raw__northwind__region_dto:
             _dlt_id: _dlt_root_id
-          employee_dto:
+          raw__northwind__employee_dto:
             _dlt_id: _dlt_root_id
-          customer_dto:
+          raw__northwind__customer_dto:
             _dlt_id: _dlt_root_id
-          category_dto:
+          raw__northwind__category_dto:
             _dlt_id: _dlt_root_id
-          detail:
+          raw__northwind__detail:
             _dlt_id: _dlt_root_id
-          order_detail_dto:
+          raw__northwind__order_detail_dto:
             _dlt_id: _dlt_root_id
 previous_hashes:
-- POn90XdfzLN08hw/h1QPCHMXGTP0DZaEM5BRL/ULLXM=
-- 87m946QpqgCnoOyd7XUJI7XI/RcUAhUFFnoaPgneWiM=
+- tI2r3iavYTT4tAMXBjZT+tBuXjh7o8ltu73S86QPcMc=
+- ZGDKBKBO1TfdmjkcmsIEBIMBi7kuz9LSTrOk56BlAbg=

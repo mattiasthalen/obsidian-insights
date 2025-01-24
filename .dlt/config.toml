@@ -1,3 +1,6 @@
 [runtime]
 log_level="WARNING"
 dlthub_telemetry = true
+
+[destination.motherduck.credentials]
+database = "obsidian_insights"
