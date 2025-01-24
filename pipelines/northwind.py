@@ -600,7 +600,7 @@ def northwind_source() -> t.Any:
 
 def load_northwind() -> None:
     pipeline = dlt.pipeline(
-        pipeline_name="northwind_pipeline",
+        pipeline_name="northwind",
         #destination=dlt.destinations.duckdb("./data/obsidian_insights.duckdb"),
         destination=dlt.destinations.motherduck(),
         dataset_name="northwind",

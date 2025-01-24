@@ -1,7 +1,7 @@
-version: 4
-version_hash: SLzQLYBVROw0/PzC7aoeoJg/eSWhgyDIL7DGUQqlGCU=
+version: 2
+version_hash: xFfqkKEXFbkIs+asile92Rgek43ad5nefB8fCFvzvZo=
 engine_version: 11
-name: nortwind
+name: northwind
 tables:
   _dlt_version:
     columns:
@@ -46,64 +46,6 @@ tables:
     write_disposition: skip
     resource: _dlt_loads
     description: Created by DLT. Tracks completed loads
-  category_dto:
-    columns:
-      category_id:
-        nullable: false
-        primary_key: true
-        data_type: bigint
-      category_name:
-        data_type: text
-        nullable: true
-      description:
-        data_type: text
-        nullable: true
-      _dlt_load_id:
-        data_type: text
-        nullable: false
-      _dlt_id:
-        data_type: text
-        nullable: false
-        unique: true
-        row_key: true
-    x-normalizer:
-      max_nesting: 0
-      seen-data: true
-    write_disposition: merge
-    resource: get_northwindapiv_1_categories
-  _dlt_pipeline_state:
-    columns:
-      version:
-        data_type: bigint
-        nullable: false
-      engine_version:
-        data_type: bigint
-        nullable: false
-      pipeline_name:
-        data_type: text
-        nullable: false
-      state:
-        data_type: text
-        nullable: false
-      created_at:
-        data_type: timestamp
-        nullable: false
-      version_hash:
-        data_type: text
-        nullable: true
-      _dlt_load_id:
-        data_type: text
-        nullable: false
-      _dlt_id:
-        data_type: text
-        nullable: false
-        unique: true
-        row_key: true
-    write_disposition: append
-    file_format: preferred
-    resource: _dlt_pipeline_state
-    x-normalizer:
-      seen-data: true
   product_dto:
     columns:
       product_id:
@@ -451,6 +393,31 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_customers
+  category_dto:
+    columns:
+      category_id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      category_name:
+        data_type: text
+        nullable: true
+      description:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    x-normalizer:
+      max_nesting: 0
+      seen-data: true
+    write_disposition: merge
+    resource: get_northwindapiv_1_categories
   detail:
     columns:
       value:
@@ -503,6 +470,39 @@ tables:
       seen-data: true
     write_disposition: merge
     resource: get_northwindapiv_1_ordersid_order_details
+  _dlt_pipeline_state:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      pipeline_name:
+        data_type: text
+        nullable: false
+      state:
+        data_type: text
+        nullable: false
+      created_at:
+        data_type: timestamp
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+        row_key: true
+    write_disposition: append
+    file_format: preferred
+    resource: _dlt_pipeline_state
+    x-normalizer:
+      seen-data: true
 settings:
   detections:
   - iso_timestamp
@@ -528,8 +528,6 @@ normalizers:
     config:
       propagation:
         tables:
-          category_dto:
-            _dlt_id: _dlt_root_id
           product_dto:
             _dlt_id: _dlt_root_id
           supplier_dto:
@@ -546,12 +544,12 @@ normalizers:
             _dlt_id: _dlt_root_id
           customer_dto:
             _dlt_id: _dlt_root_id
+          category_dto:
+            _dlt_id: _dlt_root_id
           detail:
             _dlt_id: _dlt_root_id
           order_detail_dto:
             _dlt_id: _dlt_root_id
 previous_hashes:
-- tHkEF23sc4yrjuQ8rIa4A7mpWfvCH2NLOH4jN5vyTkA=
-- hiKFUvSOLMRxUrAq1Ma4VJerLuRkrj9XOSRiAgOG4Hw=
-- GxCg8qaP47WXAz2DWS/IHRdgqGNlCuZSN207bwBHPhw=
-- Kie2q1Z5bJfefL+S29/UGBlsqTFcI8Gf33cja/p5LWw=
+- POn90XdfzLN08hw/h1QPCHMXGTP0DZaEM5BRL/ULLXM=
+- 87m946QpqgCnoOyd7XUJI7XI/RcUAhUFFnoaPgneWiM=
