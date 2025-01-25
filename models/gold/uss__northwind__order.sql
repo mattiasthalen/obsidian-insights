@@ -1,6 +1,8 @@
 MODEL (
   name gold.uss__northwind__order,
-  kind FULL,
+  kind INCREMENTAL_BY_TIME_RANGE (
+    time_column _sqlmesh_loaded_at
+  ),
   grain (
     hook__order__id
   )
@@ -19,6 +21,7 @@ SELECT
   ship_postal_code,
   ship_country,
   ship_region,
+  _sqlmesh_loaded_at,
   _sqlmesh_valid_from,
   _sqlmesh_valid_to,
   _sqlmesh_version,

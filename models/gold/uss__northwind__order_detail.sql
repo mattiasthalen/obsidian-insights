@@ -1,6 +1,8 @@
 MODEL (
   name gold.uss__northwind__order_detail,
-  kind FULL,
+  kind INCREMENTAL_BY_TIME_RANGE (
+    time_column _sqlmesh_loaded_at
+  ),
   grain (
     hook__order_detail__id
   )
@@ -12,6 +14,7 @@ SELECT
   quantity,
   discount,
   discount__v_double,
+  _sqlmesh_loaded_at,
   _sqlmesh_valid_from,
   _sqlmesh_valid_to,
   _sqlmesh_version,

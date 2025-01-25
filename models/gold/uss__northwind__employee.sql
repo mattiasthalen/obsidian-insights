@@ -1,6 +1,8 @@
 MODEL (
   name gold.uss__northwind__employee,
-  kind FULL,
+  kind INCREMENTAL_BY_TIME_RANGE (
+    time_column _sqlmesh_loaded_at
+  ),
   grain (
     hook__employee__id
   )
@@ -25,6 +27,7 @@ SELECT
   notes,
   reports_to,
   photo_path,
+  _sqlmesh_loaded_at,
   _sqlmesh_valid_from,
   _sqlmesh_valid_to,
   _sqlmesh_version,

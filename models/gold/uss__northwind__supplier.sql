@@ -1,6 +1,8 @@
 MODEL (
   name gold.uss__northwind__supplier,
-  kind FULL,
+  kind INCREMENTAL_BY_TIME_RANGE (
+    time_column _sqlmesh_loaded_at
+  ),
   grain (
     hook__supplier__id
   )
@@ -19,6 +21,7 @@ SELECT
   region,
   home_page,
   fax,
+  _sqlmesh_loaded_at,
   _sqlmesh_valid_from,
   _sqlmesh_valid_to,
   _sqlmesh_version,
