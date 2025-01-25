@@ -7,6 +7,7 @@ MODEL (
 );
 
 SELECT
+  category_id AS key__category_id,
   category_id,
   category_name,
   description,

@@ -6,38 +6,29 @@ MODEL (
   )
 );
 
-WITH source AS (
-  SELECT
-    supplier_id,
-    company_name,
-    contact_name,
-    contact_title,
-    address,
-    city,
-    postal_code,
-    country,
-    phone,
-    region,
-    home_page,
-    fax,
-    _dlt_load_id,
-    _dlt_id,
-    _dlt_extracted_at,
-    _sqlmesh_hash_diff,
-    _sqlmesh_loaded_at,
-    _sqlmesh_valid_from::TIMESTAMP AS _sqlmesh_valid_from,
-    COALESCE(_sqlmesh_valid_to, '9999-12-31 23:59:59.999999')::TIMESTAMP AS _sqlmesh_valid_to,
-    ROW_NUMBER() OVER (PARTITION BY supplier_id ORDER BY _sqlmesh_loaded_at) AS _sqlmesh_version,
-    _sqlmesh_valid_to IS NULL AS _sqlmesh_is_current_record,
-    'northwind' AS _sqlmesh_source_system,
-    'supplier' AS _sqlmesh_source_table
-  FROM bronze.snp__northwind__supplier_dto
-), hook_keys AS (
-  SELECT
-    CONCAT('northwind|supplier|', supplier_id::TEXT)::BLOB AS hook__supplier__id,
-    *
-  FROM source
-)
 SELECT
-  *
-FROM hook_keys
+  CONCAT('northwind|supplier|', supplier_id::TEXT)::BLOB AS hook__supplier__id,
+  supplier_id,
+  company_name,
+  contact_name,
+  contact_title,
+  address,
+  city,
+  postal_code,
+  country,
+  phone,
+  region,
+  home_page,
+  fax,
+  _dlt_load_id,
+  _dlt_id,
+  _dlt_extracted_at,
+  _sqlmesh_hash_diff,
+  _sqlmesh_loaded_at,
+  _sqlmesh_valid_from::TIMESTAMP AS _sqlmesh_valid_from,
+  COALESCE(_sqlmesh_valid_to, '9999-12-31 23:59:59.999999')::TIMESTAMP AS _sqlmesh_valid_to,
+  ROW_NUMBER() OVER (PARTITION BY supplier_id ORDER BY _sqlmesh_loaded_at) AS _sqlmesh_version,
+  _sqlmesh_valid_to IS NULL AS _sqlmesh_is_current_record,
+  'northwind' AS _sqlmesh_source_system,
+  'supplier' AS _sqlmesh_source_table
+FROM bronze.snp__northwind__supplier_dto

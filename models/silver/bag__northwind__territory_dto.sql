@@ -7,6 +7,8 @@ MODEL (
 );
 
 SELECT
+  territory_id AS key__territory_id,
+  region_id AS key__region_id,
   territory_id,
   territory_description,
   region_id,

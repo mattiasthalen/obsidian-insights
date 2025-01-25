@@ -7,6 +7,7 @@ MODEL (
 );
 
 SELECT
+  region_id AS key__region_id,
   region_id,
   region_description,
   _dlt_load_id,
