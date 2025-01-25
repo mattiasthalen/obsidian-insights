@@ -7,5 +7,5 @@ requires-python = ">=3.9,<3.13"
 dependencies = [
     "dlt>=1.5.0",
     "enlighten>=1.13.0",
-    "sqlmesh[web]>=0.150.1",
+    "sqlmesh[github,web]>=0.150.1",
 ]
