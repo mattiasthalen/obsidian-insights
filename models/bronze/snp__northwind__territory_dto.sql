@@ -10,21 +10,19 @@ MODEL (
 );
 
 SELECT
-  CAST(c.territory_id AS TEXT) AS territory_id,
-  CAST(c.territory_description AS TEXT) AS territory_description,
-  CAST(c.region_id AS BIGINT) AS region_id,
-  CAST(c._dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(c._dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(c._dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
+  CAST(territory_id AS TEXT) AS territory_id,
+  CAST(territory_description AS TEXT) AS territory_description,
+  CAST(region_id AS BIGINT) AS region_id,
+  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
+  CAST(_dlt_id AS TEXT) AS _dlt_id,
+  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
   
   @generate_surrogate_key(
-    c.territory_id,
-    c.territory_description,
-    c.region_id
+    territory_id,
+    territory_description,
+    region_id
   ) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
   
 FROM
-  bronze.raw__northwind__territory_dto as c
-WHERE
-  TO_TIMESTAMP(CAST(c._dlt_load_id AS DOUBLE)) BETWEEN @start_ds AND @end_ds
+  bronze.raw__northwind__territory_dto

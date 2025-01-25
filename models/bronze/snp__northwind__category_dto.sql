@@ -10,20 +10,18 @@ MODEL (
 );
 
 SELECT
-  CAST(c.category_id AS BIGINT) AS category_id,
-  CAST(c.category_name AS TEXT) AS category_name,
-  CAST(c.description AS TEXT) AS description,
-  CAST(c._dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(c._dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(c._dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
+  CAST(category_id AS BIGINT) AS category_id,
+  CAST(category_name AS TEXT) AS category_name,
+  CAST(description AS TEXT) AS description,
+  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
+  CAST(_dlt_id AS TEXT) AS _dlt_id,
+  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
   
   @generate_surrogate_key(
-    c.category_id,
-    c.category_name,
-    c.description
+    category_id,
+    category_name,
+    description
   ) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
 FROM
-  bronze.raw__northwind__category_dto as c
-WHERE
-  TO_TIMESTAMP(CAST(c._dlt_load_id AS DOUBLE)) BETWEEN @start_ds AND @end_ds
+  bronze.raw__northwind__category_dto

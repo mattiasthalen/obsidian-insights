@@ -8,3 +8,6 @@ secrets.toml
 # ignore duckdb
 *.duckdb
 *.wal
+logs/
+.cache/
+.venv/

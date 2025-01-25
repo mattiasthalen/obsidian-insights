@@ -9,16 +9,14 @@ MODEL (
 );
 
 SELECT
-  CAST(c.value AS TEXT) AS value,
-  CAST(c._dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(c._dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(c._dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
+  CAST(value AS TEXT) AS value,
+  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
+  CAST(_dlt_id AS TEXT) AS _dlt_id,
+  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
   
   @generate_surrogate_key(
-    c.value
+    value
   ) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
 FROM
-  bronze.raw__northwind__detail as c
-WHERE
-  TO_TIMESTAMP(CAST(c._dlt_load_id AS DOUBLE)) BETWEEN @start_ds AND @end_ds
+  bronze.raw__northwind__detail
