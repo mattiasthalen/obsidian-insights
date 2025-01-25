@@ -6,28 +6,29 @@ MODEL (
     valid_to_name _sqlmesh_valid_to,
     columns [_sqlmesh_hash_diff]
   ),
-  grain (order_id),
+  grain (
+    order_id
+  )
 );
 
 SELECT
-  CAST(order_id AS BIGINT) AS order_id,
-  CAST(customer_id AS TEXT) AS customer_id,
-  CAST(employee_id AS BIGINT) AS employee_id,
-  CAST(order_date AS TIMESTAMP) AS order_date,
-  CAST(required_date AS TIMESTAMP) AS required_date,
-  CAST(shipped_date AS TIMESTAMP) AS shipped_date,
-  CAST(ship_via AS BIGINT) AS ship_via,
-  CAST(freight AS DOUBLE) AS freight,
-  CAST(ship_name AS TEXT) AS ship_name,
-  CAST(ship_address AS TEXT) AS ship_address,
-  CAST(ship_city AS TEXT) AS ship_city,
-  CAST(ship_postal_code AS TEXT) AS ship_postal_code,
-  CAST(ship_country AS TEXT) AS ship_country,
-  CAST(ship_region AS TEXT) AS ship_region,
-  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(_dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
-  
+  order_id::BIGINT AS order_id,
+  customer_id::TEXT AS customer_id,
+  employee_id::BIGINT AS employee_id,
+  order_date::TIMESTAMP AS order_date,
+  required_date::TIMESTAMP AS required_date,
+  shipped_date::TIMESTAMP AS shipped_date,
+  ship_via::BIGINT AS ship_via,
+  freight::DOUBLE AS freight,
+  ship_name::TEXT AS ship_name,
+  ship_address::TEXT AS ship_address,
+  ship_city::TEXT AS ship_city,
+  ship_postal_code::TEXT AS ship_postal_code,
+  ship_country::TEXT AS ship_country,
+  ship_region::TEXT AS ship_region,
+  _dlt_load_id::TEXT AS _dlt_load_id,
+  _dlt_id::TEXT AS _dlt_id,
+  TO_TIMESTAMP(_dlt_load_id::DOUBLE) AS _dlt_extracted_at,
   @generate_surrogate_key(
     order_id,
     customer_id,
@@ -45,5 +46,4 @@ SELECT
     ship_region
   ) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
-FROM
-  bronze.raw__northwind__order_dto
+FROM bronze.raw__northwind__order_dto

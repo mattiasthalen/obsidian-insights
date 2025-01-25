@@ -6,22 +6,18 @@ MODEL (
     valid_to_name _sqlmesh_valid_to,
     columns [_sqlmesh_hash_diff]
   ),
-  grain (shipper_id),
+  grain (
+    shipper_id
+  )
 );
 
 SELECT
-  CAST(shipper_id AS BIGINT) AS shipper_id,
-  CAST(company_name AS TEXT) AS company_name,
-  CAST(phone AS TEXT) AS phone,
-  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(_dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
-  
-  @generate_surrogate_key(
-    shipper_id,
-    company_name,
-    phone
-  ) AS _sqlmesh_hash_diff,
+  shipper_id::BIGINT AS shipper_id,
+  company_name::TEXT AS company_name,
+  phone::TEXT AS phone,
+  _dlt_load_id::TEXT AS _dlt_load_id,
+  _dlt_id::TEXT AS _dlt_id,
+  TO_TIMESTAMP(_dlt_load_id::DOUBLE) AS _dlt_extracted_at,
+  @generate_surrogate_key(shipper_id, company_name, phone) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
-FROM
-  bronze.raw__northwind__shipper_dto
+FROM bronze.raw__northwind__shipper_dto

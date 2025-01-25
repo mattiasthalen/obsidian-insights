@@ -6,32 +6,33 @@ MODEL (
     valid_to_name _sqlmesh_valid_to,
     columns [_sqlmesh_hash_diff]
   ),
-  grain (employee_id),
+  grain (
+    employee_id
+  )
 );
 
 SELECT
-  CAST(employee_id AS BIGINT) AS employee_id,
-  CAST(last_name AS TEXT) AS last_name,
-  CAST(first_name AS TEXT) AS first_name,
-  CAST(title AS TEXT) AS title,
-  CAST(title_of_courtesy AS TEXT) AS title_of_courtesy,
-  CAST(birth_date AS TIMESTAMP) AS birth_date,
-  CAST(hire_date AS TIMESTAMP) AS hire_date,
-  CAST(address AS TEXT) AS address,
-  CAST(city AS TEXT) AS city,
-  CAST(region AS TEXT) AS region,
-  CAST(postal_code AS TEXT) AS postal_code,
-  CAST(country AS TEXT) AS country,
-  CAST(home_phone AS TEXT) AS home_phone,
-  CAST(extension AS TEXT) AS extension,
-  CAST(photo AS TEXT) AS photo,
-  CAST(notes AS TEXT) AS notes,
-  CAST(reports_to AS BIGINT) AS reports_to,
-  CAST(photo_path AS TEXT) AS photo_path,
-  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(_dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
-  
+  employee_id::BIGINT AS employee_id,
+  last_name::TEXT AS last_name,
+  first_name::TEXT AS first_name,
+  title::TEXT AS title,
+  title_of_courtesy::TEXT AS title_of_courtesy,
+  birth_date::TIMESTAMP AS birth_date,
+  hire_date::TIMESTAMP AS hire_date,
+  address::TEXT AS address,
+  city::TEXT AS city,
+  region::TEXT AS region,
+  postal_code::TEXT AS postal_code,
+  country::TEXT AS country,
+  home_phone::TEXT AS home_phone,
+  extension::TEXT AS extension,
+  photo::TEXT AS photo,
+  notes::TEXT AS notes,
+  reports_to::BIGINT AS reports_to,
+  photo_path::TEXT AS photo_path,
+  _dlt_load_id::TEXT AS _dlt_load_id,
+  _dlt_id::TEXT AS _dlt_id,
+  TO_TIMESTAMP(_dlt_load_id::DOUBLE) AS _dlt_extracted_at,
   @generate_surrogate_key(
     employee_id,
     last_name,
@@ -53,5 +54,4 @@ SELECT
     photo_path
   ) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
-FROM
-  bronze.raw__northwind__employee_dto
+FROM bronze.raw__northwind__employee_dto

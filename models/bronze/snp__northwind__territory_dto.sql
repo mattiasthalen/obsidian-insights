@@ -6,23 +6,18 @@ MODEL (
     valid_to_name _sqlmesh_valid_to,
     columns [_sqlmesh_hash_diff]
   ),
-  grain (territory_id),
+  grain (
+    territory_id
+  )
 );
 
 SELECT
-  CAST(territory_id AS TEXT) AS territory_id,
-  CAST(territory_description AS TEXT) AS territory_description,
-  CAST(region_id AS BIGINT) AS region_id,
-  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(_dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
-  
-  @generate_surrogate_key(
-    territory_id,
-    territory_description,
-    region_id
-  ) AS _sqlmesh_hash_diff,
+  territory_id::TEXT AS territory_id,
+  territory_description::TEXT AS territory_description,
+  region_id::BIGINT AS region_id,
+  _dlt_load_id::TEXT AS _dlt_load_id,
+  _dlt_id::TEXT AS _dlt_id,
+  TO_TIMESTAMP(_dlt_load_id::DOUBLE) AS _dlt_extracted_at,
+  @generate_surrogate_key(territory_id, territory_description, region_id) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
-  
-FROM
-  bronze.raw__northwind__territory_dto
+FROM bronze.raw__northwind__territory_dto

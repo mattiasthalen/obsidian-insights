@@ -6,27 +6,19 @@ MODEL (
     valid_to_name _sqlmesh_valid_to,
     columns [_sqlmesh_hash_diff]
   ),
+  grain (order_id, product_id)
 );
 
 SELECT
-  CAST(order_id AS BIGINT) AS order_id,
-  CAST(product_id AS BIGINT) AS product_id,
-  CAST(unit_price AS DOUBLE) AS unit_price,
-  CAST(quantity AS BIGINT) AS quantity,
-  CAST(discount AS BIGINT) AS discount,
-  CAST(discount__v_double AS DOUBLE) AS discount__v_double,
-  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(_dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
-  
-  @generate_surrogate_key(
-    order_id,
-    product_id,
-    unit_price,
-    quantity,
-    discount,
-    discount__v_double
-  ) AS _sqlmesh_hash_diff,
+  order_id::BIGINT AS order_id,
+  product_id::BIGINT AS product_id,
+  unit_price::DOUBLE AS unit_price,
+  quantity::BIGINT AS quantity,
+  discount::BIGINT AS discount,
+  discount__v_double::DOUBLE AS discount__v_double,
+  _dlt_load_id::TEXT AS _dlt_load_id,
+  _dlt_id::TEXT AS _dlt_id,
+  TO_TIMESTAMP(_dlt_load_id::DOUBLE) AS _dlt_extracted_at,
+  @generate_surrogate_key(order_id, product_id, unit_price, quantity, discount, discount__v_double) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
-FROM
-  bronze.raw__northwind__order_detail_dto
+FROM bronze.raw__northwind__order_detail_dto

@@ -5,18 +5,14 @@ MODEL (
     valid_from_name _sqlmesh_valid_from,
     valid_to_name _sqlmesh_valid_to,
     columns [_sqlmesh_hash_diff]
-  ),
+  )
 );
 
 SELECT
-  CAST(value AS TEXT) AS value,
-  CAST(_dlt_load_id AS TEXT) AS _dlt_load_id,
-  CAST(_dlt_id AS TEXT) AS _dlt_id,
-  TO_TIMESTAMP(CAST(_dlt_load_id AS DOUBLE)) as _dlt_extracted_at,
-  
-  @generate_surrogate_key(
-    value
-  ) AS _sqlmesh_hash_diff,
+  value::TEXT AS value,
+  _dlt_load_id::TEXT AS _dlt_load_id,
+  _dlt_id::TEXT AS _dlt_id,
+  TO_TIMESTAMP(_dlt_load_id::DOUBLE) AS _dlt_extracted_at,
+  @generate_surrogate_key(value) AS _sqlmesh_hash_diff,
   @execution_ts::TIMESTAMP AS _sqlmesh_loaded_at
-FROM
-  bronze.raw__northwind__detail
+FROM bronze.raw__northwind__detail
