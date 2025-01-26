@@ -1,6 +1,7 @@
 name: SQLMesh Bot
 run-name: 🚀SQLMesh Bot 🚀
 on:
+  workflow_dispatch:
   pull_request:
     types:
       - synchronize
