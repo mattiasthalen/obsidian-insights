@@ -17,7 +17,7 @@ def northwind_source() -> t.Any:
         "resources": [
             {
                 "name": "get_northwindapiv_1_categories",
-                "table_name": "raw__northwind__category_dto",
+                "table_name": "raw__northwind__categories",
                 "primary_key": "categoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -25,89 +25,12 @@ def northwind_source() -> t.Any:
                     "paginator": "auto",
                 },
             },
-            {
-                "name": "get_northwindapiv_1_categoriesid",
-                "table_name": "raw__northwind__category_dto",
-                "primary_key": "categoryId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Categories/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_categories",
-                            "field": "categoryId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_productsid_category",
-                "table_name": "raw__northwind__category_dto",
-                "primary_key": "categoryId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Products/{id}/Category",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_products",
-                            "field": "productId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_customers",
-                "table_name": "raw__northwind__customer_dto",
-                "primary_key": "customerId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Customers",
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_customersid",
-                "table_name": "raw__northwind__customer_dto",
-                "primary_key": "customerId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Customers/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_customers",
-                            "field": "customerId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_ordersid_customer",
-                "table_name": "raw__northwind__customer_dto",
-                "primary_key": "customerId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Orders/{id}/Customer",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_orders",
-                            "field": "orderId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
+            
             {
                 "name": "get_northwindapiv_1_categoriesid_details",
-                "table_name": "raw__northwind__detail",
+                "table_name": "raw__northwind__category_details",
                 "endpoint": {
-                    "data_selector": "productNames",
+                    "data_selector": "$",
                     "path": "/northwind/api/v1/Categories/{id}/Details",
                     "params": {
                         "id": {
@@ -116,12 +39,24 @@ def northwind_source() -> t.Any:
                             "field": "categoryId",
                         },
                     },
+                    "paginator": "single_page",
+                },
+            },
+            
+            {
+                "name": "get_northwindapiv_1_customers",
+                "table_name": "raw__northwind__customers",
+                "primary_key": "customerId",
+                "endpoint": {
+                    "data_selector": "$",
+                    "path": "/northwind/api/v1/Customers",
                     "paginator": "auto",
                 },
             },
+            
             {
                 "name": "get_northwindapiv_1_employees",
-                "table_name": "raw__northwind__employee_dto",
+                "table_name": "raw__northwind__employees",
                 "primary_key": "employeeId",
                 "endpoint": {
                     "data_selector": "$",
@@ -129,412 +64,10 @@ def northwind_source() -> t.Any:
                     "paginator": "auto",
                 },
             },
-            {
-                "name": "get_northwindapiv_1_employeesid",
-                "table_name": "raw__northwind__employee_dto",
-                "primary_key": "employeeId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Employees/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_employees",
-                            "field": "employeeId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            # {
-            #     "name": "get_northwindapiv_1_employeesid_superior",
-            #     "table_name": "raw__northwind__employee_dto",
-            #     "endpoint": {
-            #         "data_selector": "$",
-            #         "path": "/northwind/api/v1/Employees/{id}/Superior",
-            #         "params": {
-            #             "id": {
-            #                 "type": "resolve",
-            #                 "resource": "get_northwindapiv_1_employees",
-            #                 "field": "employeeId",
-            #             },
-            #         },
-            #         "paginator": "auto",
-            #     },
-            # },
-            {
-                "name": "get_northwindapiv_1_employeesid_subordinates",
-                "table_name": "raw__northwind__employee_dto",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Employees/{id}/Subordinates",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_employees",
-                            "field": "employeeId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_ordersid_employee",
-                "table_name": "raw__northwind__employee_dto",
-                "primary_key": "employeeId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Orders/{id}/Employee",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_orders",
-                            "field": "orderId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_territoriesid_employees",
-                "table_name": "raw__northwind__employee_dto",
-                "primary_key": "employeeId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Territories/{id}/Employees",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_territories",
-                            "field": "territoryId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_ordersid_order_details",
-                "table_name": "raw__northwind__order_detail_dto",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Orders/{id}/OrderDetails",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_orders",
-                            "field": "orderId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_productsid_order_details",
-                "table_name": "raw__northwind__order_detail_dto",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Products/{id}/OrderDetails",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_products",
-                            "field": "productId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_customersid_orders",
-                "table_name": "raw__northwind__order_dto",
-                "primary_key": "orderId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Customers/{id}/Orders",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_customers",
-                            "field": "customerId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_employeesid_orders",
-                "table_name": "raw__northwind__order_dto",
-                "primary_key": "orderId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Employees/{id}/Orders",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_employees",
-                            "field": "employeeId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_orders",
-                "table_name": "raw__northwind__order_dto",
-                "primary_key": "orderId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Orders",
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_ordersid",
-                "table_name": "raw__northwind__order_dto",
-                "primary_key": "orderId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Orders/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_orders",
-                            "field": "orderId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_shippersid_orders",
-                "table_name": "raw__northwind__order_dto",
-                "primary_key": "orderId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Shippers/{id}/Orders",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_shippers",
-                            "field": "shipperId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_categoriesid_products",
-                "table_name": "raw__northwind__product_dto",
-                "primary_key": "productId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Categories/{id}/Products",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_categories",
-                            "field": "categoryId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_ordersid_products",
-                "table_name": "raw__northwind__product_dto",
-                "primary_key": "productId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Orders/{id}/Products",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_orders",
-                            "field": "orderId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_products",
-                "table_name": "raw__northwind__product_dto",
-                "primary_key": "productId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Products",
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_productsid",
-                "table_name": "raw__northwind__product_dto",
-                "primary_key": "productId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Products/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_products",
-                            "field": "productId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_suppliersid_products",
-                "table_name": "raw__northwind__product_dto",
-                "primary_key": "productId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Suppliers/{id}/Products",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_suppliers",
-                            "field": "supplierId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_regions",
-                "table_name": "raw__northwind__region_dto",
-                "primary_key": "regionId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Regions",
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_regionsid",
-                "table_name": "raw__northwind__region_dto",
-                "primary_key": "regionId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Regions/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_regions",
-                            "field": "regionId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_territoriesid_region",
-                "table_name": "raw__northwind__region_dto",
-                "primary_key": "regionId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Territories/{id}/Region",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_territories",
-                            "field": "territoryId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_ordersid_shipper",
-                "table_name": "raw__northwind__shipper_dto",
-                "primary_key": "shipperId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Orders/{id}/Shipper",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_orders",
-                            "field": "orderId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_shippers",
-                "table_name": "raw__northwind__shipper_dto",
-                "primary_key": "shipperId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Shippers",
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_shippersid",
-                "table_name": "raw__northwind__shipper_dto",
-                "primary_key": "shipperId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Shippers/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_shippers",
-                            "field": "shipperId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_productsid_supplier",
-                "table_name": "raw__northwind__supplier_dto",
-                "primary_key": "supplierId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Products/{id}/Supplier",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_products",
-                            "field": "productId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_suppliers",
-                "table_name": "raw__northwind__supplier_dto",
-                "primary_key": "supplierId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Suppliers",
-                    "paginator": "auto",
-                },
-            },
-            {
-                "name": "get_northwindapiv_1_suppliersid",
-                "table_name": "raw__northwind__supplier_dto",
-                "primary_key": "supplierId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Suppliers/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_suppliers",
-                            "field": "supplierId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
+
             {
                 "name": "get_northwindapiv_1_employeesid_territories",
-                "table_name": "raw__northwind__territory_dto",
+                "table_name": "raw__northwind__employee_territories",
                 "primary_key": "territoryId",
                 "endpoint": {
                     "data_selector": "$",
@@ -546,53 +79,92 @@ def northwind_source() -> t.Any:
                             "field": "employeeId",
                         },
                     },
-                    "paginator": "auto",
+                    "paginator": "single_page",
                 },
+                "include_from_parent": ["employeeId"]
             },
+            
             {
-                "name": "get_northwindapiv_1_regionsid_territories",
-                "table_name": "raw__northwind__territory_dto",
-                "primary_key": "territoryId",
+                "name": "get_northwindapiv_1_ordersid_order_details",
+                "table_name": "raw__northwind__order_details",
                 "endpoint": {
                     "data_selector": "$",
-                    "path": "/northwind/api/v1/Regions/{id}/Territories",
+                    "path": "/northwind/api/v1/Orders/{id}/OrderDetails",
                     "params": {
                         "id": {
                             "type": "resolve",
-                            "resource": "get_northwindapiv_1_regions",
-                            "field": "regionId",
+                            "resource": "get_northwindapiv_1_orders",
+                            "field": "orderId",
                         },
                     },
-                    "paginator": "auto",
+                    "paginator": "single_page",
                 },
             },
             {
+                "name": "get_northwindapiv_1_orders",
+                "table_name": "raw__northwind__orders",
+                "primary_key": "orderId",
+                "endpoint": {
+                    "data_selector": "$",
+                    "path": "/northwind/api/v1/Orders",
+                    "paginator": "auto",
+                },
+            },
+            
+            {
+                "name": "get_northwindapiv_1_products",
+                "table_name": "raw__northwind__products",
+                "primary_key": "productId",
+                "endpoint": {
+                    "data_selector": "$",
+                    "path": "/northwind/api/v1/Products",
+                    "paginator": "auto",
+                },
+            },
+            
+            {
+                "name": "get_northwindapiv_1_regions",
+                "table_name": "raw__northwind__regions",
+                "primary_key": "regionId",
+                "endpoint": {
+                    "data_selector": "$",
+                    "path": "/northwind/api/v1/Regions",
+                    "paginator": "auto",
+                },
+            },
+           
+            {
+                "name": "get_northwindapiv_1_shippers",
+                "table_name": "raw__northwind__shippers",
+                "primary_key": "shipperId",
+                "endpoint": {
+                    "data_selector": "$",
+                    "path": "/northwind/api/v1/Shippers",
+                    "paginator": "auto",
+                },
+            },
+           
+            {
+                "name": "get_northwindapiv_1_suppliers",
+                "table_name": "raw__northwind__suppliers",
+                "primary_key": "supplierId",
+                "endpoint": {
+                    "data_selector": "$",
+                    "path": "/northwind/api/v1/Suppliers",
+                    "paginator": "auto",
+                },
+            },
+            
+            {
                 "name": "get_northwindapiv_1_territories",
-                "table_name": "raw__northwind__territory_dto",
+                "table_name": "raw__northwind__territories",
                 "primary_key": "territoryId",
                 "endpoint": {
                     "data_selector": "$",
                     "path": "/northwind/api/v1/Territories",
                     "paginator": "auto",
                 },
-            },
-            {
-                "name": "get_northwindapiv_1_territoriesid",
-                "table_name": "raw__northwind__territory_dto",
-                "primary_key": "territoryId",
-                "endpoint": {
-                    "data_selector": "$",
-                    "path": "/northwind/api/v1/Territories/{id}",
-                    "params": {
-                        "id": {
-                            "type": "resolve",
-                            "resource": "get_northwindapiv_1_territories",
-                            "field": "territoryId",
-                        },
-                    },
-                    "paginator": "auto",
-                },
-            },
+            }
         ],
     }
 
@@ -604,7 +176,9 @@ def load_northwind() -> None:
         destination=dlt.destinations.motherduck(),
         dataset_name="bronze",
         progress="enlighten",
-        export_schema_path="./pipelines/schemas/export"
+        export_schema_path="./pipelines/schemas/export",
+        import_schema_path="./pipelines/schemas/import",
+        dev_mode=True
     )
 
     source = northwind_source()
