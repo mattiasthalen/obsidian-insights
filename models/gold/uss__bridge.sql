@@ -8,140 +8,162 @@ MODEL (
   )
 );
 
-WITH category AS (
+WITH categories AS (
   SELECT
-    'category' AS stage,
-    key__category_id,
+    'categories' AS stage,
+    hook__category__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__category_dto
-), customer AS (
+  FROM silver.bag__northwind__categories
+), category_details AS (
   SELECT
-    'customer' AS stage,
+    'category_details' AS stage,
+    hook__category__id,
+    _sqlmesh_loaded_at
+  FROM silver.bag__northwind__category_details
+), customers AS (
+  SELECT
+    'customers' AS stage,
     hook__customer__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__customer_dto
-), employee AS (
+  FROM silver.bag__northwind__customers
+), employees AS (
   SELECT
-    'employee' AS stage,
+    'employees' AS stage,
     hook__employee__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__employee_dto
-), order_detail AS (
+  FROM silver.bag__northwind__employees
+), employee_territories AS (
   SELECT
-    'order_detail' AS stage,
+    'employee_territories' AS stage,
+    hook__employee_territory__id,
+    hook__employee__id,
+    hook__territory__id,
+    _sqlmesh_loaded_at
+  FROM silver.bag__northwind__employee_territories
+), order_details AS (
+  SELECT
+    'order_details' AS stage,
     hook__order_detail__id,
     hook__order__id,
     hook__product__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__order_detail_dto
-), "order" AS (
+  FROM silver.bag__northwind__order_details
+), orders AS (
   SELECT
-    'order' AS stage,
+    'orders' AS stage,
     hook__order__id,
     hook__customer__id,
     hook__employee__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__order_dto
-), product AS (
+  FROM silver.bag__northwind__orders
+), products AS (
   SELECT
-    'product' AS stage,
+    'products' AS stage,
     hook__product__id,
     hook__supplier__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__product_dto
-), region AS (
+  FROM silver.bag__northwind__products
+), regions AS (
   SELECT
-    'region' AS stage,
-    key__region_id,
+    'regions' AS stage,
+    hook__region__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__region_dto
-), shipper AS (
+  FROM silver.bag__northwind__regions
+), shippers AS (
   SELECT
-    'shipper' AS stage,
+    'shippers' AS stage,
     hook__shipper__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__shipper_dto
-), supplier AS (
+  FROM silver.bag__northwind__shippers
+), suppliers AS (
   SELECT
-    'supplier' AS stage,
+    'suppliers' AS stage,
     hook__supplier__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__supplier_dto
-), territory AS (
+  FROM silver.bag__northwind__suppliers
+), territories AS (
   SELECT
-    'territory' AS stage,
-    key__territory_id,
-    key__region_id,
+    'territories' AS stage,
+    hook__territory__id,
+    hook__region__id,
     _sqlmesh_loaded_at
-  FROM silver.bag__northwind__territory_dto
-), puppini_bridge AS (
+  FROM silver.bag__northwind__territories
+), bridge AS (
   SELECT
     *
-  FROM category
+  FROM categories
   UNION ALL BY NAME
   SELECT
     *
-  FROM customer
+  FROM category_details
   UNION ALL BY NAME
   SELECT
     *
-  FROM employee
+  FROM customers
   UNION ALL BY NAME
   SELECT
     *
-  FROM order_detail
+  FROM employees
   UNION ALL BY NAME
   SELECT
     *
-  FROM "order"
+  FROM employee_territories
   UNION ALL BY NAME
   SELECT
     *
-  FROM product
+  FROM order_details
   UNION ALL BY NAME
   SELECT
     *
-  FROM region
+  FROM orders
   UNION ALL BY NAME
   SELECT
     *
-  FROM shipper
+  FROM products
   UNION ALL BY NAME
   SELECT
     *
-  FROM supplier
+  FROM regions
   UNION ALL BY NAME
   SELECT
     *
-  FROM territory
+  FROM shippers
+  UNION ALL BY NAME
+  SELECT
+    *
+  FROM suppliers
+  UNION ALL BY NAME
+  SELECT
+    *
+  FROM territories
 )
 SELECT
   stage,
   @generate_surrogate_key(
     stage,
+    hook__category__id,
     hook__customer__id,
     hook__employee__id,
     hook__order_detail__id,
     hook__order__id,
     hook__product__id,
+    hook__region__id,
     hook__shipper__id,
     hook__supplier__id,
-    key__category_id,
-    key__region_id,
-    key__territory_id,
+    hook__territory__id,
     hash_function := 'SHA256'
   ) AS key__puppini,
+  hook__category__id,
   hook__customer__id,
   hook__employee__id,
   hook__order_detail__id,
   hook__order__id,
   hook__product__id,
+  hook__region__id,
   hook__shipper__id,
   hook__supplier__id,
-  key__category_id,
-  key__region_id,
-  key__territory_id,
+  hook__territory__id,
   _sqlmesh_loaded_at
-FROM puppini_bridge
+FROM bridge
 WHERE
   _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts
