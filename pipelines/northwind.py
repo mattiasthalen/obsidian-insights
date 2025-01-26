@@ -178,7 +178,7 @@ def load_northwind() -> None:
         progress="enlighten",
         export_schema_path="./pipelines/schemas/export",
         import_schema_path="./pipelines/schemas/import",
-        dev_mode=True
+        dev_mode=False
     )
 
     source = northwind_source()
