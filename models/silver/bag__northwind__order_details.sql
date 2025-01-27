@@ -7,7 +7,7 @@ MODEL (
 );
 
 SELECT
-  CONCAT('northwind|order_line|', order_id::TEXT, '|', product_id::TEXT)::BLOB AS hook__order_detail__id,
+  CONCAT('northwind|order|', order_id::TEXT, '~northwind|product|', product_id::TEXT)::BLOB AS hook__order_detail__id,
   CONCAT('northwind|order|', order_id::TEXT)::BLOB AS hook__order__id,
   CONCAT('northwind|product|', product_id::TEXT)::BLOB AS hook__product__id,
   order_id,
