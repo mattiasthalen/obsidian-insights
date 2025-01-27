@@ -36,7 +36,7 @@ graph LR
     
     %% Data Warehouse - MotherDuck
     subgraph warehouse[MotherDuck]
-        bronze[("BRONZE: Raw & Snapshot")]
+        bronze[("BRONZE: Raw → Snapshot")]
         silver[("SILVER: Hook Model")]
         gold[("GOLD: Unified Star Schema")]
     end
