@@ -7,7 +7,7 @@ MODEL (
 );
 
 SELECT
-  CONCAT('northwind|employee_territory|', employee_id::TEXT, '|', territory_id::TEXT)::BLOB AS hook__employee_territory__id,
+  CONCAT('northwind|employee|', employee_id::TEXT, '~northwind|territory|', territory_id::TEXT)::BLOB AS hook__employee_territory__id,
   CONCAT('northwind|employee|', employee_id::TEXT)::BLOB AS hook__employee__id,
   CONCAT('northwind|territory|', territory_id::TEXT)::BLOB AS hook__territory__id,
   employee_id,
