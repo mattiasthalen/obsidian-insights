@@ -14,6 +14,13 @@
 - [ ] Add Apache Iceberg as alternative to MotherDuck.
 - [ ] Add [Adventure Works](https://demodata.grapecity.com/#AdventureWorks) to the mix, to train on a scenario with multiple sources.
 
+## How To Run
+1. Clone the repo.
+2. Create an account on [MotherDuck](https://www.motherduck.com).
+3. Create a token to access MotherDuck.
+4. Save the token (`motherduck_token=your_token`) in an `.env` file placed at the repo root.
+5. Run `elt.sh`.
+
 ## Architecture
 ```mermaid
 graph LR
