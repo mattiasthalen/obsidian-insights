@@ -1,16 +1,22 @@
 # Obsidian Insights
+<p style="text-align: center; margin: 0;">
+    <img src="https://cdn.sanity.io/images/nsq559ov/production/7f85e56e715b847c5519848b7198db73f793448d-82x25.svg?w=2000&auto=format" alt="dltHub logo" width="10%" height="10%">
+    <img src="https://github.com/TobikoData/sqlmesh/blob/main/docs/readme/sqlmesh.png?raw=true" alt="SQLMesh logo" width="10%" height="10%">
+    <img src="https://mma.prnewswire.com/media/1946939/MotherDuck_Logo.jpg?w=200" alt="MotherDuck logo" width="10%" height="10%">
+    <img src="https://www.metabase.com/images/logo-with-wordmark.svg" alt="Metabase logo" width="10%" height="10%">
+</p>
+
 
 Personal project for setting up an end-to-end analytics platform.
 
-### Todo:
-- [x] Extract & load Northwind from REST API to Mortherduck using dlt.
-- [x] Transform using SQLMesh.
-- [x] Model the silver layer according to HOOK.
-- [x] Model the gold layer as a Unified Star Schema.
+### Goals:
+- [x] Extract & load [Northwind](https://demodata.grapecity.com/#NorthWind) from REST API to [MotherDuck](https://www.motherduck.com) using [dlt](https://www.dlthub.com).
+- [x] Transform using [SQLMesh](https://www.sqlmesh.com).
+- [x] Model the silver layer according to [HOOK](https://hookcookbook.substack.com/).
+- [x] Model the gold layer as a [Unified Star Schema](https://www.amazon.com/Unified-Star-Schema-Resilient-Warehouse/dp/163462887X).
 - [x] Add GitHub Actions for CI/CD and daily ELT.
-- [ ] Create a semantic layer using Cube.
-- [ ] Create reports in Metabase.
-- [ ] Add Adventure Works to the mix, to train on a scenario with multiple sources.
+- [ ] Create reports in [Metabase](https://www.metabase.com/).
+- [ ] Add [Adventure Works](https://demodata.grapecity.com/#AdventureWorks) to the mix, to train on a scenario with multiple sources.
 
 ## Architecture
 ```mermaid
@@ -23,16 +29,14 @@ graph LR
     extract([dlt])
     transform([SQLMesh])
     
-    %% Data Warehouse - Motherduck
-    subgraph warehouse[Motherduck]
+    %% Data Warehouse - MotherDuck
+    subgraph warehouse[MotherDuck]
         bronze[(Bronze)]
         silver[(Silver)]
         gold[(Gold)]
-        diamond[(Semantic Layer)]
     end
     
-    %% Semantic Layer & BI
-    semantic_layer([Cube])
+    %% BI
     bi[Metabase]
     
     %% Connections
@@ -41,12 +45,10 @@ graph LR
     extract --> bronze
     bronze --> silver
     silver --> gold
-    gold --> diamond
-    diamond --> bi
+    gold --> bi
     transform -.- bronze
     transform -.- silver
     transform -.- gold
-    semantic_layer -.- diamond
 ```
 
 ## ERDs
