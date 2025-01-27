@@ -8,7 +8,7 @@
 ### Goals:
 - [x] Extract & load [Northwind](https://demodata.grapecity.com/#NorthWind) via REST API to [MotherDuck](https://www.motherduck.com) using [dlt](https://www.dlthub.com).
 - [x] Transform using [SQLMesh](https://www.sqlmesh.com).
-- [x] Model the silver layer according to [HOOK](https://hookcookbook.substack.com/).
+- [x] Model the silver layer according to [The Hook Cookbook](https://hookcookbook.substack.com/).
 - [x] Model the gold layer as a [Unified Star Schema](https://www.amazon.com/Unified-Star-Schema-Resilient-Warehouse/dp/163462887X).
 - [x] Add GitHub Actions for CI/CD and daily ELT.
 - [ ] Add Apache Iceberg as an alternative to MotherDuck.
