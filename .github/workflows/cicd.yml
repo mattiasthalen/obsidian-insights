@@ -42,9 +42,6 @@ jobs:
       - name: Install UV
         run: pip install uv
         shell: bash
-      - name: Install SQLMesh + Dependencies
-        run: uv sync
-        shell: bash
       - name: Run CI/CD Bot
         run: |
           uv run sqlmesh_cicd -p ${{ github.workspace }} github --token ${{ secrets.GITHUB_TOKEN }} run-all

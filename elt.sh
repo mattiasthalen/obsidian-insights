@@ -1,2 +1,2 @@
-python ./pipelines/northwind.py
-sqlmesh run prod
+uv run ./pipelines/northwind.py
+uv run sqlmesh run prod

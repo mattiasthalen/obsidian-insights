@@ -27,12 +27,9 @@ jobs:
       - name: Install UV
         run: pip install uv
         shell: bash
-      - name: Install SQLMesh + Dependencies
-        run: uv sync
-        shell: bash
       - name: Extract & Load
         run: |
-          uv run python ./pipelines/northwind.py
+          uv run ./pipelines/northwind.py
         shell: bash
       - name: Transform
         run: |
