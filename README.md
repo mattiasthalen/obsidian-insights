@@ -17,10 +17,11 @@
 ## How To Run
 1. Clone the repo.
 2. Create an account on [MotherDuck](https://www.motherduck.com).
-3. [Create a token](https://motherduck.com/docs/key-tasks/authenticating-and-connecting-to-motherduck/authenticating-to-motherduck/#authentication-using-an-access-token).
-4. Save the token (`motherduck_token=your_token`) in an `.env` file, placed at the repo root.
-5. Run `init_warehouse.sh`.
-6. Then run `elt.sh` whenever you want to refresh the warehouse.
+3. Create a database called `obsidian_insights`.
+4. [Create a token](https://motherduck.com/docs/key-tasks/authenticating-and-connecting-to-motherduck/authenticating-to-motherduck/#authentication-using-an-access-token).
+5. Save the token (`motherduck_token=your_token`) in an `.env` file, placed at the repo root.
+6. Run `init_warehouse.sh`.
+7. Then run `elt.sh` whenever you want to refresh the warehouse.
 
 ## Architecture
 ```mermaid
