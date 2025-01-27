@@ -17,7 +17,7 @@ Personal project for setting up an end-to-end analytics platform.
 graph LR
     %% Source Systems
     source_1[(Northwind)]
-    source_2[(Adventure Works)]
+    %%source_2[(Adventure Works)]
     
     %% Processing Layer - Using ([text]) for servers
     extract([dlt])
@@ -37,7 +37,7 @@ graph LR
     
     %% Connections
     source_1 --> extract
-    source_2 --> extract
+    %%source_2 --> extract
     extract --> bronze
     bronze --> silver
     silver --> gold
