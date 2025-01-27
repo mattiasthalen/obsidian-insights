@@ -1,5 +1,5 @@
-version: 5
-version_hash: dMXLn16gh5+7kbx2KamgOdzYuMMZL3ZPdQyEtzulORY=
+version: 7
+version_hash: oy2TlStAnncPkH565vgDEagHwfTiemRPg6Ch+6EIUvs=
 engine_version: 11
 name: northwind
 tables:
@@ -322,6 +322,7 @@ tables:
     resource: get_northwindapiv_1_employeesid_territories
     x-normalizer:
       max_nesting: 0
+      seen-data: true
   raw__northwind__order_details:
     columns:
       order_id:
@@ -565,8 +566,10 @@ normalizers:
   json:
     module: dlt.common.normalizers.json.relational
 previous_hashes:
+- oy2TlStAnncPkH565vgDEagHwfTiemRPg6Ch+6EIUvs=
 - bCKV0dF4TCW611ksTC6hZIkt/9cZA2W8bkwHstxAx/0=
 - xBt8pUDrAyu7M2dirOwzqig79dXyZ0GTxmo6jGvzI7w=
+- ib1An9xUk2ZBYaL6AW/xaa4c69YQu56Dn27HOd+zh/Q=
 - ZzJ2keRn9Zon8QDfL7x8gIRvYRNyNTm6DoRIhkrP7xk=
 - CIohXYWT2L3os4TXrX1pEq20uemVZwtZ/gTmKoU/39M=
 - n9rTKUZOgsv7Uo21c+OCPGnmXOYrasHrBaibAEM1Vic=
