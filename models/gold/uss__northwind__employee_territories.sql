@@ -12,8 +12,6 @@ SELECT
   hook__employee_territory__id,
   employee_id,
   territory_id,
-  territory_description,
-  region_id,
   _sqlmesh_loaded_at,
   _sqlmesh_valid_from,
   _sqlmesh_valid_to,

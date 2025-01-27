@@ -12,8 +12,6 @@ SELECT
   CONCAT('northwind|territory|', territory_id::TEXT)::BLOB AS hook__territory__id,
   employee_id,
   territory_id,
-  territory_description,
-  region_id,
   _dlt_load_id,
   _dlt_id,
   _dlt_extracted_at,
