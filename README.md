@@ -57,6 +57,7 @@ erDiagram
     raw__northwind__customers ||--o{ raw__northwind__orders : customer_id
     raw__northwind__orders ||--o{ raw__northwind__order_details : order_id
     raw__northwind__products ||--o{ raw__northwind__order_details : product_id
+    raw__northwind__categories ||--|| raw__northwind__category_details : category_id
     raw__northwind__categories ||--o{ raw__northwind__products : category_id
     raw__northwind__suppliers ||--o{ raw__northwind__products : supplier_id
     raw__northwind__employees ||--o{ raw__northwind__orders : employee_id
@@ -73,6 +74,7 @@ erDiagram
     bag__northwind__customers ||--o{ bag__northwind__orders : hook__customer__id
     bag__northwind__orders ||--o{ bag__northwind__order_details : hook__order__id
     bag__northwind__products ||--o{ bag__northwind__order_details : hook__product__id
+    bag__northwind__categories ||--|| bag__northwind__category_details : hook__category__id
     bag__northwind__categories ||--o{ bag__northwind__products : hook__category__id
     bag__northwind__suppliers ||--o{ bag__northwind__products : hook__supplier__id
     bag__northwind__employees ||--o{ bag__northwind__orders : hook__employee__id
