@@ -6,7 +6,7 @@
 </p>
 
 ### Goals:
-- [x] Extract & load [Northwind](https://demodata.grapecity.com/#NorthWind) from REST API to [MotherDuck](https://www.motherduck.com) using [dlt](https://www.dlthub.com).
+- [x] Extract & load [Northwind](https://demodata.grapecity.com/#NorthWind) via REST API to [MotherDuck](https://www.motherduck.com) using [dlt](https://www.dlthub.com).
 - [x] Transform using [SQLMesh](https://www.sqlmesh.com).
 - [x] Model the silver layer according to [HOOK](https://hookcookbook.substack.com/).
 - [x] Model the gold layer as a [Unified Star Schema](https://www.amazon.com/Unified-Star-Schema-Resilient-Warehouse/dp/163462887X).
