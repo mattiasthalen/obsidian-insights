@@ -1,13 +1,9 @@
 # Obsidian Insights
 <p style="text-align: center; margin: 0;">
-    <img src="https://cdn.sanity.io/images/nsq559ov/production/7f85e56e715b847c5519848b7198db73f793448d-82x25.svg?w=2000&auto=format" alt="dltHub logo" width="10%" height="10%">
-    <img src="https://github.com/TobikoData/sqlmesh/blob/main/docs/readme/sqlmesh.png?raw=true" alt="SQLMesh logo" width="10%" height="10%">
-    <img src="https://mma.prnewswire.com/media/1946939/MotherDuck_Logo.jpg?w=200" alt="MotherDuck logo" width="10%" height="10%">
-    <img src="https://www.metabase.com/images/logo-with-wordmark.svg" alt="Metabase logo" width="10%" height="10%">
+    <a href="https://www.dlthub.com"> <img src="https://cdn.sanity.io/images/nsq559ov/production/7f85e56e715b847c5519848b7198db73f793448d-82x25.svg?w=2000&auto=format" alt="dltHub logo" height="30px"></a>
+    <a href="https://www.sqlmesh.com"><img src="https://github.com/TobikoData/sqlmesh/blob/main/docs/readme/sqlmesh.png?raw=true" alt="SQLMesh logo" height="30px"></a>
+    <a href="https://www.motherduck.com"><img src="https://gist.githubusercontent.com/mattiasthalen/7919bc48c6e0d706bbec96f452f8ea69/raw/f76c2dde8ba0870e0ae52b7eb7f700a40cfda047/motherduck.svg" alt="MotherDuck logo" height="30px"></a>
 </p>
-
-
-Personal project for setting up an end-to-end analytics platform.
 
 ### Goals:
 - [x] Extract & load [Northwind](https://demodata.grapecity.com/#NorthWind) from REST API to [MotherDuck](https://www.motherduck.com) using [dlt](https://www.dlthub.com).
@@ -15,7 +11,6 @@ Personal project for setting up an end-to-end analytics platform.
 - [x] Model the silver layer according to [HOOK](https://hookcookbook.substack.com/).
 - [x] Model the gold layer as a [Unified Star Schema](https://www.amazon.com/Unified-Star-Schema-Resilient-Warehouse/dp/163462887X).
 - [x] Add GitHub Actions for CI/CD and daily ELT.
-- [ ] Create reports in [Metabase](https://www.metabase.com/).
 - [ ] Add [Adventure Works](https://demodata.grapecity.com/#AdventureWorks) to the mix, to train on a scenario with multiple sources.
 
 ## Architecture
