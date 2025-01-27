@@ -31,18 +31,18 @@ graph LR
     %%source_2[(Adventure Works)]
     
     %% Processing Layer - Using ([text]) for servers
-    extract([dlt])
-    transform([SQLMesh])
+    extract(dlt)
+    transform(SQLMesh)
     
     %% Data Warehouse - MotherDuck
     subgraph warehouse[MotherDuck]
-        bronze[(Bronze)]
-        silver[(Silver)]
-        gold[(Gold)]
+        bronze[("BRONZE: Raw & Snapshot")]
+        silver[("SILVER: Hook Model")]
+        gold[("GOLD: Unified Star Schema")]
     end
     
     %% BI
-    bi[Metabase]
+    bi((BI/ML etc.))
     
     %% Connections
     source_1 --> extract
