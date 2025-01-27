@@ -65,7 +65,6 @@ erDiagram
 ```
 
 ### silver.*
-#### silver.bag__northwind__*
 ```mermaid
 flowchart LR
 
@@ -153,6 +152,20 @@ flowchart LR
 ### gold.*
 ```mermaid
 flowchart LR
+    uss__bridge[("uss__bridge")]
+    uss__northwind__categories(["uss__northwind__categories"])
+    uss__northwind__category_details(["uss__northwind__category_details"])
+    uss__northwind__customers(["uss__northwind__customers"])
+    uss__northwind__employee_territories(["uss__northwind__employee_territories"])
+    uss__northwind__employees(["uss__northwind__employees"])
+    uss__northwind__order_details(["uss__northwind__order_details"])
+    uss__northwind__orders(["uss__northwind__orders"])
+    uss__northwind__products(["uss__northwind__products"])
+    uss__northwind__regions(["uss__northwind__regions"])
+    uss__northwind__shippers(["uss__northwind__shippers"])
+    uss__northwind__suppliers(["uss__northwind__suppliers"])
+    uss__northwind__territories(["uss__northwind__territories"])
+
     uss__northwind__categories --> uss__bridge
     uss__northwind__category_details --> uss__bridge
     uss__northwind__customers --> uss__bridge
