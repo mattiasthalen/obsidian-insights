@@ -12,7 +12,6 @@
 - [x] Model the gold layer as a [Unified Star Schema](https://www.amazon.com/Unified-Star-Schema-Resilient-Warehouse/dp/163462887X).
 - [x] Add GitHub Actions for CI/CD and daily ELT.
 - [ ] Add Apache Iceberg as an alternative to MotherDuck.
-- [ ] Add [Adventure Works](https://demodata.grapecity.com/#AdventureWorks) to the mix, to train on a scenario with multiple sources.
 
 ## How To Run
 1. Clone the repo.
