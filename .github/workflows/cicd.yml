@@ -1,5 +1,5 @@
-name: SQLMesh Bot
-run-name: 🚀SQLMesh Bot 🚀
+name: SQLMesh CI/CD Bot
+run-name: 🚀SQLMesh CI/CD Bot 🚀
 on:
   workflow_dispatch:
   pull_request:

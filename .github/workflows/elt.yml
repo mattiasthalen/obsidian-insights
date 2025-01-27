@@ -1,0 +1,27 @@
+name: SQLMesh ELT Bot
+run-name: 🚀SQLMesh ELT Bot 🚀
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  sqlmesh:
+    name: SQLMesh Actions Workflow
+    runs-on: ubuntu-latest
+    env:
+      motherduck_token: ${{ secrets.motherduck_token }}
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install UV
+        run: pip install uv
+        shell: bash
+      - name: Install SQLMesh + Dependencies
+        run: uv sync
+        shell: bash
+      - name: Run ELT Bot
+        run: |
+          uv run sqlmesh run prod
+        shell: bash
