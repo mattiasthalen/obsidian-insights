@@ -15,12 +15,13 @@
 
 ## How To Run
 1. Clone the repo.
-2. Create an account on [MotherDuck](https://www.motherduck.com).
-3. Create a database called `obsidian_insights`.
-4. [Create a token](https://motherduck.com/docs/key-tasks/authenticating-and-connecting-to-motherduck/authenticating-to-motherduck/#authentication-using-an-access-token).
-5. Save the token (`motherduck_token=your_token`) in an `.env` file, placed at the repo root.
-6. Run `init_warehouse.sh`.
-7. Then run `elt.sh` whenever you want to refresh the warehouse.
+2. Run `pip install uv`, followed by `uv sync`.
+4. Create an account on [MotherDuck](https://www.motherduck.com).
+5. Create a database called `obsidian_insights`.
+6. [Create a token](https://motherduck.com/docs/key-tasks/authenticating-and-connecting-to-motherduck/authenticating-to-motherduck/#authentication-using-an-access-token).
+7. Save the token (`motherduck_token=your_token`) in an `.env` file, placed at the repo root.
+8. Run `init_warehouse.sh`.
+9. Then run `elt.sh` whenever you want to refresh the warehouse.
 
 ## Architecture
 ```mermaid
