@@ -4,12 +4,15 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
-permissions:
-  contents: read
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 jobs:
   sqlmesh:
     name: SQLMesh Actions Workflow
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       motherduck_token: ${{ secrets.motherduck_token }}
     steps:
@@ -17,6 +20,10 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Install UV
         run: pip install uv
         shell: bash
