@@ -1,5 +1,8 @@
 import dlt
+import os
 import typing as t
+
+from dotenv import load_dotenv
 
 from dlt.sources.rest_api.typing import RESTAPIConfig
 from dlt.sources.rest_api import rest_api_resources
@@ -171,9 +174,10 @@ def northwind_source() -> t.Any:
     yield from rest_api_resources(source_config)
 
 def load_northwind() -> None:
+    load_dotenv()
     pipeline = dlt.pipeline(
         pipeline_name="northwind",
-        destination=dlt.destinations.motherduck(),
+        destination=dlt.destinations.motherduck(f"md:obsidian_insights?motherduck_token={os.getenv("motherduck_token")}"),
         dataset_name="bronze",
         progress="enlighten",
         export_schema_path="./pipelines/schemas/export",

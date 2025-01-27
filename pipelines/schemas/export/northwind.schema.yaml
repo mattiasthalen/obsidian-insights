@@ -1,5 +1,5 @@
 version: 5
-version_hash: oy2TlStAnncPkH565vgDEagHwfTiemRPg6Ch+6EIUvs=
+version_hash: dMXLn16gh5+7kbx2KamgOdzYuMMZL3ZPdQyEtzulORY=
 engine_version: 11
 name: northwind
 tables:
@@ -322,7 +322,6 @@ tables:
     resource: get_northwindapiv_1_employeesid_territories
     x-normalizer:
       max_nesting: 0
-      seen-data: true
   raw__northwind__order_details:
     columns:
       order_id:
