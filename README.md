@@ -125,15 +125,27 @@ flowchart TD
 
 ### gold.*
 ```mermaid
-erDiagram
-    uss__customers ||--|{ uss__bridge: ""
-    uss__employees ||--|{ uss__bridge: ""
-    uss__order_details ||--|{ uss__bridge: ""
-    uss__orders ||--|{ uss__bridge: ""
+flowchart TD
+    uss__bridge[("uss__bridge")]
 
-    uss__bridge }|--|| uss__products : ""
-    uss__bridge }|--|| uss__product_categories: ""
-    uss__bridge }|--|| uss__sales_territories: ""
-    uss__bridge }|--|| uss__shippers: ""
-    uss__bridge }|--|| uss__suppliers: ""
+    uss__customers(["uss__customers"])
+    uss__employees(["uss__employees"])
+    uss__order_details(["uss__order_details"])
+    uss__orders(["uss__orders"])
+    uss__products(["uss__products "])
+    uss__product_categories(["uss__product_categories"])
+    uss__sales_territories(["uss__sales_territories"])
+    uss__shippers(["uss__shippers"])
+    uss__suppliers(["uss__suppliers"])
+
+    uss__customers o--o uss__bridge
+    uss__employees o--o uss__bridge
+    uss__order_details o--o uss__bridge
+    uss__orders o--o uss__bridge
+
+    uss__bridge o--o uss__products 
+    uss__bridge o--o uss__product_categories
+    uss__bridge o--o uss__sales_territories
+    uss__bridge o--o uss__shippers
+    uss__bridge o--o uss__suppliers
 ```
