@@ -156,25 +156,15 @@ flowchart LR
 
 ### gold.*
 ```mermaid
-flowchart LR
-    uss__bridge[("uss__bridge")]
-    uss__customers(["uss__customers"])
-    uss__employees(["uss__employees"])
-    uss__order_details(["uss__order_details"])
-    uss__orders(["uss__orders"])
-    uss__products(["uss__products"])
-    uss__product_categories(["uss__product_categories"])
-    uss__shippers(["uss__shippers"])
-    uss__suppliers(["uss__suppliers"])
-    uss__sales_territories(["uss__sales_territories"])
+erDiagram
+    uss__customers ||--|{ uss__bridge: ""
+    uss__employees ||--|{ uss__bridge: ""
+    uss__order_details ||--|{ uss__bridge: ""
+    uss__orders ||--|{ uss__bridge: ""
 
-    uss__customers --> uss__bridge
-    uss__employees --> uss__bridge
-    uss__order_details --> uss__bridge
-    uss__orders --> uss__bridge
-    uss__products --> uss__bridge
-    uss__product_categories --> uss__bridge
-    uss__shippers --> uss__bridge
-    uss__suppliers --> uss__bridge
-    uss__sales_territories --> uss__bridge
+    uss__bridge }|--|| uss__products : ""
+    uss__bridge }|--|| uss__product_categories: ""
+    uss__bridge }|--|| uss__sales_territories: ""
+    uss__bridge }|--|| uss__shippers: ""
+    uss__bridge }|--|| uss__suppliers: ""
 ```
