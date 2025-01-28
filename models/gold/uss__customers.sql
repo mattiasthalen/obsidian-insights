@@ -1,5 +1,5 @@
 MODEL (
-  name gold.uss__customer,
+  name gold.uss__customers,
   kind INCREMENTAL_BY_TIME_RANGE (
     time_column _sqlmesh_loaded_at
   ),
