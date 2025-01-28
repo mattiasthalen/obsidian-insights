@@ -4,12 +4,12 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    hook__territory__id
+    hook__reference__id__territory
   )
 );
 
 SELECT
-  hook__territory__id,
+  hook__reference__id__territory,
   territory_description,
   _sqlmesh_loaded_at,
   _sqlmesh_valid_from,

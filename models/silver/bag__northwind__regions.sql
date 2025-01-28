@@ -2,12 +2,12 @@ MODEL (
   name silver.bag__northwind__regions,
   kind VIEW,
   grain (
-    hook__region__id
+    hook__reference__id__region
   )
 );
 
 SELECT
-  CONCAT('northwind|region|', region_id::TEXT)::BLOB AS hook__region__id,
+  CONCAT('northwind|region|', region_id::TEXT)::BLOB AS hook__reference__id__region,
   region_id,
   region_description,
   _dlt_load_id,

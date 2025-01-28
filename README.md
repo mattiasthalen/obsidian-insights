@@ -78,8 +78,10 @@ erDiagram
 ```mermaid
 flowchart LR
 
-    subgraph category
-        hook__category__id(["hook__category__id"])
+    subgraph reference
+        hook__reference__id__category(["hook__reference__id__category"])
+        hook__reference__id__region(["hook__reference__id__region"])
+        hook__reference__id__territory(["hook__reference__id__territory"])
     end
     
     subgraph customer
@@ -97,10 +99,7 @@ flowchart LR
     subgraph product
         hook__product__id(["hook__product__id"])
     end
-    
-    subgraph region
-        hook__region__id(["hook__region__id"])
-    end
+
 
     subgraph shipper
         hook__shipper__id(["hook__shipper__id"])
@@ -109,16 +108,13 @@ flowchart LR
     subgraph supplier
         hook__supplier__id(["hook__supplier__id"])
     end
-    
-    subgraph territory
-        hook__territory__id(["hook__territory__id"])
-    end
 
     subgraph bags
         bag__northwind__categories[("bag__northwind__categories")]
         bag__northwind__category_details[("bag__northwind__category_details")]
         bag__northwind__customers[("bag__northwind__customers")]
         bag__northwind__employees[("bag__northwind__employees")]
+        bag__northwind__employee_territories[("bag__northwind__employee_territories")]
         bag__northwind__orders[("bag__northwind__orders")]
         bag__northwind__order_details[("bag__northwind__order_details")]
         bag__northwind__products[("bag__northwind__products")]
@@ -126,12 +122,11 @@ flowchart LR
         bag__northwind__shippers[("bag__northwind__shippers")]
         bag__northwind__suppliers[("bag__northwind__suppliers")]
         bag__northwind__territories[("bag__northwind__territories")]
-        bag__northwind__employee_territories[("bag__northwind__employee_territories")]
     end
 
-    hook__category__id --> bag__northwind__categories
-    hook__category__id --> bag__northwind__category_details
-    hook__category__id --> bag__northwind__products
+    hook__reference__id__category --> bag__northwind__categories
+    hook__reference__id__category --> bag__northwind__category_details
+    hook__reference__id__category --> bag__northwind__products
 
     hook__customer__id -->  bag__northwind__customers
     hook__customer__id -->  bag__northwind__orders
@@ -146,8 +141,8 @@ flowchart LR
     hook__product__id --> bag__northwind__products
     hook__product__id --> bag__northwind__order_details
 
-    hook__region__id -->  bag__northwind__regions
-    hook__region__id --> bag__northwind__territories
+    hook__reference__id__region -->  bag__northwind__regions
+    hook__reference__id__region --> bag__northwind__territories
 
     hook__shipper__id --> bag__northwind__shippers
     hook__shipper__id --> bag__northwind__orders
@@ -155,8 +150,8 @@ flowchart LR
     hook__supplier__id --> bag__northwind__suppliers
     hook__supplier__id --> bag__northwind__products
 
-    hook__territory__id --> bag__northwind__territories
-    hook__territory__id -->  bag__northwind__employee_territories
+    hook__reference__id__territory --> bag__northwind__territories
+    hook__reference__id__territory -->  bag__northwind__employee_territories
 ```
 
 ### gold.*

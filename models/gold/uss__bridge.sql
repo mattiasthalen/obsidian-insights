@@ -11,13 +11,13 @@ MODEL (
 WITH categories AS (
   SELECT
     'categories' AS stage,
-    hook__category__id,
+    hook__reference__id__category,
     _sqlmesh_loaded_at
   FROM silver.bag__northwind__categories
 ), category_details AS (
   SELECT
     'category_details' AS stage,
-    hook__category__id,
+    hook__reference__id__category,
     _sqlmesh_loaded_at
   FROM silver.bag__northwind__category_details
 ), customers AS (
@@ -35,9 +35,8 @@ WITH categories AS (
 ), employee_territories AS (
   SELECT
     'employee_territories' AS stage,
-    hook__employee_territory__id,
     hook__employee__id,
-    hook__territory__id,
+    hook__reference__id__territory,
     _sqlmesh_loaded_at
   FROM silver.bag__northwind__employee_territories
 ), order_details AS (
@@ -66,7 +65,7 @@ WITH categories AS (
 ), regions AS (
   SELECT
     'regions' AS stage,
-    hook__region__id,
+    hook__reference__id__region,
     _sqlmesh_loaded_at
   FROM silver.bag__northwind__regions
 ), shippers AS (
@@ -84,8 +83,8 @@ WITH categories AS (
 ), territories AS (
   SELECT
     'territories' AS stage,
-    hook__territory__id,
-    hook__region__id,
+    hook__reference__id__territory,
+    hook__reference__id__region,
     _sqlmesh_loaded_at
   FROM silver.bag__northwind__territories
 ), bridge AS (
@@ -141,28 +140,28 @@ SELECT
   stage,
   @generate_surrogate_key(
     stage,
-    hook__category__id,
+    hook__reference__id__category,
     hook__customer__id,
     hook__employee__id,
     hook__order_detail__id,
     hook__order__id,
     hook__product__id,
-    hook__region__id,
+    hook__reference__id__region,
     hook__shipper__id,
     hook__supplier__id,
-    hook__territory__id,
+    hook__reference__id__territory,
     hash_function := 'SHA256'
   ) AS key__puppini,
-  hook__category__id,
+  hook__reference__id__category,
   hook__customer__id,
   hook__employee__id,
   hook__order_detail__id,
   hook__order__id,
   hook__product__id,
-  hook__region__id,
+  hook__reference__id__region,
   hook__shipper__id,
   hook__supplier__id,
-  hook__territory__id,
+  hook__reference__id__territory,
   _sqlmesh_loaded_at
 FROM bridge
 WHERE
