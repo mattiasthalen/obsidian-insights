@@ -26,10 +26,5 @@ SELECT
   photo,
   notes,
   reports_to,
-  photo_path,
-  _sqlmesh_loaded_at,
-  _sqlmesh_valid_from,
-  _sqlmesh_valid_to,
-  _sqlmesh_version,
-  _sqlmesh_is_current_record
+  photo_path
 FROM silver.bag__northwind__employees

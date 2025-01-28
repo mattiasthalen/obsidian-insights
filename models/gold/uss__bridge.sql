@@ -12,32 +12,52 @@ WITH categories AS (
   SELECT
     'categories' AS stage,
     hook__reference__id__category,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__categories
 ), category_details AS (
   SELECT
     'category_details' AS stage,
     hook__reference__id__category,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__category_details
 ), customers AS (
   SELECT
     'customers' AS stage,
     hook__customer__id,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__customers
 ), employees AS (
   SELECT
     'employees' AS stage,
     hook__employee__id,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__employees
 ), employee_territories AS (
   SELECT
     'employee_territories' AS stage,
     hook__employee__id,
     hook__reference__id__territory,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__employee_territories
 ), order_details AS (
   SELECT
@@ -45,7 +65,11 @@ WITH categories AS (
     hook__order_detail__id,
     hook__order__id,
     hook__product__id,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__order_details
 ), orders AS (
   SELECT
@@ -53,39 +77,63 @@ WITH categories AS (
     hook__order__id,
     hook__customer__id,
     hook__employee__id,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__orders
 ), products AS (
   SELECT
     'products' AS stage,
     hook__product__id,
     hook__supplier__id,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__products
 ), regions AS (
   SELECT
     'regions' AS stage,
     hook__reference__id__region,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__regions
 ), shippers AS (
   SELECT
     'shippers' AS stage,
     hook__shipper__id,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__shippers
 ), suppliers AS (
   SELECT
     'suppliers' AS stage,
     hook__supplier__id,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__suppliers
 ), territories AS (
   SELECT
     'territories' AS stage,
     hook__reference__id__territory,
     hook__reference__id__region,
-    _sqlmesh_loaded_at
+    _sqlmesh_loaded_at,
+    _sqlmesh_valid_from,
+    _sqlmesh_valid_to,
+    _sqlmesh_version,
+    _sqlmesh_is_current_record
   FROM silver.bag__northwind__territories
 ), bridge AS (
   SELECT

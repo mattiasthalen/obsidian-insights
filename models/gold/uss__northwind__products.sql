@@ -16,10 +16,5 @@ SELECT
   units_in_stock,
   units_on_order,
   reorder_level,
-  discontinued,
-  _sqlmesh_loaded_at,
-  _sqlmesh_valid_from,
-  _sqlmesh_valid_to,
-  _sqlmesh_version,
-  _sqlmesh_is_current_record
+  discontinued
 FROM silver.bag__northwind__products
