@@ -2,14 +2,13 @@ MODEL (
   name silver.bag__northwind__employee_territories,
   kind VIEW,
   grain (
-    hook__employee_territory__id
+  hook__employee__id, hook__reference__id__territory
   )
 );
 
 SELECT
-  CONCAT('northwind|employee|', employee_id::TEXT, '~northwind|territory|', territory_id::TEXT)::BLOB AS hook__employee_territory__id,
   CONCAT('northwind|employee|', employee_id::TEXT)::BLOB AS hook__employee__id,
-  CONCAT('northwind|territory|', territory_id::TEXT)::BLOB AS hook__territory__id,
+  CONCAT('northwind|territory|', territory_id::TEXT)::BLOB AS hook__reference__id__territory,
   employee_id,
   territory_id,
   _dlt_load_id,

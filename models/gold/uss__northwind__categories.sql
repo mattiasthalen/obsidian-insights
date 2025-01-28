@@ -4,12 +4,12 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    hook__category__id
+    hook__reference__id__category
   )
 );
 
 SELECT
-  hook__category__id,
+  hook__reference__id__category,
   category_name,
   description,
   _sqlmesh_loaded_at,
