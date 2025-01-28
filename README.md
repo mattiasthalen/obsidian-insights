@@ -101,9 +101,9 @@ flowchart TD
         bag__northwind__suppliers[("bag__northwind__suppliers")]
         bag__northwind__territories[("bag__northwind__territories")]
 
-    _hook__reference__id__category  o--o bag__northwind__categories
+    bag__northwind__categories o--o _hook__reference__id__category
     bag__northwind__category_details  o--o _hook__reference__id__category
-    _hook__reference__id__category  o--o bag__northwind__products
+    _hook__reference__id__category o--o bag__northwind__products
     _hook__customer__id  o--o bag__northwind__customers
     bag__northwind__orders  o--o _hook__customer__id
     _hook__employee__id  o--o bag__northwind__employees
