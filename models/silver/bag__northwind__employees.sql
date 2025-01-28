@@ -2,12 +2,12 @@ MODEL (
   name silver.bag__northwind__employees,
   kind VIEW,
   grain (
-    hook__employee__id
+    _hook__employee__id
   )
 );
 
 SELECT
-  CONCAT('northwind|employee|', employee_id::TEXT)::BLOB AS hook__employee__id,
+  CONCAT('northwind|employee|', employee_id::TEXT)::BLOB AS _hook__employee__id,
   employee_id,
   last_name,
   first_name,

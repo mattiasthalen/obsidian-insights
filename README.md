@@ -79,34 +79,34 @@ erDiagram
 flowchart LR
 
     subgraph reference
-        hook__reference__id__category(["hook__reference__id__category"])
-        hook__reference__id__region(["hook__reference__id__region"])
-        hook__reference__id__territory(["hook__reference__id__territory"])
+        _hook__reference__id__category(["_hook__reference__id__category"])
+        _hook__reference__id__region(["_hook__reference__id__region"])
+        _hook__reference__id__territory(["_hook__reference__id__territory"])
     end
     
     subgraph customer
-        hook__customer__id(["hook__customer__id"])
+        _hook__customer__id(["_hook__customer__id"])
     end
     
     subgraph employee
-        hook__employee__id(["hook__employee__id"])
+        _hook__employee__id(["_hook__employee__id"])
     end
 
     subgraph order
-        hook__order__id(["hook__order__id"])
+        _hook__order__id(["_hook__order__id"])
     end
     
     subgraph product
-        hook__product__id(["hook__product__id"])
+        _hook__product__id(["_hook__product__id"])
     end
 
 
     subgraph shipper
-        hook__shipper__id(["hook__shipper__id"])
+        _hook__shipper__id(["_hook__shipper__id"])
     end
     
     subgraph supplier
-        hook__supplier__id(["hook__supplier__id"])
+        _hook__supplier__id(["_hook__supplier__id"])
     end
 
     subgraph bags
@@ -124,63 +124,57 @@ flowchart LR
         bag__northwind__territories[("bag__northwind__territories")]
     end
 
-    hook__reference__id__category --> bag__northwind__categories
-    hook__reference__id__category --> bag__northwind__category_details
-    hook__reference__id__category --> bag__northwind__products
+    _hook__reference__id__category --> bag__northwind__categories
+    _hook__reference__id__category --> bag__northwind__category_details
+    _hook__reference__id__category --> bag__northwind__products
 
-    hook__customer__id -->  bag__northwind__customers
-    hook__customer__id -->  bag__northwind__orders
+    _hook__customer__id -->  bag__northwind__customers
+    _hook__customer__id -->  bag__northwind__orders
 
-    hook__employee__id -->  bag__northwind__employees
-    hook__employee__id -->  bag__northwind__orders
-    hook__employee__id -->  bag__northwind__employee_territories
+    _hook__employee__id -->  bag__northwind__employees
+    _hook__employee__id -->  bag__northwind__orders
+    _hook__employee__id -->  bag__northwind__employee_territories
 
-    hook__order__id --> bag__northwind__orders
-    hook__order__id --> bag__northwind__order_details
+    _hook__order__id --> bag__northwind__orders
+    _hook__order__id --> bag__northwind__order_details
 
-    hook__product__id --> bag__northwind__products
-    hook__product__id --> bag__northwind__order_details
+    _hook__product__id --> bag__northwind__products
+    _hook__product__id --> bag__northwind__order_details
 
-    hook__reference__id__region -->  bag__northwind__regions
-    hook__reference__id__region --> bag__northwind__territories
+    _hook__reference__id__region -->  bag__northwind__regions
+    _hook__reference__id__region --> bag__northwind__territories
 
-    hook__shipper__id --> bag__northwind__shippers
-    hook__shipper__id --> bag__northwind__orders
+    _hook__shipper__id --> bag__northwind__shippers
+    _hook__shipper__id --> bag__northwind__orders
 
-    hook__supplier__id --> bag__northwind__suppliers
-    hook__supplier__id --> bag__northwind__products
+    _hook__supplier__id --> bag__northwind__suppliers
+    _hook__supplier__id --> bag__northwind__products
 
-    hook__reference__id__territory --> bag__northwind__territories
-    hook__reference__id__territory -->  bag__northwind__employee_territories
+    _hook__reference__id__territory --> bag__northwind__territories
+    _hook__reference__id__territory -->  bag__northwind__employee_territories
 ```
 
 ### gold.*
 ```mermaid
 flowchart LR
     uss__bridge[("uss__bridge")]
-    uss__northwind__categories(["uss__northwind__categories"])
-    uss__northwind__category_details(["uss__northwind__category_details"])
-    uss__northwind__customers(["uss__northwind__customers"])
-    uss__northwind__employee_territories(["uss__northwind__employee_territories"])
-    uss__northwind__employees(["uss__northwind__employees"])
-    uss__northwind__order_details(["uss__northwind__order_details"])
-    uss__northwind__orders(["uss__northwind__orders"])
-    uss__northwind__products(["uss__northwind__products"])
-    uss__northwind__regions(["uss__northwind__regions"])
-    uss__northwind__shippers(["uss__northwind__shippers"])
-    uss__northwind__suppliers(["uss__northwind__suppliers"])
-    uss__northwind__territories(["uss__northwind__territories"])
+    uss__customers(["uss__customers"])
+    uss__employees(["uss__employees"])
+    uss__order_details(["uss__order_details"])
+    uss__orders(["uss__orders"])
+    uss__products(["uss__products"])
+    uss__product_categories(["uss__product_categories"])
+    uss__shippers(["uss__shippers"])
+    uss__suppliers(["uss__suppliers"])
+    uss__sales_territories(["uss__sales_territories"])
 
-    uss__northwind__categories --> uss__bridge
-    uss__northwind__category_details --> uss__bridge
-    uss__northwind__customers --> uss__bridge
-    uss__northwind__employee_territories --> uss__bridge
-    uss__northwind__employees --> uss__bridge
-    uss__northwind__order_details --> uss__bridge
-    uss__northwind__orders --> uss__bridge
-    uss__northwind__products --> uss__bridge
-    uss__northwind__regions --> uss__bridge
-    uss__northwind__shippers --> uss__bridge
-    uss__northwind__suppliers --> uss__bridge
-    uss__northwind__territories --> uss__bridge
+    uss__customers --> uss__bridge
+    uss__employees --> uss__bridge
+    uss__order_details --> uss__bridge
+    uss__orders --> uss__bridge
+    uss__products --> uss__bridge
+    uss__product_categories --> uss__bridge
+    uss__shippers --> uss__bridge
+    uss__suppliers --> uss__bridge
+    uss__sales_territories --> uss__bridge
 ```

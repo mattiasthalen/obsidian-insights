@@ -1,15 +1,15 @@
 MODEL (
-  name gold.uss__northwind__order,
+  name gold.uss__order,
   kind INCREMENTAL_BY_TIME_RANGE (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    hook__order__id
+    _hook__order__id
   )
 );
 
 SELECT
-  hook__order__id,
+  _hook__order__id,
   order_date,
   required_date,
   shipped_date,
@@ -27,3 +27,5 @@ SELECT
   _sqlmesh_version,
   _sqlmesh_is_current_record
 FROM silver.bag__northwind__orders
+WHERE
+  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

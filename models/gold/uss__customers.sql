@@ -1,15 +1,15 @@
 MODEL (
-  name gold.uss__northwind__supplier,
+  name gold.uss__customer,
   kind INCREMENTAL_BY_TIME_RANGE (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    hook__supplier__id
+    _hook__customer__id
   )
 );
 
 SELECT
-  hook__supplier__id,
+  _hook__customer__id,
   company_name,
   contact_name,
   contact_title,
@@ -18,12 +18,13 @@ SELECT
   postal_code,
   country,
   phone,
-  region,
-  home_page,
   fax,
+  region,
   _sqlmesh_loaded_at,
   _sqlmesh_valid_from,
   _sqlmesh_valid_to,
   _sqlmesh_version,
   _sqlmesh_is_current_record
-FROM silver.bag__northwind__suppliers
+FROM silver.bag__northwind__customers
+WHERE
+  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

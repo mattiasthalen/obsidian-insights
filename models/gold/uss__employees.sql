@@ -1,15 +1,15 @@
 MODEL (
-  name gold.uss__northwind__employees,
+  name gold.uss__employees,
   kind INCREMENTAL_BY_TIME_RANGE (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    hook__employee__id
+    _hook__employee__id
   )
 );
 
 SELECT
-  hook__employee__id,
+  _hook__employee__id,
   last_name,
   first_name,
   title,
@@ -33,3 +33,5 @@ SELECT
   _sqlmesh_version,
   _sqlmesh_is_current_record
 FROM silver.bag__northwind__employees
+WHERE
+  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts
