@@ -4,12 +4,12 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    hook__reference__id__category
+    _hook__reference__id__category
   )
 );
 
 SELECT
-  hook__reference__id__category,
+  _hook__reference__id__category,
   category_name,
   description
 FROM silver.bag__northwind__categories

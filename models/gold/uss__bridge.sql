@@ -11,7 +11,7 @@ MODEL (
 WITH categories AS (
   SELECT
     'categories' AS stage,
-    hook__reference__id__category,
+    _hook__reference__id__category,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -21,7 +21,7 @@ WITH categories AS (
 ), category_details AS (
   SELECT
     'category_details' AS stage,
-    hook__reference__id__category,
+    _hook__reference__id__category,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -31,7 +31,7 @@ WITH categories AS (
 ), customers AS (
   SELECT
     'customers' AS stage,
-    hook__customer__id,
+    _hook__customer__id,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -41,7 +41,7 @@ WITH categories AS (
 ), employees AS (
   SELECT
     'employees' AS stage,
-    hook__employee__id,
+    _hook__employee__id,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -51,8 +51,8 @@ WITH categories AS (
 ), employee_territories AS (
   SELECT
     'employee_territories' AS stage,
-    hook__employee__id,
-    hook__reference__id__territory,
+    _hook__employee__id,
+    _hook__reference__id__territory,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -62,9 +62,9 @@ WITH categories AS (
 ), order_details AS (
   SELECT
     'order_details' AS stage,
-    hook__order_detail__id,
-    hook__order__id,
-    hook__product__id,
+    _hook__order_detail__id,
+    _hook__order__id,
+    _hook__product__id,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -74,9 +74,9 @@ WITH categories AS (
 ), orders AS (
   SELECT
     'orders' AS stage,
-    hook__order__id,
-    hook__customer__id,
-    hook__employee__id,
+    _hook__order__id,
+    _hook__customer__id,
+    _hook__employee__id,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -86,8 +86,8 @@ WITH categories AS (
 ), products AS (
   SELECT
     'products' AS stage,
-    hook__product__id,
-    hook__supplier__id,
+    _hook__product__id,
+    _hook__supplier__id,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -97,7 +97,7 @@ WITH categories AS (
 ), regions AS (
   SELECT
     'regions' AS stage,
-    hook__reference__id__region,
+    _hook__reference__id__region,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -107,7 +107,7 @@ WITH categories AS (
 ), shippers AS (
   SELECT
     'shippers' AS stage,
-    hook__shipper__id,
+    _hook__shipper__id,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -117,7 +117,7 @@ WITH categories AS (
 ), suppliers AS (
   SELECT
     'suppliers' AS stage,
-    hook__supplier__id,
+    _hook__supplier__id,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -127,8 +127,8 @@ WITH categories AS (
 ), territories AS (
   SELECT
     'territories' AS stage,
-    hook__reference__id__territory,
-    hook__reference__id__region,
+    _hook__reference__id__territory,
+    _hook__reference__id__region,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to,
@@ -188,28 +188,28 @@ SELECT
   stage,
   @generate_surrogate_key(
     stage,
-    hook__reference__id__category,
-    hook__customer__id,
-    hook__employee__id,
-    hook__order_detail__id,
-    hook__order__id,
-    hook__product__id,
-    hook__reference__id__region,
-    hook__shipper__id,
-    hook__supplier__id,
-    hook__reference__id__territory,
+    _hook__reference__id__category,
+    _hook__customer__id,
+    _hook__employee__id,
+    _hook__order_detail__id,
+    _hook__order__id,
+    _hook__product__id,
+    _hook__reference__id__region,
+    _hook__shipper__id,
+    _hook__supplier__id,
+    _hook__reference__id__territory,
     hash_function := 'SHA256'
   ) AS key__puppini,
-  hook__reference__id__category,
-  hook__customer__id,
-  hook__employee__id,
-  hook__order_detail__id,
-  hook__order__id,
-  hook__product__id,
-  hook__reference__id__region,
-  hook__shipper__id,
-  hook__supplier__id,
-  hook__reference__id__territory,
+  _hook__reference__id__category,
+  _hook__customer__id,
+  _hook__employee__id,
+  _hook__order_detail__id,
+  _hook__order__id,
+  _hook__product__id,
+  _hook__reference__id__region,
+  _hook__shipper__id,
+  _hook__supplier__id,
+  _hook__reference__id__territory,
   _sqlmesh_loaded_at
 FROM bridge
 WHERE

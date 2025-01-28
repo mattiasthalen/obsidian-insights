@@ -4,11 +4,11 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    hook__reference__id__region
+    _hook__reference__id__region
   )
 );
 
 SELECT
-  hook__reference__id__region,
+  _hook__reference__id__region,
   region_description
 FROM silver.bag__northwind__regions

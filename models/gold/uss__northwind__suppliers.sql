@@ -4,12 +4,12 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    hook__supplier__id
+    _hook__supplier__id
   )
 );
 
 SELECT
-  hook__supplier__id,
+  _hook__supplier__id,
   company_name,
   contact_name,
   contact_title,
