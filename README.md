@@ -136,7 +136,6 @@ flowchart TD
     uss__order_details(["uss__order_details"])
     uss__orders(["uss__orders"])
     uss__products(["uss__products "])
-    uss__product_categories(["uss__product_categories"])
     uss__sales_territories(["uss__sales_territories"])
     uss__shippers(["uss__shippers"])
     uss__suppliers(["uss__suppliers"])
@@ -147,7 +146,6 @@ flowchart TD
     uss__orders o--o uss__bridge
 
     uss__bridge o--o uss__products 
-    uss__bridge o--o uss__product_categories
     uss__bridge o--o uss__sales_territories
     uss__bridge o--o uss__shippers
     uss__bridge o--o uss__suppliers
