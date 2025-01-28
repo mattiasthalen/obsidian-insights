@@ -8,17 +8,7 @@ MODEL (
   )
 );
 
-WITH product_categories AS (
-  SELECT
-    'product_categories' AS stage,
-    _hook__reference__id__category,
-    _sqlmesh_loaded_at,
-    _sqlmesh_valid_from,
-    _sqlmesh_valid_to,
-    _sqlmesh_version,
-    _sqlmesh_is_current_record
-  FROM silver.bag__northwind__categories
-), customers AS (
+WITH customers AS (
   SELECT
     'customers' AS stage,
     _hook__customer__id,
@@ -118,10 +108,6 @@ WITH product_categories AS (
 ), bridge AS (
   SELECT
     *
-  FROM product_categories
-  UNION ALL BY NAME
-  SELECT
-    *
   FROM customers
   UNION ALL BY NAME
   SELECT
@@ -160,7 +146,6 @@ SELECT
   stage,
   @generate_surrogate_key(
     stage,
-    _hook__reference__id__category,
     _hook__customer__id,
     _hook__employee__id,
     _hook__order_detail__id,
@@ -171,7 +156,6 @@ SELECT
     _hook__reference__id__territory,
     hash_function := 'SHA256'
   ) AS key__puppini,
-  _hook__reference__id__category,
   _hook__customer__id,
   _hook__employee__id,
   _hook__order_detail__id,
