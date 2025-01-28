@@ -158,29 +158,23 @@ flowchart LR
 ```mermaid
 flowchart LR
     uss__bridge[("uss__bridge")]
-    uss__northwind__categories(["uss__northwind__categories"])
-    uss__northwind__category_details(["uss__northwind__category_details"])
-    uss__northwind__customers(["uss__northwind__customers"])
-    uss__northwind__employee_territories(["uss__northwind__employee_territories"])
-    uss__northwind__employees(["uss__northwind__employees"])
-    uss__northwind__order_details(["uss__northwind__order_details"])
-    uss__northwind__orders(["uss__northwind__orders"])
-    uss__northwind__products(["uss__northwind__products"])
-    uss__northwind__regions(["uss__northwind__regions"])
-    uss__northwind__shippers(["uss__northwind__shippers"])
-    uss__northwind__suppliers(["uss__northwind__suppliers"])
-    uss__northwind__territories(["uss__northwind__territories"])
+    uss__customers(["uss__customers"])
+    uss__employees(["uss__employees"])
+    uss__order_details(["uss__order_details"])
+    uss__orders(["uss__orders"])
+    uss__products(["uss__products"])
+    uss__product_categories(["uss__product_categories"])
+    uss__shippers(["uss__shippers"])
+    uss__suppliers(["uss__suppliers"])
+    uss__sales_territories(["uss__sales_territories"])
 
-    uss__northwind__categories --> uss__bridge
-    uss__northwind__category_details --> uss__bridge
-    uss__northwind__customers --> uss__bridge
-    uss__northwind__employee_territories --> uss__bridge
-    uss__northwind__employees --> uss__bridge
-    uss__northwind__order_details --> uss__bridge
-    uss__northwind__orders --> uss__bridge
-    uss__northwind__products --> uss__bridge
-    uss__northwind__regions --> uss__bridge
-    uss__northwind__shippers --> uss__bridge
-    uss__northwind__suppliers --> uss__bridge
-    uss__northwind__territories --> uss__bridge
+    uss__customers --> uss__bridge
+    uss__employees --> uss__bridge
+    uss__order_details --> uss__bridge
+    uss__orders --> uss__bridge
+    uss__products --> uss__bridge
+    uss__product_categories --> uss__bridge
+    uss__shippers --> uss__bridge
+    uss__suppliers --> uss__bridge
+    uss__sales_territories --> uss__bridge
 ```

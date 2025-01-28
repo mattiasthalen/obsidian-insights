@@ -1,5 +1,5 @@
 MODEL (
-  name gold.uss__northwind__order,
+  name gold.uss__order,
   kind INCREMENTAL_BY_TIME_RANGE (
     time_column _sqlmesh_loaded_at
   ),
@@ -20,5 +20,12 @@ SELECT
   ship_city,
   ship_postal_code,
   ship_country,
-  ship_region
+  ship_region,
+  _sqlmesh_loaded_at,
+  _sqlmesh_valid_from,
+  _sqlmesh_valid_to,
+  _sqlmesh_version,
+  _sqlmesh_is_current_record
 FROM silver.bag__northwind__orders
+WHERE
+  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

@@ -8,9 +8,9 @@ MODEL (
   )
 );
 
-WITH categories AS (
+WITH product_categories AS (
   SELECT
-    'categories' AS stage,
+    'product_categories' AS stage,
     _hook__reference__id__category,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
@@ -18,16 +18,6 @@ WITH categories AS (
     _sqlmesh_version,
     _sqlmesh_is_current_record
   FROM silver.bag__northwind__categories
-), category_details AS (
-  SELECT
-    'category_details' AS stage,
-    _hook__reference__id__category,
-    _sqlmesh_loaded_at,
-    _sqlmesh_valid_from,
-    _sqlmesh_valid_to,
-    _sqlmesh_version,
-    _sqlmesh_is_current_record
-  FROM silver.bag__northwind__category_details
 ), customers AS (
   SELECT
     'customers' AS stage,
@@ -94,16 +84,6 @@ WITH categories AS (
     _sqlmesh_version,
     _sqlmesh_is_current_record
   FROM silver.bag__northwind__products
-), regions AS (
-  SELECT
-    'regions' AS stage,
-    _hook__reference__id__region,
-    _sqlmesh_loaded_at,
-    _sqlmesh_valid_from,
-    _sqlmesh_valid_to,
-    _sqlmesh_version,
-    _sqlmesh_is_current_record
-  FROM silver.bag__northwind__regions
 ), shippers AS (
   SELECT
     'shippers' AS stage,
@@ -124,9 +104,9 @@ WITH categories AS (
     _sqlmesh_version,
     _sqlmesh_is_current_record
   FROM silver.bag__northwind__suppliers
-), territories AS (
+), sales_territories AS (
   SELECT
-    'territories' AS stage,
+    'sales_territories' AS stage,
     _hook__reference__id__territory,
     _hook__reference__id__region,
     _sqlmesh_loaded_at,
@@ -138,11 +118,7 @@ WITH categories AS (
 ), bridge AS (
   SELECT
     *
-  FROM categories
-  UNION ALL BY NAME
-  SELECT
-    *
-  FROM category_details
+  FROM product_categories
   UNION ALL BY NAME
   SELECT
     *
@@ -170,10 +146,6 @@ WITH categories AS (
   UNION ALL BY NAME
   SELECT
     *
-  FROM regions
-  UNION ALL BY NAME
-  SELECT
-    *
   FROM shippers
   UNION ALL BY NAME
   SELECT
@@ -182,7 +154,7 @@ WITH categories AS (
   UNION ALL BY NAME
   SELECT
     *
-  FROM territories
+  FROM sales_territories
 )
 SELECT
   stage,
@@ -194,7 +166,6 @@ SELECT
     _hook__order_detail__id,
     _hook__order__id,
     _hook__product__id,
-    _hook__reference__id__region,
     _hook__shipper__id,
     _hook__supplier__id,
     _hook__reference__id__territory,
@@ -206,7 +177,6 @@ SELECT
   _hook__order_detail__id,
   _hook__order__id,
   _hook__product__id,
-  _hook__reference__id__region,
   _hook__shipper__id,
   _hook__supplier__id,
   _hook__reference__id__territory,
