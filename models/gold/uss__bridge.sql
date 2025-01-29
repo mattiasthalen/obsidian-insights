@@ -5,6 +5,14 @@ MODEL (
 
 SELECT
   *
+FROM gold.uss__bridge__categories
+UNION ALL BY NAME
+SELECT
+  *
+FROM gold.uss__bridge__category_details
+UNION ALL BY NAME
+SELECT
+  *
 FROM gold.uss__bridge__customers
 UNION ALL BY NAME
 SELECT
