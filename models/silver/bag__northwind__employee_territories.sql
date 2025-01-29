@@ -1,9 +1,7 @@
 MODEL (
   name silver.bag__northwind__employee_territories,
   kind VIEW,
-  grain (
-  _hook__employee__id, _hook__reference__id__territory
-  )
+  grain (_hook__employee__id, _hook__reference__id__territory)
 );
 
 SELECT
