@@ -131,22 +131,22 @@ flowchart TD
 flowchart TD
     uss__bridge[("uss__bridge")]
 
-    uss__customers(["uss__customers"])
-    uss__employees(["uss__employees"])
-    uss__order_details(["uss__order_details"])
-    uss__orders(["uss__orders"])
-    uss__products(["uss__products "])
-    uss__sales_territories(["uss__sales_territories"])
-    uss__shippers(["uss__shippers"])
-    uss__suppliers(["uss__suppliers"])
+    uss__peripheral__customers(["uss__peripheral__customers"])
+    uss__peripheral__employees(["uss__peripheral__employees"])
+    uss__peripheral__order_details(["uss__peripheral__order_details"])
+    uss__peripheral__orders(["uss__peripheral__orders"])
+    uss__peripheral__products(["uss__peripheral__products "])
+    uss__peripheral__sales_territories(["uss__peripheral__sales_territories"])
+    uss__peripheral__shippers(["uss__peripheral__shippers"])
+    uss__peripheral__suppliers(["uss__peripheral__suppliers"])
 
-    uss__customers o--o uss__bridge
-    uss__employees o--o uss__bridge
-    uss__order_details o--o uss__bridge
-    uss__orders o--o uss__bridge
+    uss__peripheral__customers o--o uss__bridge
+    uss__peripheral__employees o--o uss__bridge
+    uss__peripheral__order_details o--o uss__bridge
+    uss__peripheral__orders o--o uss__bridge
 
-    uss__bridge o--o uss__products 
-    uss__bridge o--o uss__sales_territories
-    uss__bridge o--o uss__shippers
-    uss__bridge o--o uss__suppliers
+    uss__bridge o--o uss__peripheral__products
+    uss__bridge o--o uss__peripheral__sales_territories
+    uss__bridge o--o uss__peripheral__shippers
+    uss__bridge o--o uss__peripheral__suppliers
 ```
