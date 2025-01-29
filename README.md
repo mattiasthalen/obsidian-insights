@@ -145,7 +145,6 @@ flowchart TD
     uss__bridge[("uss__bridge")]
 
     uss__peripheral__categories(["uss__peripheral__categories"])
-    uss__peripheral__category_details(["uss__peripheral__category_details"])
     uss__peripheral__customers(["uss__peripheral__customers"])
     uss__peripheral__employees(["uss__peripheral__employees"])
     uss__peripheral__order_details(["uss__peripheral__order_details"])
@@ -157,12 +156,11 @@ flowchart TD
     uss__peripheral__territories(["uss__peripheral__territories"])
 
     uss__peripheral__categories o--o uss__bridge
-    uss__peripheral__category_details o--o uss__bridge
     uss__peripheral__customers o--o uss__bridge
     uss__peripheral__employees o--o uss__bridge
     uss__peripheral__order_details o--o uss__bridge
+    uss__peripheral__orders o--o uss__bridge
     
-    uss__bridge o--o uss__peripheral__orders
     uss__bridge o--o uss__peripheral__products
     uss__bridge o--o uss__peripheral__regions
     uss__bridge o--o uss__peripheral__shippers
