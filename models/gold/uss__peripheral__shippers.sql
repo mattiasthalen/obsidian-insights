@@ -9,7 +9,6 @@ MODEL (
 );
 
 SELECT
-  @generate_surrogate_key(_hook__shipper__id, _sqlmesh_valid_from)  As _pit__shipper,
   _hook__shipper__id__valid_from,
   company_name,
   phone,
