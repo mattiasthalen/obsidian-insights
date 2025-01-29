@@ -7,7 +7,12 @@ MODEL (
 );
 
 SELECT
-  CONCAT('northwind|shipper|', shipper_id::TEXT, '~epoch|valid_from|', _sqlmesh_valid_from::TEXT)::BLOB AS _hook__shipper__id__valid_from,
+  CONCAT(
+    'northwind|shipper|',
+    shipper_id::TEXT,
+    '~epoch|valid_from|',
+    _sqlmesh_valid_from::TEXT
+  )::BLOB AS _hook__shipper__id__valid_from,
   CONCAT('northwind|shipper|', shipper_id::TEXT)::BLOB AS _hook__shipper__id,
   shipper_id,
   company_name,

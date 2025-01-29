@@ -7,7 +7,12 @@ MODEL (
 );
 
 SELECT
-  CONCAT('northwind|supplier|', supplier_id::TEXT, '~epoch|valid_from|', _sqlmesh_valid_from::TEXT)::BLOB AS _hook__supplier__id__valid_from,
+  CONCAT(
+    'northwind|supplier|',
+    supplier_id::TEXT,
+    '~epoch|valid_from|',
+    _sqlmesh_valid_from::TEXT
+  )::BLOB AS _hook__supplier__id__valid_from,
   CONCAT('northwind|supplier|', supplier_id::TEXT)::BLOB AS _hook__supplier__id,
   supplier_id,
   company_name,
