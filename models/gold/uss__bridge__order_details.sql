@@ -2,9 +2,6 @@ MODEL (
   name gold.uss__bridge__order_details,
   kind INCREMENTAL_BY_TIME_RANGE (
     time_column _sqlmesh_loaded_at
-  ),
-  grain (
-    _key__puppini
   )
 );
 
@@ -40,15 +37,6 @@ WITH order_details AS (
 )
 SELECT
   'order_details' AS stage,
-  @generate_surrogate_key(
-    stage,
-    _hook__order_detail__id__valid_from,
-    _hook__order__id__valid_from,
-    _hook__product__id__valid_from,
-    _sqlmesh_loaded_at,
-    _sqlmesh_valid_from,
-    _sqlmesh_valid_to
-  ) AS _key__puppini,
   *
 FROM order_details
 WHERE

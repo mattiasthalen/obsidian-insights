@@ -32,14 +32,6 @@ WITH products AS (
 )
 SELECT
   'products' AS stage,
-  @generate_surrogate_key(
-    stage,
-    _hook__product__id__valid_from,
-    _hook__supplier__id__valid_from,
-    _sqlmesh_loaded_at,
-    _sqlmesh_valid_from,
-    _sqlmesh_valid_to
-  ) AS _key__puppini,
   *
 FROM products
 WHERE

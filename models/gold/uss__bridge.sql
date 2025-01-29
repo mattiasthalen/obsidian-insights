@@ -1,9 +1,6 @@
 MODEL (
   name gold.uss__bridge,
-  kind VIEW,
-  grain (
-    _key__puppini
-  )
+  kind VIEW
 );
 
 SELECT
@@ -32,6 +29,10 @@ FROM gold.uss__bridge__products
 UNION ALL BY NAME
 SELECT
   *
+FROM gold.uss__bridge__regions
+UNION ALL BY NAME
+SELECT
+  *
 FROM gold.uss__bridge__shippers
 UNION ALL BY NAME
 SELECT
@@ -40,4 +41,4 @@ FROM gold.uss__bridge__suppliers
 UNION ALL BY NAME
 SELECT
   *
-FROM gold.uss__bridge__sales_territories
+FROM gold.uss__bridge__territories
