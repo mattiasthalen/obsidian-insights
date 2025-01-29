@@ -4,11 +4,12 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    _hook__supplier__id
+    _pit__supplier
   )
 );
 
 SELECT
+  @generate_surrogate_key(_hook__supplier__id, _sqlmesh_valid_from)  As _pit__supplier,
   _hook__supplier__id,
   company_name,
   contact_name,

@@ -4,7 +4,7 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    _hook__product__id
+    _pit__product
   )
 );
 
@@ -19,20 +19,39 @@ WITH products AS (
     bag__northwind__products.reorder_level,
     bag__northwind__products.discontinued,
     bag__northwind__categories.category_name,
-    bag__northwind__categories.description AS category_description,
-    bag__northwind__category_details.picture AS category_picture,
-    bag__northwind__products._sqlmesh_loaded_at,
-    bag__northwind__products._sqlmesh_valid_from,
-    bag__northwind__products._sqlmesh_valid_to,
-    bag__northwind__products._sqlmesh_version,
-    bag__northwind__products._sqlmesh_is_current_record
+    bag__northwind__categories.description,
+    bag__northwind__category_details.picture,
+
+    GREATEST(
+      bag__northwind__products._sqlmesh_loaded_at,
+      bag__northwind__categories._sqlmesh_loaded_at,
+      bag__northwind__category_details._sqlmesh_loaded_at
+    ) AS _sqlmesh_loaded_at,
+    GREATEST(
+      bag__northwind__products._sqlmesh_valid_from,
+      bag__northwind__categories._sqlmesh_valid_from,
+      bag__northwind__category_details._sqlmesh_valid_from
+    ) AS _sqlmesh_valid_from,
+    LEAST(
+      bag__northwind__products._sqlmesh_valid_to,
+      bag__northwind__categories._sqlmesh_valid_to,
+      bag__northwind__category_details._sqlmesh_valid_to
+    ) AS _sqlmesh_valid_to
+
   FROM silver.bag__northwind__products
   LEFT JOIN silver.bag__northwind__categories
     ON bag__northwind__products._hook__reference__id__category = bag__northwind__categories._hook__reference__id__category
+    AND bag__northwind__products._sqlmesh_valid_from < bag__northwind__categories._sqlmesh_valid_to
+    AND bag__northwind__products._sqlmesh_valid_to > bag__northwind__categories._sqlmesh_valid_from
+
   LEFT JOIN silver.bag__northwind__category_details
     ON bag__northwind__products._hook__reference__id__category = bag__northwind__category_details._hook__reference__id__category
+    AND bag__northwind__products._sqlmesh_valid_from < bag__northwind__category_details._sqlmesh_valid_to
+    AND bag__northwind__products._sqlmesh_valid_to > bag__northwind__category_details._sqlmesh_valid_from
+
 )
 SELECT
+  @generate_surrogate_key(_hook__product__id, _sqlmesh_valid_from)  As _pit__product,
   *
 FROM products
 WHERE
