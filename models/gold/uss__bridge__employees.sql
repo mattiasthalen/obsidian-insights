@@ -7,7 +7,7 @@ MODEL (
 
 WITH employees AS (
   SELECT
-    _hook__employee__id__valid_from,
+    _hook__employee__valid_from,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to

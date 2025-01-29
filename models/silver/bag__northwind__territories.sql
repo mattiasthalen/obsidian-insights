@@ -2,7 +2,7 @@ MODEL (
   name silver.bag__northwind__territories,
   kind VIEW,
   grain (
-    _hook__reference__id__territory__valid_from
+    _hook__reference__territory__valid_from
   )
 );
 
@@ -12,9 +12,9 @@ SELECT
     territory_id::TEXT,
     '~epoch|valid_from|',
     _sqlmesh_valid_from::TEXT
-  )::BLOB AS _hook__reference__id__territory__valid_from,
-  CONCAT('northwind|territory|', territory_id::TEXT)::BLOB AS _hook__reference__id__territory,
-  CONCAT('northwind|region|', region_id::TEXT)::BLOB AS _hook__reference__id__region,
+  )::BLOB AS _hook__reference__territory__valid_from,
+  CONCAT('northwind|territory|', territory_id::TEXT)::BLOB AS _hook__reference__territory,
+  CONCAT('northwind|region|', region_id::TEXT)::BLOB AS _hook__reference__region,
   territory_id,
   territory_description,
   region_id,

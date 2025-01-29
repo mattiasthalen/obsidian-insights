@@ -10,8 +10,8 @@ MODEL (
 
 WITH products AS (
   SELECT
-    bag__northwind__products._hook__product__id__valid_from,
-    bag__northwind__suppliers._hook__supplier__id__valid_from,
+    bag__northwind__products._hook__product__valid_from,
+    bag__northwind__suppliers._hook__supplier__valid_from,
     GREATEST(
       bag__northwind__products._sqlmesh_loaded_at,
       bag__northwind__suppliers._sqlmesh_loaded_at
@@ -26,7 +26,7 @@ WITH products AS (
     ) AS _sqlmesh_valid_to
   FROM silver.bag__northwind__products
   LEFT JOIN silver.bag__northwind__suppliers
-    ON bag__northwind__products._hook__supplier__id = bag__northwind__suppliers._hook__supplier__id
+    ON bag__northwind__products._hook__supplier = bag__northwind__suppliers._hook__supplier
     AND bag__northwind__products._sqlmesh_valid_from < bag__northwind__suppliers._sqlmesh_valid_to
     AND bag__northwind__products._sqlmesh_valid_to > bag__northwind__suppliers._sqlmesh_valid_from
 )

@@ -7,7 +7,7 @@ MODEL (
 
 WITH customers AS (
   SELECT
-    _hook__customer__id__valid_from,
+    _hook__customer__valid_from,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to

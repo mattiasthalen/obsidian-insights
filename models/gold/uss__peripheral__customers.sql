@@ -4,12 +4,12 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    _hook__customer__id__valid_from
+    _hook__customer__valid_from
   )
 );
 
 SELECT
-  _hook__customer__id__valid_from,
+  _hook__customer__valid_from,
   company_name,
   contact_name,
   contact_title,

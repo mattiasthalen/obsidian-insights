@@ -7,7 +7,7 @@ MODEL (
 
 WITH category_details AS (
   SELECT
-    _hook__reference__id__category__detail__valid_from,
+    _hook__reference__category__detail__valid_from,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to

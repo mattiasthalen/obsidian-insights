@@ -7,7 +7,7 @@ MODEL (
 
 WITH shippers AS (
   SELECT
-    _hook__shipper__id__valid_from,
+    _hook__shipper__valid_from,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to

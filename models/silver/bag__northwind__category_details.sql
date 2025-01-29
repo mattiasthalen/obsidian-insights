@@ -2,7 +2,7 @@ MODEL (
   name silver.bag__northwind__category_details,
   kind VIEW,
   grain (
-    _hook__reference__id__category__detail__valid_from
+    _hook__reference__category__detail__valid_from
   )
 );
 
@@ -12,8 +12,8 @@ SELECT
     category_id::TEXT,
     '~epoch|valid_from|',
     _sqlmesh_valid_from::TEXT
-  )::BLOB AS _hook__reference__id__category__detail__valid_from,
-  CONCAT('northwind|category|', category_id::TEXT)::BLOB AS _hook__reference__id__category__detail,
+  )::BLOB AS _hook__reference__category__detail__valid_from,
+  CONCAT('northwind|category|', category_id::TEXT)::BLOB AS _hook__reference__category__detail,
   category_id,
   category_name,
   description,

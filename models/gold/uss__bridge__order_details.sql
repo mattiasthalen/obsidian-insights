@@ -7,9 +7,9 @@ MODEL (
 
 WITH order_details AS (
   SELECT
-    bag__northwind__order_details._hook__order_detail__id__valid_from,
-    bag__northwind__orders._hook__order__id__valid_from,
-    bag__northwind__products._hook__product__id__valid_from,
+    bag__northwind__order_details._hook__order_detail__valid_from,
+    bag__northwind__orders._hook__order__valid_from,
+    bag__northwind__products._hook__product__valid_from,
     GREATEST(
       bag__northwind__order_details._sqlmesh_loaded_at,
       bag__northwind__orders._sqlmesh_loaded_at,
@@ -27,11 +27,11 @@ WITH order_details AS (
     ) AS _sqlmesh_valid_to
   FROM silver.bag__northwind__order_details
   LEFT JOIN silver.bag__northwind__orders
-    ON bag__northwind__order_details._hook__order__id = bag__northwind__orders._hook__order__id
+    ON bag__northwind__order_details._hook__order = bag__northwind__orders._hook__order
     AND bag__northwind__order_details._sqlmesh_valid_from < bag__northwind__orders._sqlmesh_valid_to
     AND bag__northwind__order_details._sqlmesh_valid_to > bag__northwind__orders._sqlmesh_valid_from
   LEFT JOIN silver.bag__northwind__products
-    ON bag__northwind__order_details._hook__product__id = bag__northwind__products._hook__product__id
+    ON bag__northwind__order_details._hook__product = bag__northwind__products._hook__product
     AND bag__northwind__order_details._sqlmesh_valid_from < bag__northwind__products._sqlmesh_valid_to
     AND bag__northwind__order_details._sqlmesh_valid_to > bag__northwind__products._sqlmesh_valid_from
 )

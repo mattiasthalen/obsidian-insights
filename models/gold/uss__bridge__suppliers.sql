@@ -7,7 +7,7 @@ MODEL (
 
 WITH suppliers AS (
   SELECT
-    _hook__supplier__id__valid_from,
+    _hook__supplier__valid_from,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to

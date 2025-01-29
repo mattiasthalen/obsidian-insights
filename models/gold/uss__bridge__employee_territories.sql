@@ -7,8 +7,8 @@ MODEL (
 
 WITH employee_territories AS (
   SELECT
-    bag__northwind__employees._hook__employee__id__valid_from,
-    bag__northwind__territories._hook__reference__id__territory__valid_from,
+    bag__northwind__employees._hook__employee__valid_from,
+    bag__northwind__territories._hook__reference__territory__valid_from,
     GREATEST(
       bag__northwind__employee_territories._sqlmesh_loaded_at,
       bag__northwind__employees._sqlmesh_loaded_at,
@@ -26,11 +26,11 @@ WITH employee_territories AS (
     ) AS _sqlmesh_valid_to
   FROM silver.bag__northwind__employee_territories
   LEFT JOIN silver.bag__northwind__employees
-    ON bag__northwind__employee_territories._hook__employee__id = bag__northwind__employees._hook__employee__id
+    ON bag__northwind__employee_territories._hook__employee = bag__northwind__employees._hook__employee
     AND bag__northwind__employee_territories._sqlmesh_valid_from < bag__northwind__employees._sqlmesh_valid_to
     AND bag__northwind__employee_territories._sqlmesh_valid_to > bag__northwind__employees._sqlmesh_valid_from
   LEFT JOIN silver.bag__northwind__territories
-    ON bag__northwind__employee_territories._hook__reference__id__territory = bag__northwind__territories._hook__reference__id__territory
+    ON bag__northwind__employee_territories._hook__reference__territory = bag__northwind__territories._hook__reference__territory
     AND bag__northwind__employee_territories._sqlmesh_valid_from < bag__northwind__territories._sqlmesh_valid_to
     AND bag__northwind__employee_territories._sqlmesh_valid_to > bag__northwind__territories._sqlmesh_valid_from
 )

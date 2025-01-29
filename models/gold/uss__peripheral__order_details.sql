@@ -4,12 +4,12 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    _hook__order_detail__id__valid_from
+    _hook__order_detail__valid_from
   )
 );
 
 SELECT
-  _hook__order_detail__id__valid_from,
+  _hook__order_detail__valid_from,
   unit_price,
   quantity,
   discount,

@@ -7,7 +7,7 @@ MODEL (
 
 WITH regions AS (
   SELECT
-    _hook__reference__id__region__valid_from,
+    _hook__reference__region__valid_from,
     _sqlmesh_loaded_at,
     _sqlmesh_valid_from,
     _sqlmesh_valid_to
