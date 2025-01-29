@@ -2,15 +2,23 @@ MODEL (
   name silver.bag__northwind__categories,
   kind VIEW,
   grain (
-    _hook__reference__id__category
+    _hook__reference__category__valid_from
   )
 );
 
 SELECT
-  CONCAT('northwind|category|', category_id::TEXT)::BLOB AS _hook__reference__id__category,
+  CONCAT(
+    'northwind|category|',
+    category_id::TEXT,
+    '~epoch|valid_from|',
+    _sqlmesh_valid_from::TEXT
+  )::BLOB AS _hook__reference__category__valid_from,
+  CONCAT('northwind|category|', category_id::TEXT)::BLOB AS _hook__reference__category,
   category_id,
   category_name,
   description,
+  picture,
+  product_names,
   _dlt_load_id,
   _dlt_id,
   _dlt_extracted_at,
@@ -22,4 +30,4 @@ SELECT
   _sqlmesh_valid_to IS NULL AS _sqlmesh_is_current_record,
   'northwind' AS _sqlmesh_source_system,
   'categories' AS _sqlmesh_source_table
-FROM bronze.snp__northwind__categories
+FROM bronze.snp__northwind__category_details

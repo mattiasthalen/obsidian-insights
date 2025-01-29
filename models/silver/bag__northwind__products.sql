@@ -2,14 +2,20 @@ MODEL (
   name silver.bag__northwind__products,
   kind VIEW,
   grain (
-    _hook__product__id
+    _hook__product__valid_from
   )
 );
 
 SELECT
-  CONCAT('northwind|product|', product_id::TEXT)::BLOB AS _hook__product__id,
-  CONCAT('northwind|supplier|', supplier_id::TEXT)::BLOB AS _hook__supplier__id,
-  CONCAT('northwind|category|', category_id) AS _hook__reference__id__category,
+  CONCAT(
+    'northwind|product|',
+    product_id::TEXT,
+    '~epoch|valid_from|',
+    _sqlmesh_valid_from::TEXT
+  )::BLOB AS _hook__product__valid_from,
+  CONCAT('northwind|product|', product_id::TEXT)::BLOB AS _hook__product,
+  CONCAT('northwind|supplier|', supplier_id::TEXT)::BLOB AS _hook__supplier,
+  CONCAT('northwind|category|', category_id) AS _hook__reference__category,
   product_id,
   supplier_id,
   category_id,

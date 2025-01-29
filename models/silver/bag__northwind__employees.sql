@@ -2,12 +2,18 @@ MODEL (
   name silver.bag__northwind__employees,
   kind VIEW,
   grain (
-    _hook__employee__id
+    _hook__employee__valid_from
   )
 );
 
 SELECT
-  CONCAT('northwind|employee|', employee_id::TEXT)::BLOB AS _hook__employee__id,
+  CONCAT(
+    'northwind|employee|',
+    employee_id::TEXT,
+    '~epoch|valid_from|',
+    _sqlmesh_valid_from::TEXT
+  )::BLOB AS _hook__employee__valid_from,
+  CONCAT('northwind|employee|', employee_id::TEXT)::BLOB AS _hook__employee,
   employee_id,
   last_name,
   first_name,

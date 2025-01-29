@@ -77,15 +77,16 @@ erDiagram
 ### silver.*
 ```mermaid
 flowchart TD
-        _hook__reference__id__category(["_hook__reference__id__category"])
-        _hook__reference__id__region(["_hook__reference__id__region"])
-        _hook__reference__id__territory(["_hook__reference__id__territory"])
-        _hook__customer__id(["_hook__customer__id"])
-        _hook__employee__id(["_hook__employee__id"])
-        _hook__order__id(["_hook__order__id"])
-        _hook__product__id(["_hook__product__id"])
-        _hook__shipper__id(["_hook__shipper__id"])
-        _hook__supplier__id(["_hook__supplier__id"])
+        _hook__reference__category(["_hook__reference__category"])
+        _hook__reference__category_detail(["_hook__reference__category_detail"])
+        _hook__reference__region(["_hook__reference__region"])
+        _hook__reference__territory(["_hook__reference__territory"])
+        _hook__customer(["_hook__customer"])
+        _hook__employee(["_hook__employee"])
+        _hook__order(["_hook__order"])
+        _hook__product(["_hook__product"])
+        _hook__shipper(["_hook__shipper"])
+        _hook__supplier(["_hook__supplier"])
  
         bag__northwind__categories[("bag__northwind__categories")]
         bag__northwind__category_details[("bag__northwind__category_details")]
@@ -100,30 +101,30 @@ flowchart TD
         bag__northwind__suppliers[("bag__northwind__suppliers")]
         bag__northwind__territories[("bag__northwind__territories")]
 
-    _hook__reference__id__category o--o bag__northwind__categories
-    _hook__reference__id__category  o--o bag__northwind__category_details
-    bag__northwind__products o--o _hook__reference__id__category
+    _hook__reference__category o--o bag__northwind__categories
+    bag__northwind__categories o--o _hook__reference__category_detail
+    _hook__reference__category_detail o--o bag__northwind__category_details
+    bag__northwind__products o--o _hook__reference__category
 
-    bag__northwind__customers o--o _hook__customer__id
-    _hook__customer__id  o--o bag__northwind__orders
-    _hook__employee__id  o--o bag__northwind__employees
+    bag__northwind__customers o--o _hook__customer
+    _hook__customer  o--o bag__northwind__orders
+    _hook__employee  o--o bag__northwind__employees
 
     
-    bag__northwind__orders  o--o _hook__shipper__id
-    _hook__employee__id  o--o bag__northwind__employee_territories
-    bag__northwind__orders o--o _hook__order__id
-    _hook__order__id  o--o bag__northwind__order_details
-    _hook__product__id  o--o bag__northwind__products
-    bag__northwind__order_details  o--o _hook__product__id
-    _hook__reference__id__region  o--o bag__northwind__regions
-    bag__northwind__territories  o--o _hook__reference__id__region
-    _hook__shipper__id  o--o bag__northwind__shippers
-    bag__northwind__orders  o--o _hook__employee__id
-    _hook__supplier__id  o--o bag__northwind__suppliers
-    bag__northwind__products  o--o _hook__supplier__id
-    _hook__reference__id__territory  o--o bag__northwind__territories
-    bag__northwind__employee_territories  o--o _hook__reference__id__territory
-
+    bag__northwind__orders  o--o _hook__shipper
+    _hook__employee  o--o bag__northwind__employee_territories
+    bag__northwind__orders o--o _hook__order
+    _hook__order  o--o bag__northwind__order_details
+    _hook__product  o--o bag__northwind__products
+    bag__northwind__order_details  o--o _hook__product
+    _hook__reference__region  o--o bag__northwind__regions
+    bag__northwind__territories  o--o _hook__reference__region
+    _hook__shipper  o--o bag__northwind__shippers
+    bag__northwind__orders  o--o _hook__employee
+    _hook__supplier  o--o bag__northwind__suppliers
+    bag__northwind__products  o--o _hook__supplier
+    _hook__reference__territory  o--o bag__northwind__territories
+    bag__northwind__employee_territories  o--o _hook__reference__territory
 ```
 
 ### gold.*
@@ -131,22 +132,28 @@ flowchart TD
 flowchart TD
     uss__bridge[("uss__bridge")]
 
-    uss__customers(["uss__customers"])
-    uss__employees(["uss__employees"])
-    uss__order_details(["uss__order_details"])
-    uss__orders(["uss__orders"])
-    uss__products(["uss__products "])
-    uss__sales_territories(["uss__sales_territories"])
-    uss__shippers(["uss__shippers"])
-    uss__suppliers(["uss__suppliers"])
+    uss__peripheral__categories(["uss__peripheral__categories"])
+    uss__peripheral__category_details(["uss__peripheral__category_details"])
+    uss__peripheral__customers(["uss__peripheral__customers"])
+    uss__peripheral__employees(["uss__peripheral__employees"])
+    uss__peripheral__order_details(["uss__peripheral__order_details"])
+    uss__peripheral__orders(["uss__peripheral__orders"])
+    uss__peripheral__products(["uss__peripheral__products"])
+    uss__peripheral__regions(["uss__peripheral__regions"])
+    uss__peripheral__shippers(["uss__peripheral__shippers"])
+    uss__peripheral__suppliers(["uss__peripheral__suppliers"])
+    uss__peripheral__territories(["uss__peripheral__territories"])
 
-    uss__customers o--o uss__bridge
-    uss__employees o--o uss__bridge
-    uss__order_details o--o uss__bridge
-    uss__orders o--o uss__bridge
-
-    uss__bridge o--o uss__products 
-    uss__bridge o--o uss__sales_territories
-    uss__bridge o--o uss__shippers
-    uss__bridge o--o uss__suppliers
+    uss__peripheral__categories o--o uss__bridge
+    uss__peripheral__category_details o--o uss__bridge
+    uss__peripheral__customers o--o uss__bridge
+    uss__peripheral__employees o--o uss__bridge
+    uss__peripheral__order_details o--o uss__bridge
+    
+    uss__bridge o--o uss__peripheral__orders
+    uss__bridge o--o uss__peripheral__products
+    uss__bridge o--o uss__peripheral__regions
+    uss__bridge o--o uss__peripheral__shippers
+    uss__bridge o--o uss__peripheral__suppliers
+    uss__bridge o--o uss__peripheral__territories
 ```
