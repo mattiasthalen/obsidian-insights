@@ -1,5 +1,5 @@
 MODEL (
-  name gold.uss__bridge,
+  name gold.uss_bridge,
   kind VIEW
 );
 
@@ -7,10 +7,6 @@ WITH bridge AS (
     SELECT
     *
     FROM gold.uss__bridge__categories
-    UNION ALL BY NAME
-    SELECT
-    *
-    FROM gold.uss__bridge__category_details
     UNION ALL BY NAME
     SELECT
     *
