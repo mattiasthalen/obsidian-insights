@@ -4,7 +4,7 @@ MODEL (
     time_column _sqlmesh_loaded_at
   ),
   grain (
-    _hook__order__id__valid_from
+    _hook__order__id__valid_from, _hook__customer__id__valid_from, _hook__employee__id__valid_from
   )
 );
 
@@ -44,8 +44,8 @@ SELECT
     bag__northwind__customers._sqlmesh_valid_to,
     bag__northwind__employees._sqlmesh_valid_to
   ) AS _sqlmesh_valid_to,
-  ROW_NUMBER() OVER (PARTITION BY _hook__order__id ORDER BY _sqlmesh_valid_from) AS _sqlmesh_version,
-  ROW_NUMBER() OVER (PARTITION BY _hook__order__id ORDER BY _sqlmesh_valid_from DESC) = 1 AS _sqlmesh_is_current_record,
+  --ROW_NUMBER() OVER (PARTITION BY bag__northwind__orders._hook__order__id ORDER BY _sqlmesh_valid_from) AS _sqlmesh_version,
+  --ROW_NUMBER() OVER (PARTITION BY bag__northwind__orders._hook__order__id ORDER BY _sqlmesh_valid_from DESC) = 1 AS _sqlmesh_is_current_record,
   bag__northwind__orders._sqlmesh_source_system,
   bag__northwind__orders._sqlmesh_source_table
 FROM silver.bag__northwind__orders
