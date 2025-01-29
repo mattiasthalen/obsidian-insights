@@ -78,6 +78,7 @@ erDiagram
 ```mermaid
 flowchart TD
         _hook__reference__category(["_hook__reference__category"])
+        _hook__reference__category_detail(["_hook__reference__category_detail"])
         _hook__reference__region(["_hook__reference__region"])
         _hook__reference__territory(["_hook__reference__territory"])
         _hook__customer(["_hook__customer"])
@@ -101,7 +102,8 @@ flowchart TD
         bag__northwind__territories[("bag__northwind__territories")]
 
     _hook__reference__category o--o bag__northwind__categories
-    _hook__reference__category  o--o bag__northwind__category_details
+    bag__northwind__categories o--o _hook__reference__category_detail
+    _hook__reference__category_detail o--o bag__northwind__category_details
     bag__northwind__products o--o _hook__reference__category
 
     bag__northwind__customers o--o _hook__customer
@@ -123,7 +125,6 @@ flowchart TD
     bag__northwind__products  o--o _hook__supplier
     _hook__reference__territory  o--o bag__northwind__territories
     bag__northwind__employee_territories  o--o _hook__reference__territory
-
 ```
 
 ### gold.*
