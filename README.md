@@ -60,18 +60,30 @@ graph LR
 ### bronze.*
 #### bronze.raw__northwind__*
 ```mermaid
-erDiagram
-    raw__northwind__customers ||--o{ raw__northwind__orders : customer_id
-    raw__northwind__orders ||--o{ raw__northwind__order_details : order_id
-    raw__northwind__products ||--o{ raw__northwind__order_details : product_id
-    raw__northwind__categories ||--|| raw__northwind__category_details : category_id
-    raw__northwind__categories ||--o{ raw__northwind__products : category_id
-    raw__northwind__suppliers ||--o{ raw__northwind__products : supplier_id
-    raw__northwind__employees ||--o{ raw__northwind__orders : employee_id
-    raw__northwind__shippers ||--o{ raw__northwind__orders : shipper_id
-    raw__northwind__territories }|--|| raw__northwind__region : region_id
-    raw__northwind__employee_territories }o--|| raw__northwind__employees : employee_id
-    raw__northwind__employee_territories }o--|| raw__northwind__territories : territory_id
+flowchart LR
+    raw__northwind__orders("raw__northwind__orders")
+    raw__northwind__order_details("raw__northwind__order_details")
+    raw__northwind__products("raw__northwind__products")
+    
+    raw__northwind__category_details(["raw__northwind__category_details"])
+    raw__northwind__customers(["raw__northwind__customers"])
+    raw__northwind__employee_territories(["raw__northwind__employee_territories"])
+    raw__northwind__employees(["raw__northwind__employees"])
+    raw__northwind__region(["raw__northwind__region"])
+    raw__northwind__shippers(["raw__northwind__shippers"])
+    raw__northwind__suppliers(["raw__northwind__suppliers"])
+    raw__northwind__territories(["raw__northwind__territories"])
+
+    raw__northwind__order_details --> raw__northwind__orders
+    raw__northwind__order_details --> raw__northwind__products
+    raw__northwind__products --> raw__northwind__category_details
+    raw__northwind__products --> raw__northwind__suppliers
+    raw__northwind__orders --> raw__northwind__employees
+    raw__northwind__orders --> raw__northwind__customers
+    raw__northwind__orders --> raw__northwind__shippers
+    raw__northwind__territories --> raw__northwind__region
+    raw__northwind__employee_territories --> raw__northwind__territories
+    raw__northwind__employee_territories --> raw__northwind__employees
 ```
 
 ### silver.*
