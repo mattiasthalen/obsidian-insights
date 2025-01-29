@@ -88,9 +88,8 @@ flowchart LR
 
 ### silver.*
 ```mermaid
-flowchart TD
+flowchart LR
         _hook__reference__category(["_hook__reference__category"])
-        _hook__reference__category_detail(["_hook__reference__category_detail"])
         _hook__reference__region(["_hook__reference__region"])
         _hook__reference__territory(["_hook__reference__territory"])
         _hook__customer(["_hook__customer"])
@@ -101,7 +100,6 @@ flowchart TD
         _hook__supplier(["_hook__supplier"])
  
         bag__northwind__categories[("bag__northwind__categories")]
-        bag__northwind__category_details[("bag__northwind__category_details")]
         bag__northwind__customers[("bag__northwind__customers")]
         bag__northwind__employees[("bag__northwind__employees")]
         bag__northwind__employee_territories[("bag__northwind__employee_territories")]
@@ -113,30 +111,16 @@ flowchart TD
         bag__northwind__suppliers[("bag__northwind__suppliers")]
         bag__northwind__territories[("bag__northwind__territories")]
 
-    _hook__reference__category o--o bag__northwind__categories
-    bag__northwind__categories o--o _hook__reference__category_detail
-    _hook__reference__category_detail o--o bag__northwind__category_details
-    bag__northwind__products o--o _hook__reference__category
-
-    bag__northwind__customers o--o _hook__customer
-    _hook__customer  o--o bag__northwind__orders
-    _hook__employee  o--o bag__northwind__employees
-
-    
-    bag__northwind__orders  o--o _hook__shipper
-    _hook__employee  o--o bag__northwind__employee_territories
-    bag__northwind__orders o--o _hook__order
-    _hook__order  o--o bag__northwind__order_details
-    _hook__product  o--o bag__northwind__products
-    bag__northwind__order_details  o--o _hook__product
-    _hook__reference__region  o--o bag__northwind__regions
-    bag__northwind__territories  o--o _hook__reference__region
-    _hook__shipper  o--o bag__northwind__shippers
-    bag__northwind__orders  o--o _hook__employee
-    _hook__supplier  o--o bag__northwind__suppliers
-    bag__northwind__products  o--o _hook__supplier
-    _hook__reference__territory  o--o bag__northwind__territories
-    bag__northwind__employee_territories  o--o _hook__reference__territory
+    bag__northwind__order_details --> _hook__order --> bag__northwind__orders
+    bag__northwind__order_details --> _hook__product --> bag__northwind__products
+    bag__northwind__products --> _hook__reference__category --> bag__northwind__categories
+    bag__northwind__products --> _hook__supplier --> bag__northwind__suppliers
+    bag__northwind__orders --> _hook__employee --> bag__northwind__employees
+    bag__northwind__orders --> _hook__customer --> bag__northwind__customers
+    bag__northwind__orders --> _hook__shipper --> bag__northwind__shippers
+    bag__northwind__territories --> _hook__reference__region --> bag__northwind__regions
+    bag__northwind__employee_territories --> _hook__reference__territory --> bag__northwind__territories
+    bag__northwind__employee_territories --> _hook__employee
 ```
 
 ### gold.*
