@@ -58,20 +58,29 @@ graph LR
 
 ## Unified Star Schema
 ### Measurements
-- Add the measurements with their correpsonding date to the bridge.
-- This will turn the bridge into an event based table.
+Instead of building a regular bridge, we will turn it into an event based bridge.
 
-|Stage|Key|# Orders Placed|# Orders Required|# Orders Shipped|Date|
-|-|-|-|-|-|-|
-|Orders|123|1|-|-|2025-01-01|
-|Orders|123|-|1|-|2025-01-02|
-|Orders|123|-|-|1|2025-01-02|
+This is the normal bridge:
+|Stage|_key__orders|_key__customers|
+|-|-|-|
+|Orders|123|345|
 
-This can be improved by grouping by Date
-|Stage|Key|# Orders Placed|# Orders Required|# Orders Shipped|Date|
-|-|-|-|-|-|-|
-|Orders|123|1|-|-|2025-01-01|
-|Orders|123|-|1|1|2025-01-02|
+We then add the measurements, along with their corresponding date.
+- I.e., `# Orders Shipped` would set the date to `shipped_date`.
+
+|Stage|_key__orders|_key__customers|# Orders Placed|# Orders Required|# Orders Shipped|Date|
+|-|-|-|-|-|-|-|
+|Orders|123|345|1|-|-|2025-01-01|
+|Orders|123|345|-|1|-|2025-01-02|
+|Orders|123|345|-|-|1|2025-01-02|
+
+What happened is that every row got duplicated, with one line per measurement.
+We can do better than this, we can group it by date.
+
+|Stage|_key__orders|_key__customers|# Orders Placed|# Orders Required|# Orders Shipped|Date|
+|-|-|-|-|-|-|-|
+|Orders|123|345|1|-|-|2025-01-01|
+|Orders|123|345|-|1|1|2025-01-02|
 
 ## ERDs
 ### bronze.*
