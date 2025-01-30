@@ -10,20 +10,24 @@ WITH orders AS (
     bag__northwind__orders._hook__order__valid_from,
     bag__northwind__customers._hook__customer__valid_from,
     bag__northwind__employees._hook__employee__valid_from,
+    bag__northwind__shippers._hook__shipper__valid_from,
     GREATEST(
       bag__northwind__orders._sqlmesh_loaded_at,
       bag__northwind__customers._sqlmesh_loaded_at,
-      bag__northwind__employees._sqlmesh_loaded_at
+      bag__northwind__employees._sqlmesh_loaded_at,
+      bag__northwind__shippers._sqlmesh_loaded_at
     ) AS _sqlmesh_loaded_at,
     GREATEST(
       bag__northwind__orders._sqlmesh_valid_from,
       bag__northwind__customers._sqlmesh_valid_from,
-      bag__northwind__employees._sqlmesh_valid_from
+      bag__northwind__employees._sqlmesh_valid_from,
+      bag__northwind__shippers._sqlmesh_valid_from
     ) AS _sqlmesh_valid_from,
     LEAST(
       bag__northwind__orders._sqlmesh_valid_to,
       bag__northwind__customers._sqlmesh_valid_to,
-      bag__northwind__employees._sqlmesh_valid_to
+      bag__northwind__employees._sqlmesh_valid_to,
+      bag__northwind__shippers._sqlmesh_valid_to
     ) AS _sqlmesh_valid_to,
     bag__northwind__orders._sqlmesh_source_system,
     bag__northwind__orders._sqlmesh_source_table
@@ -36,6 +40,10 @@ WITH orders AS (
     ON bag__northwind__orders._hook__employee = bag__northwind__employees._hook__employee
     AND bag__northwind__orders._sqlmesh_valid_from < bag__northwind__employees._sqlmesh_valid_to
     AND bag__northwind__orders._sqlmesh_valid_to > bag__northwind__employees._sqlmesh_valid_from
+  LEFT JOIN silver.bag__northwind__shippers
+    ON bag__northwind__orders._hook__shipper = bag__northwind__shippers._hook__shipper
+    AND bag__northwind__orders._sqlmesh_valid_from < bag__northwind__shippers._sqlmesh_valid_to
+    AND bag__northwind__orders._sqlmesh_valid_to > bag__northwind__shippers._sqlmesh_valid_from
 )
 SELECT
   'orders' AS stage,

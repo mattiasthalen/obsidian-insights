@@ -11,6 +11,7 @@ SELECT
   CONCAT('northwind|order|', order_id::TEXT)::BLOB AS _hook__order,
   CONCAT('northwind|customer|', customer_id::TEXT)::BLOB AS _hook__customer,
   CONCAT('northwind|employee|', employee_id::TEXT)::BLOB AS _hook__employee,
+  CONCAT('northwind|shipper|', ship_via::TEXT)::BLOB AS _hook__shipper,
   order_id,
   customer_id,
   employee_id,
