@@ -56,6 +56,23 @@ graph LR
     transform -.- gold
 ```
 
+## Unified Star Schema
+### Measurements
+- Add the measurements with their correpsonding date to the bridge.
+- This will turn the bridge into an event based table.
+
+|Stage|Key|# Orders Placed|# Orders Required|# Orders Shipped|Date|
+|-|-|-|-|-|-|
+|Orders|123|1|-|-|2025-01-01|
+|Orders|123|-|1|-|2025-01-02|
+|Orders|123|-|-|1|2025-01-02|
+
+This can be improved by grouping by Date
+|Stage|Key|# Orders Placed|# Orders Required|# Orders Shipped|Date|
+|-|-|-|-|-|-|
+|Orders|123|1|-|-|2025-01-01|
+|Orders|123|-|1|1|2025-01-02|
+
 ## ERDs
 ### bronze.*
 #### bronze.raw__northwind__*
