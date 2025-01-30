@@ -57,7 +57,7 @@ graph LR
 ```
 
 ## Unified Star Schema
-### Measurements
+### Measures
 > **!NOTE**
 >
 >I'm using this definition of what a measure is:
