@@ -14,7 +14,7 @@ WITH customers AS (
   FROM silver.bag__northwind__customers
 )
 SELECT
-  'customers' as stage,
+  'customers' AS stage,
   *
 FROM customers
 WHERE

@@ -14,7 +14,7 @@ WITH categories AS (
   FROM silver.bag__northwind__categories
 )
 SELECT
-  'categories' as stage,
+  'categories' AS stage,
   *
 FROM categories
 WHERE
