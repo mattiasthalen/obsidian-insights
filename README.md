@@ -62,7 +62,7 @@ graph LR
 >
 >I'm using this definition of what a measure is:
 > 
->*A measure is a raw quantifiable value representing a specific aspect of performance, status, or characteristics that must include a <ins>**temporal anchor**</ins> specifying the exact point or period in time to which it refers.*
+>>*A measure is a raw quantifiable value representing a specific aspect of performance, status, or characteristics that must include a <ins>**temporal anchor**</ins> specifying the exact point or period in time to which it refers.*
 > 
 >I.e., a measure <ins>**must**</ins> be associated with a date.
 
@@ -72,27 +72,32 @@ This will allow us to stack measures in the same graph and on a common date dime
 This is the normal bridge:
 |Stage|_key__orders|_key__customers|
 |-|-|-|
-|Orders|123|345|
-|Customers|-|345|
+|Orders|A|X|
+|Orders|B|X|
+|Customers|-|X|
 
 We then add the measurements, along with their corresponding date.
 - I.e., `# Orders Shipped` would set the date to `shipped_date`.
 
 |Stage|_key__orders|_key__customers|# Orders Placed|# Orders Required|# Orders Shipped|Date|
 |-|-|-|-|-|-|-|
-|Orders|123|345|1|-|-|2025-01-01|
-|Orders|123|345|-|1|-|2025-01-02|
-|Orders|123|345|-|-|1|2025-01-02|
-|Customers|-|345|-|-|-|-|
+|Orders|A|X|1|-|-|2025-01-01|
+|Orders|A|X|-|1|-|2025-01-02|
+|Orders|A|X|-|-|1|2025-01-02|
+|Orders|B|X|1|-|-|2025-01-01|
+|Orders|B|X|-|1|-|2025-01-01|
+|Orders|B|X|-|-|1|2025-01-01|
+|Customers|-|X|-|-|-|-|
 
 What happened is that every row got duplicated, with one line per measurement.
 We can do better than this, we can group it by date.
 
 |Stage|_key__orders|_key__customers|# Orders Placed|# Orders Required|# Orders Shipped|Date|
 |-|-|-|-|-|-|-|
-|Orders|123|345|1|-|-|2025-01-01|
-|Orders|123|345|-|1|1|2025-01-02|
-|Customers|-|345|-|-|-|-|
+|Orders|A|X|1|-|-|2025-01-01|
+|Orders|A|X|-|1|1|2025-01-02|
+|Orders|B|X|1|1|1|2025-01-01|
+|Customers|-|X|-|-|-|-|
 
 ## ERDs
 ### bronze.*
