@@ -174,31 +174,30 @@ flowchart LR
 
 ### gold.*
 ```mermaid
-flowchart TD
-    uss__bridge[("uss__bridge")]
+flowchart LR
+    _bridge("_bridge")
 
-    uss__peripheral__categories(["uss__peripheral__categories"])
-    uss__peripheral__customers(["uss__peripheral__customers"])
-    uss__peripheral__employees(["uss__peripheral__employees"])
-    uss__peripheral__order_details(["uss__peripheral__order_details"])
-    uss__peripheral__orders(["uss__peripheral__orders"])
-    uss__peripheral__products(["uss__peripheral__products"])
-    uss__peripheral__regions(["uss__peripheral__regions"])
-    uss__peripheral__shippers(["uss__peripheral__shippers"])
-    uss__peripheral__suppliers(["uss__peripheral__suppliers"])
-    uss__peripheral__territories(["uss__peripheral__territories"])
-    uss__peripheral__calendar(["uss__peripheral__calendar"])
+    categories(["categories"])
+    customers(["customers"])
+    employees(["employees"])
+    order_details(["order_details"])
+    orders(["orders"])
+    products(["products"])
+    regions(["regions"])
+    shippers(["shippers"])
+    suppliers(["suppliers"])
+    territories(["territories"])
+    calendar(["calendar"])
 
-    uss__peripheral__categories o--o uss__bridge
-    uss__peripheral__customers o--o uss__bridge
-    uss__peripheral__employees o--o uss__bridge
-    uss__peripheral__order_details o--o uss__bridge
-    uss__peripheral__orders o--o uss__bridge
-    
-    uss__bridge o--o uss__peripheral__products
-    uss__bridge o--o uss__peripheral__regions
-    uss__bridge o--o uss__peripheral__shippers
-    uss__bridge o--o uss__peripheral__suppliers
-    uss__bridge o--o uss__peripheral__territories
-    uss__bridge o--o uss__peripheral__calendar
+    _bridge --> categories
+    _bridge --> customers
+    _bridge --> employees
+    _bridge --> order_details
+    _bridge --> orders
+    _bridge --> products
+    _bridge --> regions
+    _bridge --> shippers
+    _bridge --> suppliers
+    _bridge --> territories
+    _bridge --> calendar
 ```
