@@ -65,6 +65,9 @@ graph LR
 >>*A measure is a raw quantifiable value representing a specific aspect of performance, status, or characteristics that must include a <ins>**temporal anchor**</ins> specifying the exact point or period in time to which it refers.*
 > 
 >I.e., a measure <ins>**must**</ins> be associated with a date.
+>
+>E.g., the amount on an invoice is associated with three dates; incoive date, due date, and payment date.
+>That means there will be three measures: amount invoiced, amount due, amount payed.
 
 Instead of building a regular bridge, we will turn it into an event based bridge.
 This will allow us to stack measures in the same graph and on a common date dimension.
