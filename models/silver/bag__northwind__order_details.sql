@@ -22,8 +22,11 @@ SELECT
   product_id,
   unit_price,
   quantity,
-  discount,
-  discount__v_double,
+  COALESCE(discount::DOUBLE, discount__v_double) AS discount,
+  unit_price * quantity AS line_value,
+  line_value * (
+    1 - discount
+  ) AS discounted_line_value,
   _dlt_load_id,
   _dlt_id,
   _dlt_extracted_at,

@@ -3,26 +3,26 @@ MODEL (
   kind VIEW
 );
 
-WITH orders_placed AS (
+WITH order_date AS (
   SELECT
     _hook__order__valid_from,
-    order_date AS _key__date,
+    order_date,
     1 AS measure__orders_placed
   FROM silver.bag__northwind__orders
   WHERE
     NOT bag__northwind__orders.order_date IS NULL
-), orders_required AS (
+), required_date AS (
   SELECT
     _hook__order__valid_from,
-    required_date AS _key__date,
+    required_date,
     1 AS measure__orders_required
   FROM silver.bag__northwind__orders
   WHERE
     NOT bag__northwind__orders.required_date IS NULL
-), orders_shipped AS (
+), shipped_date AS (
   SELECT
     _hook__order__valid_from,
-    shipped_date AS _key__date,
+    shipped_date,
     1 AS measure__orders_shipped
   FROM silver.bag__northwind__orders
   WHERE
@@ -30,18 +30,18 @@ WITH orders_placed AS (
 )
 SELECT
   COALESCE(
-    orders_required._hook__order__valid_from,
-    orders_shipped._hook__order__valid_from,
-    orders_shipped._hook__order__valid_from
+    order_date._hook__order__valid_from,
+    required_date._hook__order__valid_from,
+    shipped_date._hook__order__valid_from
   ) AS _hook__order__valid_from,
-  COALESCE(orders_required._key__date, orders_shipped._key__date, orders_shipped._key__date) AS _key__date,
-  orders_placed.measure__orders_placed,
-  orders_required.measure__orders_required,
-  orders_shipped.measure__orders_shipped
-FROM orders_placed
-FULL OUTER JOIN orders_required
-  ON orders_placed._hook__order__valid_from = orders_required._hook__order__valid_from
-  AND orders_placed._key__date = orders_required._key__date
-FULL OUTER JOIN orders_shipped
-  ON orders_placed._hook__order__valid_from = orders_shipped._hook__order__valid_from
-  AND orders_placed._key__date = orders_shipped._key__date
+  COALESCE(order_date.order_date, required_date.required_date, shipped_date.shipped_date) AS _key__date,
+  order_date.measure__orders_placed,
+  required_date.measure__orders_required,
+  shipped_date.measure__orders_shipped
+FROM order_date
+FULL OUTER JOIN required_date
+  ON order_date._hook__order__valid_from = required_date._hook__order__valid_from
+  AND order_date.order_date = required_date.required_date
+FULL OUTER JOIN shipped_date
+  ON order_date._hook__order__valid_from = shipped_date._hook__order__valid_from
+  AND order_date.order_date = shipped_date.shipped_date
