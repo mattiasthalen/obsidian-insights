@@ -79,24 +79,24 @@ This is the normal bridge:
 We then add the measurements, along with their corresponding date.
 - I.e., `# Orders Shipped` would set the date to `shipped_date`.
 
-|Stage|_key__orders|_key__customers|# Orders Placed|# Orders Required|# Orders Shipped|Date|
+|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
 |-|-|-|-|-|-|-|
-|Orders|A|X|1|-|-|2025-01-01|
-|Orders|A|X|-|1|-|2025-01-02|
-|Orders|A|X|-|-|1|2025-01-02|
-|Orders|B|X|1|-|-|2025-01-01|
-|Orders|B|X|-|1|-|2025-01-01|
-|Orders|B|X|-|-|1|2025-01-01|
+|Orders|A|X|2025-01-01|1|-|-|
+|Orders|A|X|2025-01-02|-|1|-|
+|Orders|A|X|2025-01-02|-|-|1|
+|Orders|B|X|2025-01-01|1|-|-|
+|Orders|B|X|2025-01-01|-|1|-|
+|Orders|B|X|2025-01-01|-|-|1|
 |Customers|-|X|-|-|-|-|
 
 What happened is that every row got duplicated, with one line per measurement.
 We can do better than this, we can group it by date.
 
-|Stage|_key__orders|_key__customers|# Orders Placed|# Orders Required|# Orders Shipped|Date|
+|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
 |-|-|-|-|-|-|-|
-|Orders|A|X|1|-|-|2025-01-01|
-|Orders|A|X|-|1|1|2025-01-02|
-|Orders|B|X|1|1|1|2025-01-01|
+|Orders|A|X|2025-01-01|1|-|-|
+|Orders|A|X|2025-01-02|-|1|1|
+|Orders|B|X|2025-01-01|1|1|1|
 |Customers|-|X|-|-|-|-|
 
 ## ERDs
@@ -181,6 +181,7 @@ flowchart TD
     uss__peripheral__shippers(["uss__peripheral__shippers"])
     uss__peripheral__suppliers(["uss__peripheral__suppliers"])
     uss__peripheral__territories(["uss__peripheral__territories"])
+    uss__peripheral__calendar(["uss__peripheral__calendar"])
 
     uss__peripheral__categories o--o uss__bridge
     uss__peripheral__customers o--o uss__bridge
@@ -193,4 +194,5 @@ flowchart TD
     uss__bridge o--o uss__peripheral__shippers
     uss__bridge o--o uss__peripheral__suppliers
     uss__bridge o--o uss__peripheral__territories
+    uss__bridge o--o uss__peripheral__calendar
 ```
