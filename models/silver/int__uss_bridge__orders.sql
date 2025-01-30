@@ -1,8 +1,6 @@
 MODEL (
-  name gold.uss__bridge__orders,
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column _sqlmesh_loaded_at
-  )
+  name silver.int__uss_bridge__orders,
+  kind VIEW
 );
 
 WITH orders AS (
@@ -97,5 +95,3 @@ SELECT
 FROM orders
 LEFT JOIN order_measurements
   ON orders._hook__order__valid_from = order_measurements._hook__order__valid_from
-WHERE
-  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

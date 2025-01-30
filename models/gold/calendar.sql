@@ -1,5 +1,5 @@
 MODEL (
-  name gold.uss__peripheral__calendar,
+  name gold.calendar,
   kind FULL
 );
 

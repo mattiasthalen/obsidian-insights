@@ -1,11 +1,6 @@
 MODEL (
-  name gold.uss__bridge__products,
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column _sqlmesh_loaded_at
-  ),
-  grain (
-    _key__puppini
-  )
+  name silver.int__uss_bridge__products,
+  kind VIEW
 );
 
 WITH products AS (
@@ -34,5 +29,3 @@ SELECT
   'products' AS stage,
   *
 FROM products
-WHERE
-  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts
