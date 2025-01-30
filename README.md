@@ -58,7 +58,16 @@ graph LR
 
 ## Unified Star Schema
 ### Measurements
+> **!NOTE**
+>
+>I'm using this definition of what a measure is:
+> 
+>*A measure is a raw quantifiable value representing a specific aspect of performance, status, or characteristics that must include a <ins>**temporal anchor**</ins> specifying the exact point or period in time to which it refers.*
+> 
+>I.e., a measure <ins>**must**</ins> be associated with a date.
+
 Instead of building a regular bridge, we will turn it into an event based bridge.
+This will allow us to stack measures in the same graph and on a common date dimension.
 
 This is the normal bridge:
 |Stage|_key__orders|_key__customers|
