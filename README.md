@@ -57,33 +57,53 @@ graph LR
 ```
 
 ## Unified Star Schema
-### Measurements
+### Measures
+> **!NOTE**
+>
+>I'm using this definition of what a measure is:
+> 
+>>*A measure is a raw quantifiable value representing a specific aspect of performance, status, or characteristics that must include a <ins>**temporal anchor**</ins> specifying the exact point or period in time to which it refers.*
+> 
+>I.e., a measure <ins>**must**</ins> be associated with a date.
+
 Instead of building a regular bridge, we will turn it into an event based bridge.
+This will allow us to stack measures in the same graph and on a common date dimension.
 
 This is the normal bridge:
 |Stage|_key__orders|_key__customers|
 |-|-|-|
-|Orders|123|345|
-|Customers|-|345|
+|Orders|A|X|
+|Orders|B|X|
+|Customers|-|X|
 
 We then add the measurements, along with their corresponding date.
 - I.e., `# Orders Shipped` would set the date to `shipped_date`.
 
-|Stage|_key__orders|_key__customers|# Orders Placed|# Orders Required|# Orders Shipped|Date|
+|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
 |-|-|-|-|-|-|-|
-|Orders|123|345|1|-|-|2025-01-01|
-|Orders|123|345|-|1|-|2025-01-02|
-|Orders|123|345|-|-|1|2025-01-02|
-|Customers|-|345|-|-|-|-|
+|Orders|A|X|2025-01-01|1|-|-|
+|Orders|A|X|2025-01-02|-|1|-|
+|Orders|A|X|2025-01-02|-|-|1|
+|Orders|B|X|2025-01-01|1|-|-|
+|Orders|B|X|2025-01-01|-|1|-|
+|Orders|B|X|2025-01-01|-|-|1|
+|Customers|-|X|-|-|-|-|
 
 What happened is that every row got duplicated, with one line per measurement.
 We can do better than this, we can group it by date.
 
-|Stage|_key__orders|_key__customers|# Orders Placed|# Orders Required|# Orders Shipped|Date|
+|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
 |-|-|-|-|-|-|-|
-|Orders|123|345|1|-|-|2025-01-01|
-|Orders|123|345|-|1|1|2025-01-02|
-|Customers|-|345|-|-|-|-|
+|Orders|A|X|2025-01-01|1|-|-|
+|Orders|A|X|2025-01-02|-|1|1|
+|Orders|B|X|2025-01-01|1|1|1|
+|Customers|-|X|-|-|-|-|
+
+So, how many orders were placed, required, and shipped per day, for customer X?
+|Customer|Date|# Orders Placed|# Orders Required|# Orders Shipped|
+|-|-|-|-|-|
+|x|2025-01-01|2|1|1|
+|x|2025-01-02|0|1|1|
 
 ## ERDs
 ### bronze.*
@@ -167,6 +187,7 @@ flowchart TD
     uss__peripheral__shippers(["uss__peripheral__shippers"])
     uss__peripheral__suppliers(["uss__peripheral__suppliers"])
     uss__peripheral__territories(["uss__peripheral__territories"])
+    uss__peripheral__calendar(["uss__peripheral__calendar"])
 
     uss__peripheral__categories o--o uss__bridge
     uss__peripheral__customers o--o uss__bridge
@@ -179,4 +200,5 @@ flowchart TD
     uss__bridge o--o uss__peripheral__shippers
     uss__bridge o--o uss__peripheral__suppliers
     uss__bridge o--o uss__peripheral__territories
+    uss__bridge o--o uss__peripheral__calendar
 ```
