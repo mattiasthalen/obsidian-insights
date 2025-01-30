@@ -1,8 +1,6 @@
 MODEL (
-  name gold.uss__bridge__territories,
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column _sqlmesh_loaded_at
-  )
+  name silver.int__uss_bridge__territories,
+  kind VIEW
 );
 
 WITH territories AS (
@@ -31,5 +29,3 @@ SELECT
   'territories' AS stage,
   *
 FROM territories
-WHERE
-  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

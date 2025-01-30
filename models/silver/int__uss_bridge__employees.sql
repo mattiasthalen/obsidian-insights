@@ -1,8 +1,6 @@
 MODEL (
-  name gold.uss__bridge__employees,
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column _sqlmesh_loaded_at
-  )
+  name silver.int__uss_bridge__employees,
+  kind VIEW
 );
 
 WITH employees AS (
@@ -17,5 +15,3 @@ SELECT
   'employees' AS stage,
   *
 FROM employees
-WHERE
-  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

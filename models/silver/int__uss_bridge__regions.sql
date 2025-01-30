@@ -1,8 +1,6 @@
 MODEL (
-  name gold.uss__bridge__regions,
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column _sqlmesh_loaded_at
-  )
+  name silver.int__uss_bridge__regions,
+  kind VIEW
 );
 
 WITH regions AS (
@@ -17,5 +15,3 @@ SELECT
   'regions' AS stage,
   *
 FROM regions
-WHERE
-  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

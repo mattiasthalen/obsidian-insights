@@ -1,8 +1,6 @@
 MODEL (
-  name gold.uss__bridge__suppliers,
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column _sqlmesh_loaded_at
-  )
+  name silver.int__uss_bridge__suppliers,
+  kind VIEW
 );
 
 WITH suppliers AS (
@@ -17,5 +15,3 @@ SELECT
   'suppliers' AS stage,
   *
 FROM suppliers
-WHERE
-  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

@@ -56,6 +56,58 @@ graph LR
     transform -.- gold
 ```
 
+## Unified Star Schema
+### Measures
+> **!NOTE**
+>
+>I'm using this definition of what a measure is:
+> 
+>>*A measure is a raw quantifiable value representing a specific aspect of performance, status, or characteristics that must include a <ins>**temporal anchor**</ins> specifying the exact point or period in time to which it refers.*
+> 
+>I.e., a measure <ins>**must**</ins> be associated with a date.
+>
+>E.g., the amount on an invoice is associated with three dates; incoive date, due date, and payment date.
+>That means there will be three measures: amount invoiced, amount due, amount payed.
+
+Instead of building a regular bridge, we will turn it into an event based bridge.
+This will allow us to stack measures in the same graph and on a common date dimension.
+
+This is the normal bridge:
+|Stage|_key__orders|_key__customers|
+|-|-|-|
+|Orders|A|X|
+|Orders|B|X|
+|Customers|-|X|
+
+We then add the measurements, along with their corresponding date.
+- I.e., `# Orders Shipped` would set the date to `shipped_date`.
+
+|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
+|-|-|-|-|-|-|-|
+|Orders|A|X|2025-01-01|1|-|-|
+|Orders|A|X|2025-01-02|-|1|-|
+|Orders|A|X|2025-01-02|-|-|1|
+|Orders|B|X|2025-01-01|1|-|-|
+|Orders|B|X|2025-01-01|-|1|-|
+|Orders|B|X|2025-01-01|-|-|1|
+|Customers|-|X|-|-|-|-|
+
+What happened is that every row got duplicated, with one line per measurement.
+We can do better than this, we can group it by date.
+
+|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
+|-|-|-|-|-|-|-|
+|Orders|A|X|2025-01-01|1|-|-|
+|Orders|A|X|2025-01-02|-|1|1|
+|Orders|B|X|2025-01-01|1|1|1|
+|Customers|-|X|-|-|-|-|
+
+So, how many orders were placed, required, and shipped per day, for customer X?
+|Customer|Date|# Orders Placed|# Orders Required|# Orders Shipped|
+|-|-|-|-|-|
+|x|2025-01-01|2|1|1|
+|x|2025-01-02|0|1|1|
+
 ## ERDs
 ### bronze.*
 #### bronze.raw__northwind__*
@@ -125,29 +177,30 @@ flowchart LR
 
 ### gold.*
 ```mermaid
-flowchart TD
-    uss__bridge[("uss__bridge")]
+flowchart LR
+    _bridge("_bridge")
 
-    uss__peripheral__categories(["uss__peripheral__categories"])
-    uss__peripheral__customers(["uss__peripheral__customers"])
-    uss__peripheral__employees(["uss__peripheral__employees"])
-    uss__peripheral__order_details(["uss__peripheral__order_details"])
-    uss__peripheral__orders(["uss__peripheral__orders"])
-    uss__peripheral__products(["uss__peripheral__products"])
-    uss__peripheral__regions(["uss__peripheral__regions"])
-    uss__peripheral__shippers(["uss__peripheral__shippers"])
-    uss__peripheral__suppliers(["uss__peripheral__suppliers"])
-    uss__peripheral__territories(["uss__peripheral__territories"])
+    categories(["categories"])
+    customers(["customers"])
+    employees(["employees"])
+    order_details(["order_details"])
+    orders(["orders"])
+    products(["products"])
+    regions(["regions"])
+    shippers(["shippers"])
+    suppliers(["suppliers"])
+    territories(["territories"])
+    calendar(["calendar"])
 
-    uss__peripheral__categories o--o uss__bridge
-    uss__peripheral__customers o--o uss__bridge
-    uss__peripheral__employees o--o uss__bridge
-    uss__peripheral__order_details o--o uss__bridge
-    uss__peripheral__orders o--o uss__bridge
-    
-    uss__bridge o--o uss__peripheral__products
-    uss__bridge o--o uss__peripheral__regions
-    uss__bridge o--o uss__peripheral__shippers
-    uss__bridge o--o uss__peripheral__suppliers
-    uss__bridge o--o uss__peripheral__territories
+    _bridge --> categories
+    _bridge --> customers
+    _bridge --> employees
+    _bridge --> order_details
+    _bridge --> orders
+    _bridge --> products
+    _bridge --> regions
+    _bridge --> shippers
+    _bridge --> suppliers
+    _bridge --> territories
+    _bridge --> calendar
 ```

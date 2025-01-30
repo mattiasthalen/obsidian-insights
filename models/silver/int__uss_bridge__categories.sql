@@ -1,8 +1,6 @@
 MODEL (
-  name gold.uss__bridge__categories,
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column _sqlmesh_loaded_at
-  )
+  name silver.int__uss_bridge__categories,
+  kind VIEW
 );
 
 WITH categories AS (
@@ -14,8 +12,6 @@ WITH categories AS (
   FROM silver.bag__northwind__categories
 )
 SELECT
-  'categories' as stage,
+  'categories' AS stage,
   *
 FROM categories
-WHERE
-  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts

@@ -1,8 +1,6 @@
 MODEL (
-  name gold.uss__bridge__orders,
-  kind INCREMENTAL_BY_TIME_RANGE (
-    time_column _sqlmesh_loaded_at
-  )
+  name silver.int__uss_bridge__orders,
+  kind VIEW
 );
 
 WITH orders AS (
@@ -47,7 +45,11 @@ WITH orders AS (
 )
 SELECT
   'orders' AS stage,
-  *
+  orders.*,
+  int__measures__orders.measure__orders_placed,
+  int__measures__orders.measure__orders_required,
+  int__measures__orders.measure__orders_shipped,
+  int__measures__orders._key__date
 FROM orders
-WHERE
-  _sqlmesh_loaded_at BETWEEN @start_ts AND @end_ts
+LEFT JOIN silver.int__measures__orders
+  ON orders._hook__order__valid_from = int__measures__orders._hook__order__valid_from
