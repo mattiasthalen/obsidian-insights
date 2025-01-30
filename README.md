@@ -64,6 +64,7 @@ This is the normal bridge:
 |Stage|_key__orders|_key__customers|
 |-|-|-|
 |Orders|123|345|
+|Customers|-|345|
 
 We then add the measurements, along with their corresponding date.
 - I.e., `# Orders Shipped` would set the date to `shipped_date`.
@@ -73,6 +74,7 @@ We then add the measurements, along with their corresponding date.
 |Orders|123|345|1|-|-|2025-01-01|
 |Orders|123|345|-|1|-|2025-01-02|
 |Orders|123|345|-|-|1|2025-01-02|
+|Customers|-|345|-|-|-|-|
 
 What happened is that every row got duplicated, with one line per measurement.
 We can do better than this, we can group it by date.
@@ -81,6 +83,7 @@ We can do better than this, we can group it by date.
 |-|-|-|-|-|-|-|
 |Orders|123|345|1|-|-|2025-01-01|
 |Orders|123|345|-|1|1|2025-01-02|
+|Customers|-|345|-|-|-|-|
 
 ## ERDs
 ### bronze.*
