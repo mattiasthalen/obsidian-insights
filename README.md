@@ -99,6 +99,12 @@ We can do better than this, we can group it by date.
 |Orders|B|X|2025-01-01|1|1|1|
 |Customers|-|X|-|-|-|-|
 
+So, how many orders were placed, required, and shipped per day, for customer X?
+|Customer|Date|# Orders Placed|# Orders Required|# Orders Shipped|
+|-|-|-|-|-|
+|x|2025-01-01|2|1|1|
+|x|2025-01-02|0|1|1|
+
 ## ERDs
 ### bronze.*
 #### bronze.raw__northwind__*
