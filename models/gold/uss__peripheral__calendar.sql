@@ -1,7 +1,6 @@
 MODEL (
   name gold.uss__peripheral__calendar,
-  kind FULL,
-  cron '0 0 1 1 *'
+  kind FULL
 );
 
 WITH date_spine AS (
