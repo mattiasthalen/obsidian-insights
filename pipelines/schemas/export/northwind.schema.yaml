@@ -1,4 +1,4 @@
-version: 5
+version: 9
 version_hash: oy2TlStAnncPkH565vgDEagHwfTiemRPg6Ch+6EIUvs=
 engine_version: 11
 name: northwind
@@ -566,6 +566,7 @@ normalizers:
   json:
     module: dlt.common.normalizers.json.relational
 previous_hashes:
+- oy2TlStAnncPkH565vgDEagHwfTiemRPg6Ch+6EIUvs=
 - bCKV0dF4TCW611ksTC6hZIkt/9cZA2W8bkwHstxAx/0=
 - xBt8pUDrAyu7M2dirOwzqig79dXyZ0GTxmo6jGvzI7w=
 - ZzJ2keRn9Zon8QDfL7x8gIRvYRNyNTm6DoRIhkrP7xk=
