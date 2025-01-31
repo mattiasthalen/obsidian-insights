@@ -76,27 +76,33 @@ graph LR
 >That means there will be three measures: amount invoiced, amount due, amount payed.
 
 ### Measures
-$$Order \space Line \space Value_{order \space date} = UnitPrice \times Quantity$$
-$$Discounted \space Order \space Line \space Value_{order \space date} = UnitPrice \times Quantity \times (1 - Discount)$$
-$$Order \space Processing \space Time_{shipped \space date} = Shipped \space Date - Order \space Date$$
-$$Order \space Line \space Discount_{order \space date} = Order \space Line \space Value - Discounted \space Order \space Line \space Value$$
+|Name|Temporal Anchor|Formula|
+|-|-|-|
+|Order Line Value|Order Date|$$Unit \space Price \times Quantity$$|
+|Discounted Order Line Value|Order Date|$$Unit \space Price \times Quantity \times (1 - Discount)$$|
+|Order Processing Days|Shipped Date|$$Shipped \space Date - Order \space Date$$|
+|Order Line Discount|Order Date|$$Order \space Line \space Value - Discounted \space Order \space Line \space Value$$
 
 ### Metrics
-$$Customers_{order \space date} = \sum_{i=1}^n 1_{CustomerID}$$
-$$Orders \space Placed_{order \space date} = \sum_{i=1}^n 1_{OrderID}$$
-$$Repeat \space Customers_{order \space date} = \sum_{i=1}^n \begin{cases} 1 & \text{if } Orders > 1 \\ 0 & \text{otherwise} \end{cases}$$
-$$Orders \space Shipped \space On \space Time_{shipped \space date} = \sum_{i=1}^n \begin{cases} 1_{OrderID} & \text{if } Shipped \space Date \leq Required \space Date \\ 0 & \text{otherwise} \end{cases}$$
-$$Order \space Value_{order \space date} = \sum(Order \space Line \space Value)$$
-$$Discounted \space Order \space Value_{order \space date} = \sum(Discounted \space Order \space Line \space Value)$$
-$$Order \space Discount_{order \space date} = \sum(Order \space Line \space Discount)$$
-$$Total \space Order \space Processing \space Time_{shipped \space date} = \sum(Order \space Processing \space Time)$$
+|Name|Temporal Anchor|Formula|
+|-|-|-|
+|Customers|N/A|$$\sum_{i=1}^n 1_{CustomerID}$$|
+|Orders Placed|Order Date|$$\sum_{i=1}^n 1_{OrderID}$$|
+|Repeat Customers|Order Date|$$\sum_{i=1}^n \begin{cases} 1 & \text{if } Orders > 1 \\ 0 & \text{otherwise} \end{cases}$$|
+|Orders Shipped On Time|Shipped Date|$$\sum_{i=1}^n \begin{cases} 1_{OrderID} & \text{if } Shipped \space Date \leq Required \space Date \\ 0 & \text{otherwise} \end{cases}$$|
+|Order Value|Order Date|$$\sum(Order \space Line \space Value)$$|
+|Discounted Order Value|Order Date|$$\sum(Discounted \space Order \space Line \space Value)$$|
+|Order Discount|Order Date|$$\sum(Order \space Line \space Discount)$$|
+|Total Order Processing \space Days|Shipped Date|$$\sum(Order \space Processing \space Time)$$|
 
 ### Key Performance Indicators
-$$Average \space Revenue \space Per \space Order_{order \space date} = \dfrac{Discounted \space Order \space Value}{Orders \space Placed}$$
-$$On \space Time \space Delivery \space Rate_{shipped \space date} = \dfrac{Orders \space Shipped \space On \space Time}{Orders \space Placed}\%$$
-$$Customer \space Retention \space Rate_{order \space date} = \dfrac{Repeat \space Customers}{Customers}\%$$
-$$Average \space Order \space Processing \space Time_{shipped \space date} = \dfrac{Total \space Order \space Processing \space Time}{Orders \space Placed}$$
-$$Discount \space Rate_{order \space date} = \dfrac{Order \space Discount}{Order \space Value}\%$$
+|Name|Temporal Anchor|Formula|
+|-|-|-|
+|Average Revenue Per Order|Order Date|$$\dfrac{Discounted \space Order \space Value}{Orders \space Placed}$$|
+|On Time Delivery Rate|Shipped Date|$$\dfrac{Orders \space Shipped \space On \space Time}{Orders \space Placed}\%$$|
+|Customer Retention Rate|Order Date|$$\dfrac{Repeat \space Customers}{Customers}\%$$|
+|Average Order Processing Days|Shipped Date|$$\dfrac{Total \space Order \space Processing \space Days}{Orders \space Placed}$$|
+|Discount Rate|Order Date|$$\dfrac{Order \space Discount}{Order \space Value}\%$$|
 
 ### Unified Star Schema
 Instead of building a regular bridge, we will turn it into an event based bridge.
