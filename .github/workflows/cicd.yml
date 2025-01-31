@@ -29,6 +29,7 @@ jobs:
       # Required to merge
       pull-requests: write
     env:
+      gateway: motherduck
       motherduck_token: ${{ secrets.motherduck_token }}
     steps:
       - name: Setup Python
