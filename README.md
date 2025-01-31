@@ -90,10 +90,8 @@ graph LR
 |Orders Placed|Order Date|$$\sum_{i=1}^n 1_{OrderID}$$|
 |Repeat Customers|Order Date|$$\sum_{i=1}^n \begin{cases} 1 & \text{if } Orders > 1 \\ 0 & \text{otherwise} \end{cases}$$|
 |Orders Shipped On Time|Shipped Date|$$\sum_{i=1}^n \begin{cases} 1_{OrderID} & \text{if } Shipped \space Date \leq Required \space Date \\ 0 & \text{otherwise} \end{cases}$$|
-|Order Value|Order Date|$$\sum(Order \space Line \space Value)$$|
 |Discounted Order Value|Order Date|$$\sum(Discounted \space Order \space Line \space Value)$$|
-|Order Discount|Order Date|$$\sum(Order \space Line \space Discount)$$|
-|Total Order Processing \space Days|Shipped Date|$$\sum(Order \space Processing \space Time)$$|
+|Total Order Processing Days|Shipped Date|$$\sum(Order \space Processing \space Time)$$|
 
 ### Key Performance Indicators
 |Name|Temporal Anchor|Formula|
@@ -102,7 +100,6 @@ graph LR
 |On Time Delivery Rate|Shipped Date|$$\dfrac{Orders \space Shipped \space On \space Time}{Orders \space Placed}\%$$|
 |Customer Retention Rate|Order Date|$$\dfrac{Repeat \space Customers}{Customers}\%$$|
 |Average Order Processing Days|Shipped Date|$$\dfrac{Total \space Order \space Processing \space Days}{Orders \space Placed}$$|
-|Discount Rate|Order Date|$$\dfrac{Order \space Discount}{Order \space Value}\%$$|
 
 ### Unified Star Schema
 Instead of building a regular bridge, we will turn it into an event based bridge.
