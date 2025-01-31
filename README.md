@@ -63,8 +63,7 @@ graph LR
     transform -.- gold
 ```
 
-## Unified Star Schema
-### Measures
+## Measures
 > **!NOTE**
 >
 >I'm using this definition of what a measure is:
@@ -76,6 +75,12 @@ graph LR
 >E.g., the amount on an invoice is associated with three dates; incoive date, due date, and payment date.
 >That means there will be three measures: amount invoiced, amount due, amount payed.
 
+$$Average \space Revenue \space Per \space Order = \dfrac{\sum(UnitPrice \times Quantity \times (1-Discount))}{COUNT(DISTINCT \space OrderID)}$$
+$$On \space Time \space Delivery \space Rate = \dfrac{COUNT(Orders \space where \space ShippedDate \leq RequiredDate)}{COUNT(Total \space Orders)}\%$$
+$$Customer \space Retention \space Rate = \dfrac{COUNT(Customers \space with \space OrderCount > 1)}{COUNT(Total \space Customers)}\%$$
+$$Order \space Processing \space Time = AVG(ShippedDate - OrderDate) \space days$$
+
+### Unified Star Schema
 Instead of building a regular bridge, we will turn it into an event based bridge.
 This will allow us to stack measures in the same graph and on a common date dimension.
 
