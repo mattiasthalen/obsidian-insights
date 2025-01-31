@@ -111,75 +111,66 @@ So, how many orders were placed, required, and shipped per day, for customer X?
 ## Lineage / DAG
 ```mermaid
 flowchart LR
-    %% Bronze Schema
-    subgraph bronze[bronze]
-        %% Raw Tables
-        raw_territories(["raw__northwind__territories"])
-        raw_employees(["raw__northwind__employees"])
-        raw_order_details(["raw__northwind__order_details"])
-        raw_category_details(["raw__northwind__category_details"])
-        raw_shippers(["raw__northwind__shippers"])
-        raw_employee_territories(["raw__northwind__employee_territories"])
-        raw_categories(["raw__northwind__categories"])
-        raw_suppliers(["raw__northwind__suppliers"])
-        raw_products(["raw__northwind__products"])
-        raw_orders(["raw__northwind__orders"])
-        raw_customers(["raw__northwind__customers"])
-        raw_regions(["raw__northwind__regions"])
+    %% Bronze Layer
+    subgraph Bronze["bronze"]
+        raw_territories(["raw_northwind_territories"])
+        raw_employees(["raw_northwind_employees"])
+        raw_order_details(["raw_northwind_order_details"])
+        raw_shippers(["raw_northwind_shippers"])
+        raw_emp_territories(["raw_northwind_employee_territories"])
+        raw_categories(["raw_northwind_categories"])
+        raw_suppliers(["raw_northwind_suppliers"])
+        raw_products(["raw_northwind_products"])
+        raw_orders(["raw_northwind_orders"])
+        raw_customers(["raw_northwind_customers"])
+        raw_regions(["raw_northwind_regions"])
 
-        %% Snapshot Tables
-        snp_territories(["snp__northwind__territories"])
-        snp_employees(["snp__northwind__employees"])
-        snp_order_details(["snp__northwind__order_details"])
-        snp_category_details(["snp__northwind__category_details"])
-        snp_shippers(["snp__northwind__shippers"])
-        snp_employee_territories(["snp__northwind__employee_territories"])
-        snp_categories(["snp__northwind__categories"])
-        snp_suppliers(["snp__northwind__suppliers"])
-        snp_products(["snp__northwind__products"])
-        snp_orders(["snp__northwind__orders"])
-        snp_customers(["snp__northwind__customers"])
-        snp_regions(["snp__northwind__regions"])
+        snp_territories(["snp_northwind_territories"])
+        snp_employees(["snp_northwind_employees"])
+        snp_order_details(["snp_northwind_order_details"])
+        snp_shippers(["snp_northwind_shippers"])
+        snp_emp_territories(["snp_northwind_employee_territories"])
+        snp_categories(["snp_northwind_categories"])
+        snp_suppliers(["snp_northwind_suppliers"])
+        snp_products(["snp_northwind_products"])
+        snp_orders(["snp_northwind_orders"])
+        snp_customers(["snp_northwind_customers"])
+        snp_regions(["snp_northwind_regions"])
     end
 
-    %% Silver Schema
-    subgraph silver[silver]
+    %% Silver Layer
+    subgraph Silver["silver"]
+        bag_orders(["bag_northwind_orders"])
+        bag_regions(["bag_northwind_regions"])
+        bag_territories(["bag_northwind_territories"])
+        bag_customers(["bag_northwind_customers"])
+        bag_products(["bag_northwind_products"])
+        bag_categories(["bag_northwind_categories"])
+        bag_suppliers(["bag_northwind_suppliers"])
+        bag_shippers(["bag_northwind_shippers"])
+        bag_employees(["bag_northwind_employees"])
+        bag_emp_territories(["bag_northwind_employee_territories"])
+        bag_order_details(["bag_northwind_order_details"])
 
-        %% BAG Tables
-        subgraph bags
-            bag_orders(["bag__northwind__orders"])
-            bag_regions(["bag__northwind__regions"])
-            bag_territories(["bag__northwind__territories"])
-            bag_customers(["bag__northwind__customers"])
-            bag_products(["bag__northwind__products"])
-            bag_categories(["bag__northwind__categories"])
-            bag_suppliers(["bag__northwind__suppliers"])
-            bag_shippers(["bag__northwind__shippers"])
-            bag_employees(["bag__northwind__employees"])
-            bag_employee_territories(["bag__northwind__employee_territories"])
-            bag_order_details(["bag__northwind__order_details"])
-        end
+        int_uss_bridge(["int_uss_bridge"])
+        int_territories(["int_uss_bridge_territories"])
+        int_customers(["int_uss_bridge_customers"])
+        int_regions(["int_uss_bridge_regions"])
+        int_categories(["int_uss_bridge_categories"])
+        int_suppliers(["int_uss_bridge_suppliers"])
+        int_products(["int_uss_bridge_products"])
+        int_orders(["int_uss_bridge_orders"])
+        int_employees(["int_uss_bridge_employees"])
+        int_emp_territories(["int_uss_bridge_employee_territories"])
+        int_order_details(["int_uss_bridge_order_details"])
+        int_shippers(["int_uss_bridge_shippers"])
 
-        %% Integration Tables
-        int_uss_bridge(["int__uss_bridge"])
-        int_measures_orders(["int__measures__orders"])
-        int_measures_order_details(["int__measures__order_details"])
-        int_uss_bridge_territories(["int__uss_bridge__territories"])
-        int_uss_bridge_customers(["int__uss_bridge__customers"])
-        int_uss_bridge_regions(["int__uss_bridge__regions"])
-        int_uss_bridge_categories(["int__uss_bridge__categories"])
-        int_uss_bridge_suppliers(["int__uss_bridge__suppliers"])
-        int_uss_bridge_products(["int__uss_bridge__products"])
-        int_uss_bridge_orders(["int__uss_bridge__orders"])
-        int_uss_bridge_shippers(["int__uss_bridge__shippers"])
-        int_uss_bridge_employee_territories(["int__uss_bridge__employee_territories"])
-        int_uss_bridge_order_details(["int__uss_bridge__order_details"])
-        int_uss_bridge_employees(["int__uss_bridge__employees"])
-
+        int_measures_orders(["int_measures_orders"])
+        int_measures_order_details(["int_measures_order_details"])
     end
 
-    %% Gold Schema
-    subgraph gold[gold]
+    %% Gold Layer
+    subgraph Gold["gold"]
         gold_suppliers(["suppliers"])
         gold_products(["products"])
         gold_regions(["regions"])
@@ -191,15 +182,15 @@ flowchart LR
         gold_bridge(["_bridge"])
         gold_shippers(["shippers"])
         gold_territories(["territories"])
+        gold_calendar(["calendar"])
     end
 
-    %% Bronze Layer Relationships
+    %% Bronze to Bronze Relationships
     raw_territories --> snp_territories
     raw_employees --> snp_employees
     raw_order_details --> snp_order_details
-    raw_category_details --> snp_category_details
     raw_shippers --> snp_shippers
-    raw_employee_territories --> snp_employee_territories
+    raw_emp_territories --> snp_emp_territories
     raw_categories --> snp_categories
     raw_suppliers --> snp_suppliers
     raw_products --> snp_products
@@ -213,52 +204,43 @@ flowchart LR
     snp_territories --> bag_territories
     snp_customers --> bag_customers
     snp_products --> bag_products
-    snp_category_details --> bag_categories
+    snp_categories --> bag_categories
     snp_suppliers --> bag_suppliers
     snp_shippers --> bag_shippers
     snp_employees --> bag_employees
-    snp_employee_territories --> bag_employee_territories
+    snp_emp_territories --> bag_emp_territories
     snp_order_details --> bag_order_details
 
-    %% Silver Layer Intermediate Relationships
+    %% Silver Layer Relationships
+    bag_regions --> int_territories
+    bag_territories --> int_territories
+    bag_customers --> int_customers
+    bag_regions --> int_regions
+    bag_categories --> int_categories
+    bag_suppliers --> int_suppliers
+    bag_products --> int_products
+    bag_orders --> int_orders
+    bag_employees --> int_employees
+    bag_emp_territories --> int_emp_territories
+    bag_order_details --> int_order_details
+    bag_shippers --> int_shippers
+
     bag_orders --> int_measures_orders
-    bag_order_details --> int_measures_order_details
     bag_orders --> int_measures_order_details
+    bag_order_details --> int_measures_order_details
 
-    %% Silver Layer Bridge Relationships
-    bag_regions --> int_uss_bridge_territories
-    bag_territories --> int_uss_bridge_territories
-    bag_customers --> int_uss_bridge_customers
-    bag_regions --> int_uss_bridge_regions
-    bag_categories --> int_uss_bridge_categories
-    bag_suppliers --> int_uss_bridge_suppliers
-    bag_products --> int_uss_bridge_products
-    bag_suppliers --> int_uss_bridge_products
-    bag_customers --> int_uss_bridge_orders
-    bag_shippers --> int_uss_bridge_orders
-    bag_orders --> int_uss_bridge_orders
-    int_measures_orders --> int_uss_bridge_orders
-    bag_employees --> int_uss_bridge_orders
-    bag_shippers --> int_uss_bridge_shippers
-    bag_employee_territories --> int_uss_bridge_employee_territories
-    bag_employees --> int_uss_bridge_employee_territories
-    bag_regions --> int_uss_bridge_employee_territories
-    bag_territories --> int_uss_bridge_employee_territories
-    bag_order_details --> int_uss_bridge_order_details
-    bag_employees --> int_uss_bridge_employees
-
-    %% Bridge Integration Relationships
-    int_uss_bridge_customers --> int_uss_bridge
-    int_uss_bridge_suppliers --> int_uss_bridge
-    int_uss_bridge_territories --> int_uss_bridge
-    int_uss_bridge_shippers --> int_uss_bridge
-    int_uss_bridge_employee_territories --> int_uss_bridge
-    int_uss_bridge_products --> int_uss_bridge
-    int_uss_bridge_orders --> int_uss_bridge
-    int_uss_bridge_order_details --> int_uss_bridge
-    int_uss_bridge_regions --> int_uss_bridge
-    int_uss_bridge_categories --> int_uss_bridge
-    int_uss_bridge_employees --> int_uss_bridge
+    %% Bridge Integration
+    int_categories --> int_uss_bridge
+    int_employees --> int_uss_bridge
+    int_customers --> int_uss_bridge
+    int_emp_territories --> int_uss_bridge
+    int_territories --> int_uss_bridge
+    int_suppliers --> int_uss_bridge
+    int_orders --> int_uss_bridge
+    int_products --> int_uss_bridge
+    int_order_details --> int_uss_bridge
+    int_regions --> int_uss_bridge
+    int_shippers --> int_uss_bridge
 
     %% Silver to Gold Relationships
     bag_suppliers --> gold_suppliers
@@ -272,6 +254,7 @@ flowchart LR
     int_uss_bridge --> gold_bridge
     bag_shippers --> gold_shippers
     bag_territories --> gold_territories
+    int_uss_bridge --> gold_calendar
 ```
 
 ## ERDs
