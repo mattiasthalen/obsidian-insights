@@ -15,13 +15,19 @@
 
 ## How To Run
 1. Clone the repo.
-2. Run `pip install uv`, followed by `uv sync`.
-4. Create an account on [MotherDuck](https://www.motherduck.com).
-5. Create a database called `obsidian_insights`.
-6. [Create a token](https://motherduck.com/docs/key-tasks/authenticating-and-connecting-to-motherduck/authenticating-to-motherduck/#authentication-using-an-access-token).
-7. Save the token (`motherduck_token=your_token`) in an `.env` file, placed at the repo root.
-8. Run `init_warehouse.sh`.
-9. Then run `elt.sh` whenever you want to refresh the warehouse.
+1. Run `pip install uv`, followed by `uv sync`.
+1. Decide if you want to use duckdb (local) or motherduck (remote) as gateway.
+    * DuckDB (default)
+      1. Add the gateway var in .env: `gateway=duckdb`. (fallback is this)
+      1. Add the duckdb_path var in .env: `duckdb_path=your_db.duckdb`. (default is `./obsidian_insights.duckdb`)
+    * MotherDuck
+      1. Add the gateway var in .env: `gateway=motherduck`. (fallback is `duckdb`)
+      1. Create an account on [MotherDuck](https://www.motherduck.com).
+        1. Create a database called `obsidian_insights`.
+          1. [Create a token](https://motherduck.com/docs/key-tasks/authenticating-and-connecting-to-motherduck/authenticating-to-motherduck/#authentication-using-an-access-token).
+          1. Add the motherduck_token var in .env: `motherduck_token=your_token`.
+1. Run `init_warehouse.sh` an d follow the prompts.
+1. Then run `elt.sh` whenever you want to refresh the warehouse.
 
 ## Architecture
 ```mermaid
