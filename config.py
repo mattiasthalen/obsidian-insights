@@ -30,6 +30,7 @@ def get_current_branch():
 current_user = getpass.getuser()
 branch = get_current_branch() or 'dev'
 default_environment = f"{current_user}__{branch}".replace('-', '_')
+gateway = os.getenv("gateway", "duckdb")
 
 print(f"Environment is set to: {default_environment}.")
 
@@ -37,6 +38,11 @@ config = Config(
     project="obisidan-insights",
     default_target_environment=default_environment,
     gateways={
+            "duckdb": GatewayConfig(
+                connection=DuckDBConnectionConfig(
+                    database=os.getenv("duckdb_path", "db.duckdb")
+                )
+            ),
             "motherduck": GatewayConfig(
                 connection=MotherDuckConnectionConfig(
                     database="obsidian_insights",
@@ -44,7 +50,7 @@ config = Config(
                 )
             )
         },
-    default_gateway="motherduck",
+    default_gateway=gateway,
     model_defaults=ModelDefaultsConfig(
         dialect="duckdb,normalization_strategy=case_sensitive",
         start="2025-01-23",

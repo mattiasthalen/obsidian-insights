@@ -2,6 +2,7 @@
 <p style="text-align: center; margin: 0;">
     <a href="https://www.dlthub.com"> <img src="https://cdn.sanity.io/images/nsq559ov/production/7f85e56e715b847c5519848b7198db73f793448d-82x25.svg?w=2000&auto=format" alt="dltHub logo" height="30px"></a>
     <a href="https://www.sqlmesh.com"><img src="https://github.com/TobikoData/sqlmesh/blob/main/docs/readme/sqlmesh.png?raw=true" alt="SQLMesh logo" height="30px"></a>
+    <a href="https://www.duckdb.org"><img src="https://duckdb.org/images/logo-dl/DuckDB_Logo-horizontal.svg" alt="DuckDB logo" height="30px"></a>
     <a href="https://www.motherduck.com"><img src="https://gist.githubusercontent.com/mattiasthalen/7919bc48c6e0d706bbec96f452f8ea69/raw/f76c2dde8ba0870e0ae52b7eb7f700a40cfda047/motherduck.svg" alt="MotherDuck logo" height="30px"></a>
 </p>
 
@@ -15,13 +16,19 @@
 
 ## How To Run
 1. Clone the repo.
-2. Run `pip install uv`, followed by `uv sync`.
-4. Create an account on [MotherDuck](https://www.motherduck.com).
-5. Create a database called `obsidian_insights`.
-6. [Create a token](https://motherduck.com/docs/key-tasks/authenticating-and-connecting-to-motherduck/authenticating-to-motherduck/#authentication-using-an-access-token).
-7. Save the token (`motherduck_token=your_token`) in an `.env` file, placed at the repo root.
-8. Run `init_warehouse.sh`.
-9. Then run `elt.sh` whenever you want to refresh the warehouse.
+1. Run `pip install uv`, followed by `uv sync`.
+1. Decide if you want to use DuckDB (local) or MotherDuck (remote) as gateway.
+    * DuckDB (default)
+      1. Add the gateway var in .env: `gateway=duckdb`. (fallback is this)
+      1. Add the duckdb_path var in .env: `duckdb_path=your_db.duckdb`. (default is `./obsidian_insights.duckdb`)
+    * MotherDuck
+      1. Add the gateway var in .env: `gateway=motherduck`. (fallback is `duckdb`)
+      1. Create an account on [MotherDuck](https://www.motherduck.com).
+        1. Create a database called `obsidian_insights`.
+        1. [Create a token](https://motherduck.com/docs/key-tasks/authenticating-and-connecting-to-motherduck/authenticating-to-motherduck/#authentication-using-an-access-token).
+        1. Add the motherduck_token var in .env: `motherduck_token=your_token`.
+1. Run `init_warehouse.sh` and follow the prompts.
+1. Then run `elt.sh` whenever you want to refresh the warehouse.
 
 ## Architecture
 ```mermaid

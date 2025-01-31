@@ -175,9 +175,17 @@ def northwind_source() -> t.Any:
 
 def load_northwind() -> None:
     load_dotenv()
+    
+    gateway = os.getenv("gateway", "duckdb")
+    
+    if gateway == "duckdb":
+        destination = dlt.destinations.duckdb(os.getenv("duckdb_path", "db.duckdb"))
+    else:
+        destination = dlt.destinations.motherduck(f"md:obsidian_insights?motherduck_token={os.getenv("motherduck_token")}"),
+    
     pipeline = dlt.pipeline(
         pipeline_name="northwind",
-        destination=dlt.destinations.motherduck(f"md:obsidian_insights?motherduck_token={os.getenv("motherduck_token")}"),
+        destination= destination,
         dataset_name="bronze",
         progress="enlighten",
         export_schema_path="./pipelines/schemas/export",
