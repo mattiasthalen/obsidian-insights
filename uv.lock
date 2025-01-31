@@ -367,6 +367,11 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/c3/cf/226ad6b97056409eba8c4bde9bfbb270dbb6b0d0d42a94dfcce68da3b3df/dlt-1.5.0-py3-none-any.whl", hash = "sha256:b9eaaa4966f3f696b8ba5cb988ce3c1a1030bede0cb92ecfa75f663709a7d296", size = 868745 },
 ]
 
+[package.optional-dependencies]
+duckdb = [
+    { name = "duckdb" },
+]
+
 [[package]]
 name = "duckdb"
 version = "1.1.3"
@@ -911,7 +916,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "beautifulsoup4" },
-    { name = "dlt" },
+    { name = "dlt", extra = ["duckdb"] },
     { name = "duckdb" },
     { name = "enlighten" },
     { name = "polars" },
@@ -921,7 +926,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12.3" },
-    { name = "dlt", specifier = ">=1.5.0" },
+    { name = "dlt", extras = ["duckdb"], specifier = ">=1.5.0" },
     { name = "duckdb", specifier = ">=1.1.3" },
     { name = "enlighten", specifier = ">=1.13.0" },
     { name = "polars", specifier = ">=1.21.0" },

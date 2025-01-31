@@ -1,5 +1,5 @@
-version: 7
-version_hash: YMwyOkIl1V+SRpYp9zl4ndguxloZkOt9hWLmC2MMGFY=
+version: 5
+version_hash: oy2TlStAnncPkH565vgDEagHwfTiemRPg6Ch+6EIUvs=
 engine_version: 11
 name: northwind
 tables:
@@ -95,7 +95,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__products:
     columns:
       product_id:
@@ -142,7 +141,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__regions:
     columns:
       region_id:
@@ -165,7 +163,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__shippers:
     columns:
       shipper_id:
@@ -191,7 +188,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__suppliers:
     columns:
       supplier_id:
@@ -244,7 +240,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__territories:
     columns:
       territory_id:
@@ -270,7 +265,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__category_details:
     columns:
       category_id:
@@ -301,7 +295,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__employee_territories:
     columns:
       territory_id:
@@ -330,7 +323,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__order_details:
     columns:
       order_id:
@@ -365,7 +357,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__orders:
     columns:
       order_id:
@@ -424,7 +415,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__employees:
     columns:
       employee_id:
@@ -495,7 +485,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   raw__northwind__categories:
     columns:
       category_id:
@@ -521,7 +510,6 @@ tables:
     x-normalizer:
       max_nesting: 0
       seen-data: true
-    table_format: iceberg
   _dlt_pipeline_state:
     columns:
       version:
@@ -578,8 +566,7 @@ normalizers:
   json:
     module: dlt.common.normalizers.json.relational
 previous_hashes:
-- YMwyOkIl1V+SRpYp9zl4ndguxloZkOt9hWLmC2MMGFY=
-- W+gJT2XH8bbNnBPb+5ApH1HAbdyXX6DdzwUyRqcSR50=
+- bCKV0dF4TCW611ksTC6hZIkt/9cZA2W8bkwHstxAx/0=
 - xBt8pUDrAyu7M2dirOwzqig79dXyZ0GTxmo6jGvzI7w=
 - ZzJ2keRn9Zon8QDfL7x8gIRvYRNyNTm6DoRIhkrP7xk=
 - CIohXYWT2L3os4TXrX1pEq20uemVZwtZ/gTmKoU/39M=
