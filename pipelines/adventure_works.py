@@ -103,15 +103,6 @@ def adventure_works_source() -> t.Any:
                     "paginator": JSONLinkPaginator__odata("@odata.nextLink"),
                 },
             },
-            # {
-            #     "name": "get__adventure_works__odata__v1__business_enteties",
-            #     "table_name": "raw__adventure_works__business_enteties",
-            #     "endpoint": {
-            #         "data_selector": "value",
-            #         "path": "/BusinessEntities",
-            #         "paginator": JSONLinkPaginator__odata("@odata.nextLink"),
-            #     },
-            # },
             {
                 "name": "get__adventure_works__odata__v1__business_entity_adresses",
                 "table_name": "raw__adventure_works__business_entity_adresses",
@@ -629,7 +620,7 @@ def load_adventure_works() -> None:
         progress="enlighten",
         export_schema_path="./pipelines/schemas/export",
         import_schema_path="./pipelines/schemas/import",
-        dev_mode=True
+        dev_mode=false
     )
 
     source = adventure_works_source()
