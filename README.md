@@ -77,25 +77,30 @@ graph LR
 
 ### Key Performance Indicators
 #### Primary
-|Name|Temporal Anchor|Formula|
+|**Name**|**Temporal Anchor**|**Formula**|
 |-|-|-|
 |% Order Fill Rate|Order & Ship Date|# Orders Shipped / # Orders Placed|
 |% On Time Delivery|Order Due Date|# Orders Shipped On Time / # Orders Due|
-|Average Order Processing Time|Shipped Date|Sum(Order Processing Time) / # Orders Shipped|
+|Average Order Processing Time|Shipped Date|Total Order Processing Time / # Orders Shipped|
 
 #### Secondary
-|Name|Temporal Anchor|Formula|
+|**Name**|**Temporal Anchor**|**Formula**|
 |-|-|-|
 |Average Age of Open Orders|-|-|
 |% Orders Within Capability|-|-|
 |Processing Time StDev|-|-|
 
 ### Metrics
-|Name|Temporal Anchor|Formula|
+|**Name**|**Temporal Anchor**|**Formula**|
 |-|-|-|
+|# Orders Shipped|-|-|
+|# Orders Placed|-|-|
+|# Orders Shipped On Time|-|-|
+|# Orders Due|-|-|
+|Total Order Processing Time|-|-|
 
 ### Measures
-|Name|Temporal Anchor|Formula|
+|**Name**|**Temporal Anchor**|**Formula**|
 |-|-|-|
 
 ### Measures In The Unified Star Schema
@@ -103,7 +108,7 @@ Instead of building a regular bridge, we will turn it into an event based bridge
 This will allow us to stack measures in the same graph and on a common date dimension.
 
 This is the normal bridge:
-|Stage|_key__orders|_key__customers|
+|**Stage**|**_key__orders**|**_key__customers**|
 |-|-|-|
 |Orders|A|X|
 |Orders|B|X|
@@ -112,7 +117,7 @@ This is the normal bridge:
 We then add the measurements, along with their corresponding date.
 - I.e., `# Orders Shipped` would set the date to `shipped_date`.
 
-|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
+|**Stage**|**_key__orders**|**_key__customers**|**_key__calendar**|**# Orders Placed**|**# Orders Required**|**# Orders Shipped**|
 |-|-|-|-|-|-|-|
 |Orders|A|X|2025-01-01|1|-|-|
 |Orders|A|X|2025-01-02|-|1|-|
@@ -125,7 +130,7 @@ We then add the measurements, along with their corresponding date.
 What happened is that every row got duplicated, with one line per measurement.
 We can do better than this, we can group it by date.
 
-|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
+|**Stage**|**_key__orders**|**_key__customers**|**_key__calendar**|**# Orders Placed**|**# Orders Required**|**# Orders Shipped**|
 |-|-|-|-|-|-|-|
 |Orders|A|X|2025-01-01|1|-|-|
 |Orders|A|X|2025-01-02|-|1|1|
@@ -133,7 +138,7 @@ We can do better than this, we can group it by date.
 |Customers|-|X|-|-|-|-|
 
 So, how many orders were placed, required, and shipped per day, for customer X?
-|Customer|Date|# Orders Placed|# Orders Required|# Orders Shipped|
+|**Customer**|**Date**|**# Orders Placed**|**# Orders Required**|**# Orders Shipped**|
 |-|-|-|-|-|
 |x|2025-01-01|2|1|1|
 |x|2025-01-02|0|1|1|
