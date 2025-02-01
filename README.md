@@ -75,33 +75,30 @@ graph LR
 >E.g., the amount on an invoice is associated with three dates; incoive date, due date, and payment date.
 >That means there will be three measures: amount invoiced, amount due, amount payed.
 
-### Measures
+### Key Performance Indicators
+#### Primary
 |Name|Temporal Anchor|Formula|
 |-|-|-|
-|Order Line Value|Order Date|$$Unit \space Price \times Quantity$$|
-|Discounted Order Line Value|Order Date|$$Unit \space Price \times Quantity \times (1 - Discount)$$|
-|Order Processing Days|Shipped Date|$$Shipped \space Date - Order \space Date$$|
-|Order Line Discount|Order Date|$$Order \space Line \space Value - Discounted \space Order \space Line \space Value$$
+|% Order Fill Rate|Order & Ship Date|# Orders Shipped / # Orders Placed|
+|% On Time Delivery|Order Due Date|# Orders Shipped On Time / # Orders Due|
+|Average Order Processing Time|Shipped Date|Sum(Order Processing Time) / # Orders Shipped|
+
+#### Secondary
+|Name|Temporal Anchor|Formula|
+|-|-|-|
+|Average Age of Open Orders|-|-|
+|% Orders Within Capability|-|-|
+|Processing Time StDev|-|-|
 
 ### Metrics
 |Name|Temporal Anchor|Formula|
 |-|-|-|
-|Customers|N/A|$$\sum_{i=1}^n 1_{CustomerID}$$|
-|Orders Placed|Order Date|$$\sum_{i=1}^n 1_{OrderID}$$|
-|Repeat Customers|Order Date|$$\sum_{i=1}^n \begin{cases} 1 & \text{if } Orders > 1 \\ 0 & \text{otherwise} \end{cases}$$|
-|Orders Shipped On Time|Shipped Date|$$\sum_{i=1}^n \begin{cases} 1_{OrderID} & \text{if } Shipped \space Date \leq Required \space Date \\ 0 & \text{otherwise} \end{cases}$$|
-|Discounted Order Value|Order Date|$$\sum(Discounted \space Order \space Line \space Value)$$|
-|Total Order Processing Days|Shipped Date|$$\sum(Order \space Processing \space Time)$$|
 
-### Key Performance Indicators
+### Measures
 |Name|Temporal Anchor|Formula|
 |-|-|-|
-|Average Revenue Per Order|Order Date|$$\dfrac{Discounted \space Order \space Value}{Orders \space Placed}$$|
-|On Time Delivery Rate|Shipped Date|$$\dfrac{Orders \space Shipped \space On \space Time}{Orders \space Placed}\%$$|
-|Customer Retention Rate|Order Date|$$\dfrac{Repeat \space Customers}{Customers}\%$$|
-|Average Order Processing Days|Shipped Date|$$\dfrac{Total \space Order \space Processing \space Days}{Orders \space Placed}$$|
 
-### Unified Star Schema
+### Measures In The Unified Star Schema
 Instead of building a regular bridge, we will turn it into an event based bridge.
 This will allow us to stack measures in the same graph and on a common date dimension.
 
