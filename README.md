@@ -76,32 +76,20 @@ graph LR
 >That means there will be three measures: amount invoiced, amount due, amount payed.
 
 ### Key Performance Indicators
-#### Primary
 |**Name**|**Temporal Anchor**|**Formula**|
 |-|-|-|
-|% Order Fill Rate|Order & Ship Date|# Orders Shipped / # Orders Placed|
-|% On Time Delivery|Order Due Date|# Orders Shipped On Time / # Orders Due|
-|Average Order Processing Time|Shipped Date|Total Order Processing Time / # Orders Shipped|
-
-#### Secondary
-|**Name**|**Temporal Anchor**|**Formula**|
-|-|-|-|
-|Average Age of Open Orders|-|-|
-|% Orders Within Capability|-|-|
-|Processing Time StDev|-|-|
-
-### Metrics
-|**Name**|**Temporal Anchor**|**Formula**|
-|-|-|-|
-|# Orders Shipped|-|-|
-|# Orders Placed|-|-|
-|# Orders Shipped On Time|-|-|
-|# Orders Due|-|-|
-|Total Order Processing Time|-|-|
+|Order Fill Rate|Mixed|$$\dfrac{\sum{Order \space Shipped}}{\sum{Order \space Placed}}$$|
+|On Time Delivery|Order Due Date|$$\dfrac{\sum{Order \space Shipped \space On \space Time}}{\sum{Order \space Due}}$$|
+|Average Order Processing Time|Shipped Date|$$\dfrac{\sum{Order \space Processing \space Time}}{\sum{Order \space Shipped}}$$|
 
 ### Measures
 |**Name**|**Temporal Anchor**|**Formula**|
 |-|-|-|
+|Order Placed|Order Date|$$Date = Order \space Date$$|
+|Order Shipped|Shipped Date|$$Date = Shipped \space Date$$|
+|Order Shipped On Time|Required Date|$$(Required \space Date - 5) \le Shipped \space Date \le (Required \space Date - 3)$$|
+|Order Due|Required Date|$$Date = Required \space Date$$|
+|Order Processing Time|Shipped Date|$$Shipped \space Date - Order \space Date$$|
 
 ### Measures In The Unified Star Schema
 Instead of building a regular bridge, we will turn it into an event based bridge.
