@@ -75,21 +75,5 @@ WITH order_details AS (
 )
 SELECT
   'order_details' AS stage,
-  order_details.*,
-  int__measures__order_details._key__date,
-  int__measures__order_details.measure__ordered_lines,
-  int__measures__order_details.measure__ordered_quantity,
-  int__measures__order_details.measure__ordered_value,
-  int__measures__order_details.measure__ordered_discounted_value,
-  int__measures__order_details.measure__due_lines,
-  int__measures__order_details.measure__due_quantity,
-  int__measures__order_details.measure__due_value,
-  int__measures__order_details.measure__due_discounted_value,
-  int__measures__order_details.measure__shipped_lines,
-  int__measures__order_details.measure__shipped_quantity,
-  int__measures__order_details.measure__shipped_value,
-  int__measures__order_details.measure__shipped_discounted_value
+  order_details.*
 FROM order_details
-LEFT JOIN silver.int__measures__order_details
-  ON order_details._hook__order_detail__valid_from = int__measures__order_details._hook__order_detail__valid_from
-  AND order_details._hook__order__valid_from = int__measures__order_details._hook__order__valid_from
