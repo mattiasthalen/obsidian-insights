@@ -46,10 +46,12 @@ WITH orders AS (
 SELECT
   'orders' AS stage,
   orders.*,
-  int__measures__orders.measure__orders_placed,
-  int__measures__orders.measure__orders_required,
-  int__measures__orders.measure__orders_shipped,
-  int__measures__orders._key__date
+  int__measures__orders._key__date,
+  int__measures__orders.measure__order_placed,
+  int__measures__orders.measure__order_due,
+  int__measures__orders.measure__order_shipped_on_time,
+  int__measures__orders.measure__order_shipped,
+  int__measures__orders.measure__order_processing_time
 FROM orders
 LEFT JOIN silver.int__measures__orders
   ON orders._hook__order__valid_from = int__measures__orders._hook__order__valid_from

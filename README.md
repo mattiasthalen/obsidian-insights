@@ -63,8 +63,7 @@ graph LR
     transform -.- gold
 ```
 
-## Unified Star Schema
-### Measures
+## Formulas
 > **!NOTE**
 >
 >I'm using this definition of what a measure is:
@@ -76,11 +75,28 @@ graph LR
 >E.g., the amount on an invoice is associated with three dates; incoive date, due date, and payment date.
 >That means there will be three measures: amount invoiced, amount due, amount payed.
 
+### Key Performance Indicators
+|**Name**|**Temporal Anchor**|**Formula**|
+|-|-|-|
+|Order Fill Rate|Mixed|$$\dfrac{\sum{Order \space Shipped}}{\sum{Order \space Placed}}$$|
+|On Time Delivery|Order Due Date|$$\dfrac{\sum{Order \space Shipped \space On \space Time}}{\sum{Order \space Due}}$$|
+|Average Order Processing Time|Shipped Date|$$\dfrac{\sum{Order \space Processing \space Time}}{\sum{Order \space Shipped}}$$|
+
+### Measures
+|**Name**|**Temporal Anchor**|**Formula**|
+|-|-|-|
+|Order Placed|Order Date|$$Date = Order \space Date$$|
+|Order Shipped|Shipped Date|$$Date = Shipped \space Date$$|
+|Order Shipped On Time|Required Date|$$(Required \space Date - 5) \le Shipped \space Date \le (Required \space Date - 3)$$|
+|Order Due|Required Date|$$Date = Required \space Date$$|
+|Order Processing Time|Shipped Date|$$Shipped \space Date - Order \space Date$$|
+
+### Measures In The Unified Star Schema
 Instead of building a regular bridge, we will turn it into an event based bridge.
 This will allow us to stack measures in the same graph and on a common date dimension.
 
 This is the normal bridge:
-|Stage|_key__orders|_key__customers|
+|**Stage**|**_key__orders**|**_key__customers**|
 |-|-|-|
 |Orders|A|X|
 |Orders|B|X|
@@ -89,7 +105,7 @@ This is the normal bridge:
 We then add the measurements, along with their corresponding date.
 - I.e., `# Orders Shipped` would set the date to `shipped_date`.
 
-|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
+|**Stage**|**_key__orders**|**_key__customers**|**_key__calendar**|**# Orders Placed**|**# Orders Required**|**# Orders Shipped**|
 |-|-|-|-|-|-|-|
 |Orders|A|X|2025-01-01|1|-|-|
 |Orders|A|X|2025-01-02|-|1|-|
@@ -102,7 +118,7 @@ We then add the measurements, along with their corresponding date.
 What happened is that every row got duplicated, with one line per measurement.
 We can do better than this, we can group it by date.
 
-|Stage|_key__orders|_key__customers|_key__calendar|# Orders Placed|# Orders Required|# Orders Shipped|
+|**Stage**|**_key__orders**|**_key__customers**|**_key__calendar**|**# Orders Placed**|**# Orders Required**|**# Orders Shipped**|
 |-|-|-|-|-|-|-|
 |Orders|A|X|2025-01-01|1|-|-|
 |Orders|A|X|2025-01-02|-|1|1|
@@ -110,7 +126,7 @@ We can do better than this, we can group it by date.
 |Customers|-|X|-|-|-|-|
 
 So, how many orders were placed, required, and shipped per day, for customer X?
-|Customer|Date|# Orders Placed|# Orders Required|# Orders Shipped|
+|**Customer**|**Date**|**# Orders Placed**|**# Orders Required**|**# Orders Shipped**|
 |-|-|-|-|-|
 |x|2025-01-01|2|1|1|
 |x|2025-01-02|0|1|1|
