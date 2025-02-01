@@ -17,7 +17,7 @@ SELECT
   COALESCE(SUM(measure__order_processing_time), 0) AS total_order_processing_time,
   orders_shipped / orders_placed AS order_fill_rate,
   orders_shipped_on_time / orders_due AS on_time_delivery,
-  orders_shipped_on_time / orders_shipped AS average_order_processing_time,
+  total_order_processing_time / orders_shipped AS average_order_processing_time,
   _bridge._sqlmesh_loaded_at
 FROM gold._bridge
 FULL OUTER JOIN gold.calendar
