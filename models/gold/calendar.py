@@ -40,7 +40,7 @@ def execute(
     
     # Load data
     table = context.resolve_table("obsidian_insights.silver.int__uss_bridge")
-    source_df = pl.from_pandas(context.fetchdf(f"SELECT _key__date::DATE::STRING::BLOB AS _key__date FROM {table} WHERE _key__date IS NOT NULL"))
+    source_df = pl.from_pandas(context.fetchdf(f"SELECT _key__date FROM {table} WHERE _key__date IS NOT NULL"))
     
     # Convert binary to text, extract the first 4 characters (year), and cast to int
     year_df = source_df.with_columns(

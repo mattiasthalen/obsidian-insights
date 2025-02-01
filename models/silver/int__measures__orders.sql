@@ -19,8 +19,8 @@ WITH order_date AS (
     CASE
       WHEN 1 = 1
       AND NOT shipped_date IS NULL
-      AND required_date - INTERVAL '5 DAYS' <= shipped_date
-      AND shipped_date <= required_date - INTERVAL '3 DAYS'
+      AND required_date - INTERVAL '5' DAYS <= shipped_date
+      AND shipped_date <= required_date - INTERVAL '3' DAYS
       THEN 1
     END AS measure__order_shipped_on_time
   FROM silver.bag__northwind__orders
@@ -42,7 +42,7 @@ SELECT
     required_date._hook__order__valid_from,
     shipped_date._hook__order__valid_from
   ) AS _hook__order__valid_from,
-  COALESCE(order_date.order_date, required_date.required_date, shipped_date.shipped_date) AS _key__date,
+  COALESCE(order_date.order_date, required_date.required_date, shipped_date.shipped_date)::TEXT::BLOB AS _key__date,
   order_date.measure__order_placed,
   required_date.measure__order_due,
   required_date.measure__order_shipped_on_time,
