@@ -2,8 +2,8 @@ name: SQLMesh ELT Bot
 run-name: 🚀SQLMesh ELT Bot 🚀
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
+  #schedule:
+  #  - cron: '0 0 * * *'
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
